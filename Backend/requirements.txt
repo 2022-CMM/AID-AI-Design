@@ -1,4 +1,5 @@
 django==3.2
-django-cors-headers
-djangorestframework
-mysqlclient
+django-cors-headers==3.11.0
+djangorestframework==3.13.1
+mysqlclient==2.1.0
+pyyaml==6.0
