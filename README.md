@@ -5,7 +5,7 @@
 ```
 [settings]
 Request conf.yaml from Administartor
-Move conf.yaml to directory 'Backend/CMMApi/'
+Move conf.yaml to directory 'CMMApi/'
 
 [Terminal]
 pip install -r requiements.txt
