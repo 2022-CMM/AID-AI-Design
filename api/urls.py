@@ -15,3 +15,4 @@ urlpatterns = [
     # path('articles/', article_list),
     # path('articles/<int:pk>/', article_details),
 ]
+
