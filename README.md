@@ -14,7 +14,7 @@ python manage.py runserver
 
 ## API
 - User Manage
-'''
+```
 [login]
 /rest-auth/login/
 
@@ -23,4 +23,4 @@ python manage.py runserver
 
 [logout]
 /rest-auth/logout/
-'''
+```
