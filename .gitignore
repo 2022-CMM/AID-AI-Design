@@ -142,4 +142,4 @@ frontend/*.orig.*
 frontend/web-build/
 
 # macOS
-frontend/.DS_Store
+.DS_Store

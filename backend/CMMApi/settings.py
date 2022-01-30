@@ -2,9 +2,9 @@ from pathlib import Path
 import os
 import yaml
 
-CONFIG_FILE = '.backend/CMMApi/conf.yaml'
+CONFIG_FILE = 'backend/CMMApi/conf.yaml'
 if not os.path.isfile(CONFIG_FILE):
-    CONFIG_FILE = '.backend/CMMApi/conf_test.yaml'
+    CONFIG_FILE = 'backend/CMMApi/conf_test.yaml'
     
 # Add Security Settings in conf.yaml
 with open(CONFIG_FILE, 'r') as f:
