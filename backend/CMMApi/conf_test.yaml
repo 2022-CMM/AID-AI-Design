@@ -5,6 +5,7 @@ DATABASE:
   NAME: sqlite3
   USER: 
   PASSWORD: 
-  HOST: 
+  HOST:
+   
 
 ALLOWED_HOSTS: ['*']
