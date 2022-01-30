@@ -109,7 +109,7 @@ venv/
 ENV/
 env.bak/
 venv.bak/
-CMMApi/conf.yaml
+drf/CMMApi/conf.yaml
 
 # Spyder project settings
 .spyderproject
