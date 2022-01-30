@@ -103,16 +103,25 @@ WSGI_APPLICATION = 'CMMApi.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': config['DATABASE']['ENGINE'],
-        'NAME': config['DATABASE']['NAME'],
-        'USER': config['DATABASE']['USER'],
-        'PASSWORD': config['DATABASE']['PASSWORD'],
-        'HOST': config['DATABASE']["HOST"],
-        'PORT': config['DATABASE']['PORT'],
-    },
-}
+try:
+    DATABASES = {
+        'default': {
+            'ENGINE': config['DATABASE']['ENGINE'],
+            'NAME': config['DATABASE']['NAME'],
+            'USER': config['DATABASE']['USER'],
+            'PASSWORD': config['DATABASE']['PASSWORD'],
+            'HOST': config['DATABASE']["HOST"],
+            'PORT': config['DATABASE']['PORT'],
+        },
+    }
+except KeyError:
+    DATABASES = {
+        'default': {
+            'ENGINE': config['DATABASE']['ENGINE'],
+            'NAME': config['DATABASE']['NAME'],
+        },
+    }
+
 
 # DATABASES = {
 #     'default': {
