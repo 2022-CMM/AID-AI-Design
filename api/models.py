@@ -29,6 +29,10 @@ class goods_design(models.Model):
     created_at = models.DateTimeField(db_column='created_at', max_length=100, blank=True)
     delete_flag = models.CharField(db_column='delete_flag', max_length=100, blank=True)
 
+
+    def __str__(self) -> str:
+        return self.image_path
+
     class Meta:
         db_table = 'goods_design'
 
@@ -66,10 +70,3 @@ class comment(models.Model):
     class Meta:
         db_table = 'comment'
 
-
-class Article(models.Model):
-    title = models.CharField(max_length=100)
-    description = models.TextField()
-
-    def __str__(self) -> str:
-        return self.title
