@@ -5,3 +5,4 @@ mysqlclient==2.1.0
 pyyaml==6.0
 django-rest-auth
 django-allauth
+Pillow==9.0.0

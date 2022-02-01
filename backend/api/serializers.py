@@ -12,4 +12,4 @@ class UserSerializer(serializers.ModelSerializer):
 class DesignSerializer(serializers.ModelSerializer):
     class Meta:
         model = goods_design
-        fields = ['id', 'info_id', 'image_path', 'image_selected', 'created_at', 'delete_flag']
+        fields = '__all__'

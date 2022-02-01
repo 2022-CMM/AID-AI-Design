@@ -18,6 +18,6 @@ class DesignViewSet(viewsets.ModelViewSet):
 
     queryset = goods_design.objects.all()
     serializer_class = DesignSerializer
-    permission_classes = [IsAuthenticated]
-    authentication_classes = (TokenAuthentication, )
+    # permission_classes = [IsAuthenticated]
+    # authentication_classes = (TokenAuthentication, )
 

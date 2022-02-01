@@ -24,10 +24,11 @@ class goods_info(models.Model):
 
 class goods_design(models.Model):
     info = models.ForeignKey(goods_info, on_delete=models.CASCADE, verbose_name="info", default='1')
-    image_path = models.CharField(db_column='image_path', max_length=100, blank=True)
+    image = models.ImageField(blank=True, null=True, upload_to="designs")
     image_selected = models.CharField(db_column='image_selected', max_length=100, blank=True)
     created_at = models.DateTimeField(db_column='created_at', max_length=100, blank=True)
     delete_flag = models.CharField(db_column='delete_flag', max_length=100, blank=True)
+    
 
 
     def __str__(self) -> str:
