@@ -6,6 +6,6 @@ from .models import User
 
 @admin.register(goods_design)
 class DesignModel(admin.ModelAdmin):
-    list_filter = ('info_id', 'image_path')
-    list_display = ('info_id', 'image_path')
+    list_filter = ('info_id', 'image')
+    list_display = ('info_id', 'image')
     
