@@ -3,19 +3,30 @@ from django.db.models.fields import DateField
 from django.contrib.auth.models import User, AbstractUser
 
 
-# class User(AbstractUser):
-#     user_type = models.CharField(max_length=100)
+
+class profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="profile")
+    phone_no = models.CharField(db_column='phone_no', null=True, max_length=100, default='')
+    name = models.CharField(db_column='name', max_length=100, blank=True, null=True)
+    user_type = models.CharField(db_column='user_type', max_length=100, blank=True, null=True)
+    profile_image = models.ImageField(blank=True, null=True, upload_to="profile_image")
+
+    class Meta:
+        db_table = "profile"
 
 
 class goods_info(models.Model):
+    '''
+    - User Upload Image
+    '''
     user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="user", default='1')
-    image_path = models.CharField(db_column='image_path', max_length=100, blank=True)
+    image = models.ImageField(blank=True, null=True, upload_to="upload_image")
     purchased_date = models.DateTimeField(db_column='purchased_date', max_length=100, blank=True)
     quality = models.CharField(db_column='quality', max_length=100, blank=True)
     material = models.CharField(db_column='material', max_length=100, blank=True)
     goods_type = models.CharField(db_column='goods_type', max_length=100, blank=True)
     style = models.CharField(db_column='style', max_length=100, blank=True)
-    created_at = models.DateTimeField(db_column='created_at', max_length=100, blank=True)
+    created_at = models.DateTimeField(db_column='created_at', max_length=100, blank=True, auto_now=True)
     delete_flag = models.CharField(db_column='delete_flag', max_length=100, blank=True)
 
     class Meta:
@@ -23,25 +34,32 @@ class goods_info(models.Model):
 
 
 class goods_design(models.Model):
+    '''
+    - AI model Output Image
+    '''
     info = models.ForeignKey(goods_info, on_delete=models.CASCADE, verbose_name="info", default='1')
-    image = models.ImageField(blank=True, null=True, upload_to="designs")
+    image = models.ImageField(blank=True, null=True, upload_to="ai_designs")
     image_selected = models.CharField(db_column='image_selected', max_length=100, blank=True)
-    created_at = models.DateTimeField(db_column='created_at', max_length=100, blank=True)
+    created_at = models.DateTimeField(db_column='created_at', max_length=100, blank=True, auto_now=True)
     delete_flag = models.CharField(db_column='delete_flag', max_length=100, blank=True)
     
-
-
-    def __str__(self) -> str:
-        return self.image_path
 
     class Meta:
         db_table = 'goods_design'
 
 
 class goods_result(models.Model):
-    user = models.CharField(db_column='image_path', max_length=100, blank=True)
+    '''
+    - Designer Works Image
+    '''
+    user = models.CharField(db_column='user', max_length=100, blank=True)
     designer = models.CharField(db_column='designer', max_length=100, blank=True)
-    result_path = models.CharField(db_column='result_path', max_length=100, blank=True)
+    design_code = models.IntegerField(db_column='design_code', null=True, blank=True, unique=True)
+    image = models.ImageField(blank=True, null=True, upload_to="result")
+    title = models.CharField(db_column='title', max_length=100, blank=True)
+    description = models.CharField(db_column='description', max_length=100, blank=True)
+    created_at = models.DateTimeField(db_column='created_at', max_length=100, blank=True, auto_now=True)
+    delete_flag = models.CharField(db_column='delete_flag', max_length=100, blank=True)
 
     class Meta:
         db_table = 'goods_result'
