@@ -31,5 +31,5 @@ jobs:
       run: |
         cd frontend
         yarn
-        expo start
+        npm test
         
