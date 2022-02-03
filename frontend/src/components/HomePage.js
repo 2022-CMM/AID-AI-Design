@@ -1,22 +1,69 @@
 import * as React from 'react';
-import { StyleSheet, Text, View, FlatList } from 'react-native';
+import { StyleSheet, Text, View, FlatList, Image, TouchableOpacity } from 'react-native';
+import { Autoplay } from 'swiper';
 import LogoSvg from '../media/logo2_svg';
 
-const DATA = [];    //안에 json형태로 삽입. id,uri 넣어야함 일단.
+const DATA = [
+    {
+        id: '1',
+        uri: 'https://comart.io/images/rn/react-native.png'
+    },
+    {
+        id: '2',
+        uri: 'https://comart.io/images/rn/react-native.png'
+    },
+    {
+        id: '3',
+        uri: 'https://comart.io/images/rn/react-native.png'
+    },
+    {
+        id: '4',
+        uri: 'https://comart.io/images/rn/react-native.png'
+    },
+    {
+        id: '5',
+        uri: 'https://comart.io/images/rn/react-native.png'
+    },
+    {
+        id: '6',
+        uri: 'https://comart.io/images/rn/react-native.png'
+    },
+    {
+        id: '7',
+        uri: 'https://comart.io/images/rn/react-native.png'
+    },
+    {
+        id: '8',
+        uri: 'https://comart.io/images/rn/react-native.png'
+    },
+    {
+        id: '9',
+        uri: 'https://comart.io/images/rn/react-native.png'
+    },
+    {
+        id: '10',
+        uri: 'https://comart.io/images/rn/react-native.png'
+    },
+    {
+        id: '11',
+        uri: 'https://comart.io/images/rn/react-native.png'
+    }
+];
 
-const Item = ({ imguri }) => (
-    <View style={styles.item}>
-        <Image source={{uri:{imguri}}} style={styles.img} />
-    </View>
-);
-//img, item 스타일 안만들었음.
+// 나중에 데이터에 어디로 네비게이트 해야하는지 추가.
+
+function Item({item},{onPress}){
+    return(
+        <View style={styles.listitem}>
+            <TouchableOpacity onPress={onPress}>
+            {/* onPress나중에 navigate로 변경 */}
+            <Image source={{uri:item.uri}} style={styles.img} />
+            </TouchableOpacity>
+        </View>
+    );
+}
 
 function HomePage() {
-
-    const renderItem = ({ item }) => (
-        <Item imguri={item.uri} />
-);
-
     return (
         <View style={styles.container}>
             <View style={styles.header}>
@@ -25,8 +72,9 @@ function HomePage() {
             <View style={styles.content}>
                 <FlatList
                     data={DATA}
-                    renderItem={renderItem}
+                    renderItem={({ item }) => <Item item={item}/>}
                     keyExtractor={item => item.id}
+                    numColumns={2}
                 />
             </View>
         </View>
@@ -47,7 +95,20 @@ const styles = StyleSheet.create({
     },
     content:{
         flex:6.6,
-        alignItems: 'center'
+        paddingLeft:24,
+        paddingRight:24
+    },
+    listitem:{
+        width:156,
+        height:200,
+        marginRight:15,
+        marginBottom:15
+        
+    },
+    img:{
+        width:'100%',
+        height:'100%',
+        resizeMode:'stretch'
     }
 })
 
