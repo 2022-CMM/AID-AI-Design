@@ -19,6 +19,8 @@ import Mypage_Icon from './src/media/mypage_icon';
 import Upload_Icon from './src/media/upload_icon';
 import FindUser from './src/components/FindUser';
 import Upload from './src/components/Upload';
+import FindID from './src/components/FindID';
+import FindPw from './src/components/FindPw';
 
 import Tabbar_Svg from './src/media/TabBar';
 
@@ -43,9 +45,11 @@ function AppStack() {
     <NavigationContainer>
       <StatusBar style="auto" />
       <Stack.Navigator initialRouteName="LogIn" screenOptions={{headerShown: false, gestureEnabled:false}}>
-        <Stack.Screen name="LogIn" component={LogIn}/>
-        <Stack.Screen name="SignUp" component={SignUp}/>
+        <Stack.Screen name="LogIn" component={LogIn} />
+        <Stack.Screen name="SignUp" component={SignUp} />
         <Stack.Screen name="FindUser" component={FindUser} />
+        <Stack.Screen name="FindID" component={FindID} />
+        <Stack.Screen name="FindPw" component={FindPw} />
         <Stack.Screen name="Main" component={MainTab} />
       </Stack.Navigator>
     </NavigationContainer>
@@ -63,20 +67,20 @@ function TabBarAdvancedButton(props) {
   );
 }
 
-function Uplaod(){
-  const [modalVisible, setModalVisible] = useState(false);
-    return (
-        <Modal
-            animationType="slide"
-            transparent={true}
-            visible={modalVisible}
-            onRequestClose={() => { setModalVisible(!modalVisible); }}>
-            <View>
-                <Text>안녕하세요!</Text>
-            </View>
-        </Modal>
-    );
-}
+// function Uplaod(){
+//   const [modalVisible, setModalVisible] = useState(false);
+//     return (
+//         <Modal
+//             animationType="slide"
+//             transparent={true}
+//             visible={modalVisible}
+//             onRequestClose={() => { setModalVisible(!modalVisible); }}>
+//             <View>
+//                 <Text>안녕하세요!</Text>
+//             </View>
+//         </Modal>
+//     );
+// }
 
 
 function MainTab() {

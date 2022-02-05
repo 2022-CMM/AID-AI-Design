@@ -1,14 +1,15 @@
-import * as React from 'react';
-import { Text, View, StyleSheet } from 'react-native';
+import React,{ useState, useEffect } from 'react';
+import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
 
 function ChatPage() {
+
     return (
         <View style={styles.container}>
             <View style={styles.header}>
                 <Text style={styles.navi}>채팅</Text>
             </View>
             <View style={styles.content}>
-                <Text>good</Text>
+
             </View>
         </View>
     );
@@ -31,7 +32,8 @@ const styles = StyleSheet.create({
         marginLeft:30
     },
     content:{
-        flex:6.6
+        flex:6.6,
+        alignItems:'center'
     }
 })
 

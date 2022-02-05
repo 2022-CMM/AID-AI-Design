@@ -8,6 +8,27 @@ import axios from 'axios';
 function LogIn({ navigation: { navigate } }) {
     const [Id, setId] = React.useState(null);
     const [Pw, setPw] = React.useState(null);
+
+    const IsValid = async () =>{
+        const data = {
+            username : Id,
+            password : Pw
+        }
+        try { 
+            const {
+                data: { path }
+            } = await axios.post("http://localhost:8000/rest-auth/login/",data,{
+                headers: { 
+                    "content-type": "application/json"
+                }
+            });
+        } catch (e) {
+            console.log(e);
+            console.log(Id);
+            console.log(Pw);
+        }
+    };
+
     return (
         <View style={styles.container}>
             
@@ -35,24 +56,26 @@ function LogIn({ navigation: { navigate } }) {
                 <SignUp_Btn onPress={() => navigate('FindUser')} />
             </View>
         </View>
-    );
+    );    
 }
 
 
-function IsValid(Id, Pw) {
-    axios.post('https://localhost:8000/rest-auth/login/', {
-        username: Id,
-        password: Pw
-    })
-    .then(function (response) {
-        console.log(response);
-    })
-    .catch(function (error) {
-        console.log(error);
-        console.log(Id);
-        console.log(Pw);
-    });
-}
+// function IsValid(Id, Pw) {
+//     axios.post('http://localhost:8000/rest-auth/login/', {
+//         username: Id,
+//         password: Pw
+//     })
+//     .then(function (response) {
+//         console.log(response);
+//     })
+//     .catch(function (error) {
+//         console.log(error);
+//         console.log(Id);
+//         console.log(Pw);
+//     });
+// }
+
+
 
 
 const LogIn_Btn = ({onPress}) => { 

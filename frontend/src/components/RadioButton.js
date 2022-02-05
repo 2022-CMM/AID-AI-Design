@@ -11,7 +11,7 @@ export default function RadioButton({ data, onSelect }) {
     <View>
         {data.map((item) => {
             return (
-                <Pressable style={item.value === userOption ? styles.selected : styles.unselected} onPress={() => selectHandler(item.value)}>
+                <Pressable key={item.key} style={item.value === userOption ? styles.selected : styles.unselected} onPress={() => selectHandler(item.value)}>
                     <Text style={styles.size}> {item.value}</Text>
                     <View style={{height:32,borderRightWidth:1,borderRightColor:'#04AA8C',marginLeft:26,marginRight:26}}></View>
                     <Text style={styles.info}>{item.info}</Text>
