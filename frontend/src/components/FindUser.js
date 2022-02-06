@@ -8,6 +8,47 @@ import Pw_Icon from '../media/Pw_icon';
 // import AsyncStorage from '@react-native-community/async-storage';   //async 사용.
 
 function FindUser({ navigation: { navigate } }) {
+
+    const LogIn_Btn = ({onPress}) => { 
+        return (
+            <View style={styles.container}>
+                <TouchableOpacity style={styles.button} activeOpacity={0.6} onPress={onPress} >
+                    <Text style={styles.buttonText}>로그인 화면으로</Text>
+                </TouchableOpacity>
+            </View>
+        );
+    };
+    
+    const SignUp_Btn = ({onPress}) => {
+        return (
+            <TouchableOpacity style={styles.SignUp_Btn} activeOpacity={0.6} onPress={onPress}>
+                <Text style={styles.nothing}>아직 회원이 아닌가요?  </Text><Text style={styles.SignUpText}>회원가입&gt;</Text>
+            </TouchableOpacity>
+        );
+    };
+    
+    const FindId_Btn = () => {
+        return (
+            <View style={styles.container}>
+                <TouchableOpacity style={styles.find_button} activeOpacity={0.6} onPress={() => navigate('FindID')} >
+                    <Id_Icon />
+                    <Text style={styles.find_buttonText}>아이디 찾기</Text>
+                </TouchableOpacity>
+            </View>
+        );
+    };
+
+    const FindPw_Btn = () => {
+        return (
+            <View style={styles.container}>
+                <TouchableOpacity style={styles.find_button} activeOpacity={0.6} onPress={() => navigate('FindPw')} >
+                    <Pw_Icon />
+                    <Text style={styles.find_buttonText}>비밀번호 찾기</Text>
+                </TouchableOpacity>
+            </View>
+        );
+    };
+
     return (
         <View style={styles.container}>
             
@@ -34,47 +75,6 @@ function FindUser({ navigation: { navigate } }) {
         </View>
     );
 }
-
-
-const LogIn_Btn = ({onPress}) => { 
-    return (
-        <View style={styles.container}>
-            <TouchableOpacity style={styles.button} activeOpacity={0.6} onPress={onPress} >
-                <Text style={styles.buttonText}>로그인 화면으로</Text>
-            </TouchableOpacity>
-        </View>
-    );
-};
-
-const SignUp_Btn = ({onPress}) => {
-    return (
-        <TouchableOpacity style={styles.SignUp_Btn} activeOpacity={0.6} onPress={onPress}>
-            <Text style={styles.nothing}>아직 회원이 아닌가요?  </Text><Text style={styles.SignUpText}>회원가입&gt;</Text>
-        </TouchableOpacity>
-    );
-};
-
-const FindId_Btn = ({onPress}) => {
-    return (
-        <View style={styles.container}>
-            <TouchableOpacity style={styles.find_button} activeOpacity={0.6} onPress={onPress} >
-                <Id_Icon />
-                <Text style={styles.find_buttonText}>아이디 찾기</Text>
-            </TouchableOpacity>
-        </View>
-    );
-};
-
-const FindPw_Btn = ({onPress}) => {
-    return (
-        <View style={styles.container}>
-            <TouchableOpacity style={styles.find_button} activeOpacity={0.6} onPress={onPress} >
-                <Pw_Icon />
-                <Text style={styles.find_buttonText}>비밀번호 찾기</Text>
-            </TouchableOpacity>
-        </View>
-    );
-};
 
 const styles = StyleSheet.create({
     container:{
