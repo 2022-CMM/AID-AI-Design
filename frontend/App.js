@@ -21,6 +21,9 @@ import FindUser from './src/components/FindUser';
 import Upload from './src/components/Upload';
 import FindID from './src/components/FindID';
 import FindPw from './src/components/FindPw';
+import Piece from './src/components/Piece';
+import SearchResult from './src/components/SearchResult';
+import Chatting from './src/components/Chatting'
 
 import Tabbar_Svg from './src/media/TabBar';
 
@@ -39,6 +42,53 @@ async function delay_splash() {
   await SplashScreen.hideAsync();    
 };
 
+function TabBarAdvancedButton(props) {
+  return (
+    <View style={{position:'relative', alignItems: 'center'}} pointerEvents="box-none" >
+      <TouchableOpacity style={{width:55,height:55,backgroundColor:'#04AA8C',justifyContent:'center',alignItems:'center',borderRadius:100, bottom:28}} onPress={props.onPress} >
+        <Upload_Icon />
+      </TouchableOpacity>
+      {/* <Tabbar_Svg style={{position:'absolute'}}/> */}
+    </View>
+  );
+}
+
+function HomeStack(){
+  return(
+      <Stack.Navigator initialRouteName="Home" screenOptions={{headerShown: false}}>
+        <Stack.Screen name="Home" component={HomePage} />
+        <Stack.Screen name="Piece" component={Piece} />
+      </Stack.Navigator>
+  );
+}
+
+function SearchStack(){
+  return(
+      <Stack.Navigator initialRouteName="Search" screenOptions={{headerShown: false}}>
+        <Stack.Screen name="Search" component={SearchPage} />
+        <Stack.Screen name="SearchResult" component={SearchResult} />
+      </Stack.Navigator>
+  );
+}
+
+function ChatStack(){
+  return(
+      <Stack.Navigator initialRouteName="Chats" screenOptions={{headerShown: false}}>
+        <Stack.Screen name="Chats" component={ChatPage} />
+        <Stack.Screen name="Chatting" component={Chatting} />
+      </Stack.Navigator>
+  );
+}
+
+function MyPageStack(){
+  return(
+      <Stack.Navigator initialRouteName="Mypage" screenOptions={{headerShown: false}}>
+        <Stack.Screen name="Mypage" component={ChatPage} />
+        {/* <Stack.Screen name="" component={} /> */}
+      </Stack.Navigator>
+  );
+}
+
 function AppStack() {
   delay_splash();
   return (
@@ -56,16 +106,23 @@ function AppStack() {
   );
 }
 
-function TabBarAdvancedButton(props) {
+function MainTab() {
   return (
-    <View style={{position:'relative', alignItems: 'center'}} pointerEvents="box-none" >
-      <TouchableOpacity style={{width:55,height:55,backgroundColor:'#04AA8C',justifyContent:'center',alignItems:'center',borderRadius:100, bottom:28}} onPress={props.onPress} >
-        <Upload_Icon />
-      </TouchableOpacity>
-      {/* <Tabbar_Svg style={{position:'absolute'}}/> */}
-    </View>
+    <Tab.Navigator initialRouteName='Home'  screenOptions={{headerShown: false, tabBarShowLabel:false, tabBarVisible: false, tabBarStyle:{ backgroundColor: '#ffffff' }}}>
+      {/* tabBarBackground:()=>(<Tabbar_Svg style={{position:'absolute',bottom:0}} />) 이거 탭바모양인데 안먹어서 일단 주석 */}
+      <Tab.Screen name="HomeStack" component={HomeStack} options={{tabBarIcon: ()=>{ return <Home_Icon />}}} />
+      <Tab.Screen name="SearchStack" component={SearchStack} options={{tabBarIcon: ()=>{ return <Search_Icon />}}} />
+      <Tab.Screen name="Upload" component={Upload} options={{tabBarButton: (props)=>{ return <TabBarAdvancedButton {...props} />}}} />
+      <Tab.Screen name="Chat" component={ChatPage} options={{tabBarIcon: ()=>{ return <Chat_Icon />}}} />
+      <Tab.Screen name="My" component={MyPage} options={{tabBarIcon: ()=>{ return <Mypage_Icon />}}} />
+    </Tab.Navigator>
   );
 }
+
+
+export default AppStack;
+
+
 
 // function Uplaod(){
 //   const [modalVisible, setModalVisible] = useState(false);
@@ -81,20 +138,3 @@ function TabBarAdvancedButton(props) {
 //         </Modal>
 //     );
 // }
-
-
-function MainTab() {
-  return (
-    <Tab.Navigator initialRouteName='Home'  screenOptions={{headerShown: false, tabBarShowLabel:false, tabBarVisible: false, tabBarStyle:{ backgroundColor: '#ffffff' }}}>
-      {/* tabBarBackground:()=>(<Tabbar_Svg style={{position:'absolute',bottom:0}} />) 이거 탭바모양인데 안먹어서 일단 주석 */}
-      <Tab.Screen name="Home" component={HomePage} options={{tabBarIcon: ()=>{ return <Home_Icon />}}} />
-      <Tab.Screen name="Search" component={SearchPage} options={{tabBarIcon: ()=>{ return <Search_Icon />}}} />
-      <Tab.Screen name="Upload" component={Upload} options={{tabBarButton: (props)=>{ return <TabBarAdvancedButton {...props} />}}} />
-      <Tab.Screen name="Chat" component={ChatPage} options={{tabBarIcon: ()=>{ return <Chat_Icon />}}} />
-      <Tab.Screen name="My" component={MyPage} options={{tabBarIcon: ()=>{ return <Mypage_Icon />}}} />
-    </Tab.Navigator>
-  );
-}
-
-
-export default AppStack;

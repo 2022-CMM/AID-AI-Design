@@ -3,31 +3,58 @@ import { Text, View, StyleSheet,TextInput,TouchableOpacity } from 'react-native'
 import LogoSvg from '../media/logo_svg';
 import axios from 'axios';
 
-// import AsyncStorage from '@react-native-community/async-storage';   //async 사용.
+import API from './AxiosApi';
 
 function LogIn({ navigation: { navigate } }) {
     const [Id, setId] = React.useState(null);
     const [Pw, setPw] = React.useState(null);
 
-    const IsValid = async () =>{
-        const data = {
-            username : Id,
-            password : Pw
-        }
-        try { 
-            const {
-                data: { path }
-            } = await axios.post("http://localhost:8000/rest-auth/login/",data,{
-                headers: { 
-                    "content-type": "application/json"
-                }
-            });
-        } catch (e) {
-            console.log(e);
+    // const IsValid = async () =>{
+    //     const data = {
+    //         username : Id,
+    //         password : Pw
+    //     }
+    //     try { 
+    //         const {
+    //             data: { path }
+    //         } = await axios.post("http://192.168.1.7:8000/rest-auth/login/",data,{
+    //             headers: { 
+    //                 "content-type": "application/json"
+    //             }
+    //         });
+    //     } catch (e) {
+    //         console.log(e);
+    //         console.log(Id);
+    //         console.log(Pw);
+    //     }
+    //     // fetch('http://192.168.1.7:8000/rest-auth/login/', {
+    //     //     method: 'POST',
+    //     //     headers: {
+    //     //         Accept: 'application/json',
+    //     //         'Content-Type': 'application/json',
+    //     //     },
+    //     //     // send our base64 string as POST request
+    //     //     body: JSON.stringify({
+    //     //         username : Id,
+    //     //         password : Pw,
+    //     //     }),
+    //     // })
+    // };
+
+    function IsValid(Id, Pw) {
+        axios.post('http://192.168.1.7:8000/rest-auth/login/', {
+            username: Id,
+            password: Pw
+        })
+        .then(function (response) {
+            navigate('Main')
+        })
+        .catch(function (error) {
+            console.log(error);
             console.log(Id);
             console.log(Pw);
-        }
-    };
+        });
+    }
 
     return (
         <View style={styles.container}>
@@ -60,23 +87,22 @@ function LogIn({ navigation: { navigate } }) {
 }
 
 
-// function IsValid(Id, Pw) {
-//     axios.post('http://localhost:8000/rest-auth/login/', {
+
+// const IsValid = async(Id,Pw) => {
+//     await API.post('/rest-auth/login/', {
 //         username: Id,
+//         email:'',
 //         password: Pw
 //     })
-//     .then(function (response) {
+//     .then((response) => {
 //         console.log(response);
 //     })
-//     .catch(function (error) {
+//     .catch((error) => {
 //         console.log(error);
 //         console.log(Id);
 //         console.log(Pw);
-//     });
-// }
-
-
-
+//     })
+// };
 
 const LogIn_Btn = ({onPress}) => { 
     return (
@@ -123,7 +149,8 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         borderBottomLeftRadius:80,
-        borderBottomRightRadius:80
+        borderBottomRightRadius:80,
+        backgroundColor:'#ffffff'
     },
     logo: {
         flex: 1,
