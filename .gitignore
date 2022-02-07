@@ -143,5 +143,6 @@ frontend/*.mobileprovision
 frontend/*.orig.*
 frontend/web-build/
 
+ai/model/*.pkl
 # macOS
 *.DS_Store
