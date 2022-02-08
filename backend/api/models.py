@@ -1,25 +1,15 @@
+from tabnanny import verbose
 from django.db import models
 from django.db.models.fields import DateField
-from django.contrib.auth.models import User, AbstractUser
-
-
-
-class profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="user")
-    phone_no = models.CharField(db_column='phone_no', null=True, max_length=100, default='')
-    name = models.CharField(db_column='name', max_length=100, blank=True, null=True)
-    user_type = models.CharField(db_column='user_type', max_length=100, blank=True, null=True)
-    profile_image = models.ImageField(blank=True, null=True, upload_to="profile_image")
-
-    class Meta:
-        db_table = "profile"
+from django.contrib.auth.models import User
+from user.models import CustomUser
 
 
 class goods_info(models.Model):
     '''
     - User Upload Image
     '''
-    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="user", default='1')
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, verbose_name="user", default='1')
     image = models.ImageField(blank=True, null=True, upload_to="upload_image")
     purchased_date = models.DateTimeField(db_column='purchased_date', max_length=100, blank=True)
     quality = models.CharField(db_column='quality', max_length=100, blank=True)
@@ -66,7 +56,7 @@ class goods_result(models.Model):
 
 
 class board(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="user", default='1')
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, verbose_name="user", default='1')
     title = models.CharField(db_column='title', max_length=100, blank=True)
     contents = models.CharField(db_column='contents', max_length=100, blank=True)
     created_at = models.DateTimeField(db_column='created_at', max_length=100, blank=True)

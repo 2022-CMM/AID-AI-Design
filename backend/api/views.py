@@ -1,23 +1,18 @@
 from django.shortcuts import get_object_or_404, render, HttpResponse
 from rest_framework import serializers
-from .models import goods_design, goods_result, goods_info, profile
-from .serializers import UserSerializer, DesignSerializer, UploadSerializer, ResultSerializer, ProfileSerializer
+from .models import goods_design, goods_result, goods_info
+from .serializers import UserSerializer, DesignSerializer, UploadSerializer, ResultSerializer
 from rest_framework import viewsets, mixins, generics
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
-from django.contrib.auth.models import User
+from user.models import CustomUser
 
 
 
 class UserViewSet(viewsets.ModelViewSet):
-    queryset = User.objects.all()
+    queryset = CustomUser.objects.all()
     serializer_class = UserSerializer
-
-
-class ProfileViewSet(viewsets.ModelViewSet):
-    queryset = profile.objects.all()
-    serializer_class = ProfileSerializer
 
 
 class UploadViewSet(viewsets.ModelViewSet):
