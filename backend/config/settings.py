@@ -2,9 +2,9 @@ from pathlib import Path
 import os
 import yaml
 
-CONFIG_FILE = './CMMApi/conf.yaml'
+CONFIG_FILE = './config/conf.yaml'
 if not os.path.isfile(CONFIG_FILE):
-    CONFIG_FILE = './CMMApi/conf_test.yaml'
+    CONFIG_FILE = './config/conf_test.yaml'
     
 # Add Security Settings in conf.yaml
 with open(CONFIG_FILE, 'r') as f:
@@ -35,18 +35,18 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django.contrib.sites',
 
     # drf
     'rest_framework',
     'rest_framework.authtoken',
+    'rest_auth',
 
     # User Manage
-    'rest_auth',
+    'django.contrib.sites',
     'allauth',
     'allauth.account',
+    'allauth.socialaccount',
     'rest_auth.registration',
-    'corsheaders',
 
     # Aid Apps
     'api',
@@ -70,7 +70,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.common.CommonMiddleware",
 ]
 
@@ -79,7 +78,7 @@ CORS_ALLOWED_ORIGINS = [
 ]
 
 
-ROOT_URLCONF = 'CMMApi.urls'
+ROOT_URLCONF = 'config.urls'
 
 TEMPLATES = [
     {
@@ -97,7 +96,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'CMMApi.wsgi.application'
+WSGI_APPLICATION = 'config.wsgi.application'
 
 
 # Database

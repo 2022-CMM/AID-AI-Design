@@ -9,3 +9,7 @@ Pillow==9.0.0
 torch==1.8.1
 torchvision==0.9.1
 ninja
+click
+torch-utils
+scipy
+# pip install https://github.com/podgorskiy/dnnlib/releases/download/0.0.1/dnnlib-0.0.1-py3-none-any.whl
