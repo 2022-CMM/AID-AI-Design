@@ -6,3 +6,6 @@ pyyaml==6.0
 django-rest-auth
 django-allauth
 Pillow==9.0.0
+torch==1.8.1
+torchvision==0.9.1
+ninja
