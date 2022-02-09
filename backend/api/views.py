@@ -4,7 +4,7 @@ from rest_framework import serializers
 from .models import goods_design, goods_result, goods_info
 from .serializers import UserSerializer, DesignSerializer, UploadSerializer, ResultSerializer
 from rest_framework import viewsets, mixins, generics
-from rest_framework.authentication import TokenAuthentication
+from rest_framework.authentication import BasicAuthentication
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
@@ -50,8 +50,8 @@ class ResultViewSet(viewsets.ModelViewSet):
 
     queryset = goods_result.objects.all()
     serializer_class = ResultSerializer
-    # permission_classes = [IsAuthenticated]
-    # authentication_classes = (TokenAuthentication, )
+    permission_classes = [IsAuthenticated]
+    authentication_classes = (BasicAuthentication, )
     
     def get_queryset(self):
         return goods_result.objects.filter(delete_flag='0')
@@ -60,3 +60,5 @@ class ResultViewSet(viewsets.ModelViewSet):
         queryset = self.get_queryset()
         serializers = ResultSerializer(queryset, many=True)
         return Response(serializers.data)
+
+# class ResultViewSet(viewsets.ModelViewSet):
