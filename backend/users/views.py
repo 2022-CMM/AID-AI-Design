@@ -25,7 +25,7 @@ class RegisterView(APIView, CsrfExemptMixin):
             user = user,
             phone_no = request.data['phone_no'],
             name = request.data['name'],
-            user_type = 1,
+            user_type = request.data['user_type'],
             profile_image = request.data['image'],
         )
 

@@ -1,3 +1,4 @@
+from tkinter import CASCADE
 from django.db import models
 from django.db.models.fields import DateField
 from django.contrib.auth.models import User, AbstractUser
@@ -13,6 +14,8 @@ class goods_info(models.Model):
     quality = models.CharField(db_column='quality', max_length=100, blank=True)
     material = models.CharField(db_column='material', max_length=100, blank=True)
     goods_type = models.CharField(db_column='goods_type', max_length=100, blank=True)
+    size = models.CharField(db_column='size', max_length=100, blank=True)
+    title = models.CharField(db_column='title', max_length=100, blank=True)
     style = models.CharField(db_column='style', max_length=100, blank=True)
     created_at = models.DateTimeField(db_column='created_at', max_length=100, blank=True, auto_now=True)
     delete_flag = models.CharField(db_column='delete_flag', max_length=100, blank=True)
@@ -40,11 +43,10 @@ class goods_result(models.Model):
     '''
     - Designer Works Image
     '''
-    user = models.CharField(db_column='user', max_length=100, blank=True)
-    designer = models.CharField(db_column='designer', max_length=100, blank=True)
-    design_code = models.IntegerField(db_column='design_code', null=True, blank=True, unique=True)
+    ai_design = models.OneToOneField(goods_design, on_delete=models.CASCADE, related_name="goods_result")
+    designer = models.IntegerField(db_column='designer', blank=True)
     image = models.ImageField(blank=True, null=True, upload_to="result")
-    title = models.CharField(db_column='title', max_length=100, blank=True)
+    title_new = models.CharField(db_column='title_new', max_length=100, blank=True)
     description = models.CharField(db_column='description', max_length=100, blank=True)
     created_at = models.DateTimeField(db_column='created_at', max_length=100, blank=True, auto_now=True)
     delete_flag = models.CharField(db_column='delete_flag', max_length=100, blank=True)
