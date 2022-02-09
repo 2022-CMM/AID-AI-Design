@@ -1,4 +1,5 @@
 from django.shortcuts import get_object_or_404, render, HttpResponse
+from django.contrib.auth.models import User
 from rest_framework import serializers
 from .models import goods_design, goods_result, goods_info
 from .serializers import UserSerializer, DesignSerializer, UploadSerializer, ResultSerializer
@@ -9,7 +10,7 @@ from rest_framework.response import Response
 
 
 class UserViewSet(viewsets.ModelViewSet):
-    queryset = CustomUser.objects.all()
+    queryset = User.objects.all()
     serializer_class = UserSerializer
 
 
