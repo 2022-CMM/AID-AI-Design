@@ -1,20 +1,17 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.authtoken.models import Token
-from rest_framework.authentication import TokenAuthentication
-from rest_framework.permissions import IsAuthenticated
 from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
 from django.utils.decorators import method_decorator
-from django.views.decorators.csrf import csrf_exempt
+from braces.views import CsrfExemptMixin
 from .models import profile
 
-
-@method_decorator(csrf_exempt, name = "dispatch")
-class RegisterView(APIView):
+class RegisterView(APIView, CsrfExemptMixin):
     '''
     - 사용자가 데이터를 입력해 회원가입을 진행합니다.
     '''
+    authentication_classes = []
 
     def post(self, request):
 
@@ -38,11 +35,11 @@ class RegisterView(APIView):
         return Response({"Token": token.key})
 
 
-@method_decorator(csrf_exempt, name = "dispatch")
-class LoginView(APIView):
+class LoginView(APIView, CsrfExemptMixin):
     '''
     - 사용자가 입력한 데이터를 받아서 로그인을 합니다.
     '''
+    authentication_classes = []
 
     def post(self, request):
 
