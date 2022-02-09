@@ -35,29 +35,23 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django.contrib.sites',
 
     # drf
     'rest_framework',
     'rest_framework.authtoken',
 
     # User Manage
-    'rest_auth',
-    'allauth',
-    'allauth.account',
-    'rest_auth.registration',
     'corsheaders',
 
     # Aid Apps
     'api',
+    'users'
 ]
 
-SITE_ID = 1
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.authentication.SessionAuthentication',
-        'rest_framework.authentication.BasicAuthentication'
+        'rest_framework.permissions.AllowAny',
     ]
 }
 

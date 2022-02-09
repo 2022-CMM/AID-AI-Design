@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import goods_design, goods_info, goods_result, profile
+from .models import goods_design, goods_info, goods_result
 from django.contrib.auth.models import User
 
         
@@ -27,10 +27,10 @@ class ResultSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class ProfileSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = profile
-        fields = '__all__'
+# class ProfileSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = profile
+#         fields = '__all__'
 
 
 
