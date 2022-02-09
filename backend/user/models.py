@@ -42,6 +42,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
         verbose_name = '사용자'
         verbose_name_plural = '사용자 그룹'
 
+    username = None
     email = models.EmailField(_('email address'), unique=True)
     phone_no = models.CharField(db_column='phone_no', null=True, max_length=100, default='')
     name = models.CharField(db_column='name', max_length=100, blank=True, null=True)
