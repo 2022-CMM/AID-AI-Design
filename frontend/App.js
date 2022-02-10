@@ -5,6 +5,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { View, TouchableOpacity } from 'react-native';
 import * as SplashScreen from 'expo-splash-screen';
+import axios from 'axios';
 
 import HomePage from "./src/components/HomePage"
 import SearchPage from "./src/components/SearchPage"
@@ -24,8 +25,14 @@ import FindPw from './src/components/FindPw';
 import Piece from './src/components/Piece';
 import SearchResult from './src/components/SearchResult';
 import Chatting from './src/components/Chatting'
+import Requests from './src/components/Requests';
+import RequestDetail from './src/components/RequestsDetail';
+import Designer from './src/components/designer';
 
 import Tabbar_Svg from './src/media/TabBar';
+
+axios.defaults.xsrfCookieName = 'csrftoken';
+axios.defaults.xsrfHeaderName = 'X-CSRFTOKEN';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -58,6 +65,7 @@ function HomeStack(){
       <Stack.Navigator initialRouteName="Home" screenOptions={{headerShown: false}}>
         <Stack.Screen name="Home" component={HomePage} />
         <Stack.Screen name="Piece" component={Piece} />
+        <Stack.Screen name="Designer" component={Designer} />
       </Stack.Navigator>
   );
 }
@@ -67,6 +75,8 @@ function SearchStack(){
       <Stack.Navigator initialRouteName="Search" screenOptions={{headerShown: false}}>
         <Stack.Screen name="Search" component={SearchPage} />
         <Stack.Screen name="SearchResult" component={SearchResult} />
+        <Stack.Screen name="Piece" component={Piece} />
+        <Stack.Screen name="Designer" component={Designer} />
       </Stack.Navigator>
   );
 }
@@ -83,8 +93,9 @@ function ChatStack(){
 function MyPageStack(){
   return(
       <Stack.Navigator initialRouteName="Mypage" screenOptions={{headerShown: false}}>
-        <Stack.Screen name="Mypage" component={ChatPage} />
-        {/* <Stack.Screen name="" component={} /> */}
+        <Stack.Screen name="Mypage" component={MyPage} />
+        <Stack.Screen name="Requests" component={Requests} />
+        <Stack.Screen name="RequestsDetail" component={RequestDetail} />
       </Stack.Navigator>
   );
 }
@@ -114,7 +125,7 @@ function MainTab() {
       <Tab.Screen name="SearchStack" component={SearchStack} options={{tabBarIcon: ()=>{ return <Search_Icon />}}} />
       <Tab.Screen name="Upload" component={Upload} options={{tabBarButton: (props)=>{ return <TabBarAdvancedButton {...props} />}}} />
       <Tab.Screen name="Chat" component={ChatPage} options={{tabBarIcon: ()=>{ return <Chat_Icon />}}} />
-      <Tab.Screen name="My" component={MyPage} options={{tabBarIcon: ()=>{ return <Mypage_Icon />}}} />
+      <Tab.Screen name="My" component={MyPageStack} options={{tabBarIcon: ()=>{ return <Mypage_Icon />}}} />
     </Tab.Navigator>
   );
 }
