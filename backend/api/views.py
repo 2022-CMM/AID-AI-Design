@@ -168,5 +168,3 @@ def generate_style_mix( network_pkl, row_seeds, col_seeds, col_styles=[0,1,2,3,4
             canvas.paste(PIL.Image.fromarray(image_dict[key], 'RGB'), (W * col_idx, H * row_idx))
     canvas.save(f'{outdir}/grid.png')
 
-
-generate_style_mix('../model/network-snapshot-000040.pkl', [1,2], [1,2]) 
