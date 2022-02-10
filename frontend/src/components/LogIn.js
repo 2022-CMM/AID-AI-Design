@@ -1,27 +1,30 @@
 import * as React from 'react';
 import { Text, View, StyleSheet,TextInput,TouchableOpacity,Alert } from 'react-native';
 import LogoSvg from '../media/logo_svg';
-import axios from 'axios';
-
+import API from './AxiosAPI';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 function LogIn({ navigation: { navigate } }) {
     const [Id, setId] = React.useState(null);
     const [Pw, setPw] = React.useState(null);
 
-    function IsValid(Id, Pw) {
-        axios.post('http://20.194.101.73:8000/rest-auth/login/', {
-            username: Id,
-            password: Pw
+    const IsValid = async(Id, Pw) => {
+        await API.post('/login/',{
+            id:Id,
+            password:Pw
         })
-        .then(function (response) {
+        .then((response)=>{
+            console.log('성공');
+            console.log(response.data.Token);
+            AsyncStorage.setItem('userToken',response.data.Token);
             navigate('Main');
         })
-        .catch(function (error) {
+        .catch((error)=>{
             console.log(error);
             console.log(Id);
             console.log(Pw);
-            Alert.alert('아이디와 비밀번호가 일치하지 않습니다.')
-        });
+            Alert.alert('아이디와 비밀번호가 일치하지 않습니다.');
+        })
     }
 
     return (
@@ -38,7 +41,8 @@ function LogIn({ navigation: { navigate } }) {
                     <TextInput style={styles.getId} placeholder="아이디를 입력해주세요" onChangeText={(Id) => setId(Id)} placeholderTextColor={'#999999'}/>
                     <TextInput style={styles.getPw} placeholder="비밀번호를 입력해주세요" onChangeText={(Pw) => setPw(Pw)} placeholderTextColor={'#999999'} secureTextEntry={true}/>
                     <Forgot_Btn onPress={() => navigate('FindUser')} /> 
-                    <LogIn_Btn onPress={() => {IsValid(Id,Pw)}} />
+                    <LogIn_Btn onPress={() => {IsValid(Id,Pw)}} /> 
+                    {/* <LogIn_Btn onPress={() => navigate('Main')} /> */}
                 </View>
                 <View style={styles.SignUp} >
                     
