@@ -1,6 +1,7 @@
 import React,{ useState, useEffect } from 'react';
 import { Text, View, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
 import Email_Icon from '../media/email_icon';
+import Back_Icon from '../media/goBack';
 import Id_Icon from '../media/Id_icon';
 
 function FindID({ navigation: { navigate } }) {
@@ -47,7 +48,9 @@ function FindID({ navigation: { navigate } }) {
     return (
         <View style={styles.container}>
             <View style={styles.header}>
-                <Text style={styles.navi}>비밀번호 찾기</Text>
+                <View style={{flexDirection:'row', marginLeft:30, marginBottom:12,alignItems:'center'}}>
+                    <TouchableOpacity onPress={()=>navigate('FindUser')}><Back_Icon /></TouchableOpacity><Text style={{fontSize:20}}>  아이디 찾기</Text>
+                </View>
             </View>
             <View style={styles.content}>
                 <Text style={{fontSize:12,color:'#999999',marginLeft:30,marginTop:40}}>등록된 회원정보 확인을 통해 비밀번호를 재설정 하실 수 있습니다.</Text>
