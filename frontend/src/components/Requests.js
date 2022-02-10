@@ -1,21 +1,6 @@
 import React,{ useState, useEffect } from 'react';
 import { Text, View, StyleSheet, TouchableOpacity, Image } from 'react-native';
 
-function Request_items({data}){
-    return (
-        <View>
-            {data.map((item) => {
-            return (
-                <TouchableOpacity key={item.key} style={styles.items}>
-                    <Image source={{uri:item.img}} style={styles.img} />
-                    <Text>{item.title}</Text>
-                </TouchableOpacity>
-            );
-        })}
-        </View>
-    );
-}
-
 const data = [
     {
         key:1,
@@ -51,12 +36,27 @@ const data = [
     }
 ]
 
-function Requests() {
+function Requests({ navigation: { navigate }, route }) {
+
+    function Request_items({data}){
+        return (
+            <View>
+                {data.map((item) => {
+                return (
+                    <TouchableOpacity key={item.key} style={styles.items} onPress={()=>navigate('RequestsDetail')}>
+                        <Image source={{uri:item.img}} style={styles.img} />
+                        <Text>{item.title}</Text>
+                    </TouchableOpacity>
+                );
+            })}
+            </View>
+        );
+    }
 
     return (
         <View style={styles.container}>
             <View style={styles.header}>
-                <Text style={styles.navi}>대기중 요청서 목록</Text>
+                <Text style={styles.navi}>{route.params.title} 목록</Text>
             </View>
             <View style={styles.content}>
                 <Request_items data={data} />

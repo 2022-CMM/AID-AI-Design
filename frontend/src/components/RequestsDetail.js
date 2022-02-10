@@ -30,17 +30,17 @@ function RequestDetail() {
                                 <Text style={{color:'#ffffff',fontSize:16}}>소매길이</Text>
                             </View>
                         </View>
-                        <View>
-                        <View style={{backgroundColor:'#fff',width:83,height:34,alignItems:'center',justifyContent:'center',borderBottomLeftRadius:16,borderLeftWidth:1,borderColor:'#04AA8C'}}>
+                        <View style={{flexDirection:'row',justifyContent:'center'}}>
+                        <View style={{backgroundColor:'#fff',width:83,height:34,alignItems:'center',justifyContent:'center',borderBottomLeftRadius:16,borderLeftWidth:1,borderBottomWidth:1,borderColor:'#04AA8C'}}>
                                 <Text style={{color:'#000000',fontSize:16}}>70</Text>
                             </View>
-                            <View style={{backgroundColor:'#fff',width:83,height:34,alignItems:'center',justifyContent:'center',borderLeftWidth:1,borderRightWidth:1,borderColor:'#04AA8C'}}>
+                            <View style={{backgroundColor:'#fff',width:83,height:34,alignItems:'center',justifyContent:'center',borderLeftWidth:1,borderBottomWidth:1,borderColor:'#04AA8C'}}>
                                 <Text style={{color:'#000000',fontSize:16}}>46</Text>
                             </View>
-                            <View style={{backgroundColor:'#fff',width:83,height:34,alignItems:'center',justifyContent:'center',borderLeftWidth:1,borderColor:'#04AA8C'}}>
+                            <View style={{backgroundColor:'#fff',width:83,height:34,alignItems:'center',justifyContent:'center',borderLeftWidth:1,borderColor:'#04AA8C',borderBottomWidth:1}}>
                                 <Text style={{color:'#000000',fontSize:16}}>54</Text>
                             </View>
-                            <View style={{backgroundColor:'#fff',width:83,height:34,alignItems:'center',justifyContent:'center',borderLeftWidth:1,borderColor:'#04AA8C',borderBottomRightRadius:16}}>
+                            <View style={{backgroundColor:'#fff',width:83,height:34,alignItems:'center',justifyContent:'center',borderLeftWidth:1,borderRightWidth:1,borderColor:'#04AA8C',borderBottomRightRadius:16,borderBottomWidth:1}}>
                                 <Text style={{color:'#000000',fontSize:16}}>24</Text>
                             </View>
                         </View>
