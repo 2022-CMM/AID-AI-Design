@@ -11,8 +11,8 @@ from .serializers import UserSerializer, DesignSerializer, UploadSerializer, Res
 import os, re
 from typing import List
 import click
-from ...ai.stylegan2_ada_pytorch import dnnlib
-from ...ai.stylegan2_ada_pytorch import legacy
+# from ...ai.stylegan2_ada_pytorch import dnnlib
+# from ...ai.stylegan2_ada_pytorch import legacy
 import numpy as np
 import PIL.Image
 import torch
@@ -99,7 +99,7 @@ class ResultViewSet(APIView):
             fields=('id', 'image', 'title_new', 'goods_type', 'size', 'title', 'name'))
 
         print(data)
-        generate_style_mix('../../ai/model/network-snapshot-000040.pkl', [1,2], [1,2]) 
+        # generate_style_mix('../../ai/model/network-snapshot-000040.pkl', [1,2], [1,2]) 
 
         return Response(data)
 
