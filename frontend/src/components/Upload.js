@@ -9,6 +9,8 @@ import CatDetails from './CatDetails';
 
 import Photo_Icon from '../media/photo_icon';
 import Cancle_Icon from '../media/cancle_icon';
+import axios from 'axios';
+import API from './AxiosAPI';
 
 const SizeData = [
     { value : 'XS', info : '대충 사이즈 어떤 정도인지', key : '1'},
@@ -168,12 +170,21 @@ function Upload({onPress}){
         let selectdate = date.toDateString();
 
         let submit_data={
-            img : selectedImage.localUri,
-            category:CatDetail,
+            image : selectedImage.localUri,
+            goods_type:CatDetail,
             size:size,
-            date:selectdate,
+            deadline:selectdate,
             style:style
         };
+
+        API.post('/api/upload/',submit_data)
+        .then((response)=>{
+            console.log('성공');
+            console.log(response);
+        })
+        .catch((error)=>{
+            console.log(error);
+        })
 
         console.log(submit_data);
     }
