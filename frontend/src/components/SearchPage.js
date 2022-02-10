@@ -3,32 +3,30 @@ import { Text, View, StyleSheet, TextInput, ScrollView, TouchableOpacity } from 
 
 import SearchBar_Icon from '../media/searchbar_icon';
 
-function SearchPage() {
+function SearchPage({ navigation: { navigate } }) {
     const [SearchWord, setSearchWord] = React.useState(null);
     return (
         <View style={styles.container}>
             <View style={styles.searchbar}>
                 <View style={styles.inputbar}>
                 <SearchBar_Icon />
-                <TextInput style={styles.input} placeholder='검색어를 입력해주세요' placeholderTextColor={'#666666'} keyboardType={"web-search"} onChangeText={(SearchWord) => setSearchWord(SearchWord)} returnKeyType={"search"} onSubmitEditing={()=>console.log(SearchWord)} />
-                {/* 네비게이팅 해주기 */}
+                <TextInput style={styles.input} placeholder='검색어를 입력해주세요' placeholderTextColor={'#666666'} keyboardType={"web-search"} onChangeText={(SearchWord) => setSearchWord(SearchWord)} returnKeyType={"search"} onSubmitEditing={()=>navigate('SearchResult',{keyword:SearchWord})} />
                 </View>
             </View>
             <View style={styles.recommand_word}>
                 <Text style={styles.label1}>추천 검색어</Text>
                 <ScrollView style={styles.scroll}>
                     <View style={{flexDirection:'row'}}>
-                    <TouchableOpacity style={styles.wordsoutter}><Text style={styles.wordsinner} >가나다라마바</Text></TouchableOpacity>
-                    <TouchableOpacity style={styles.wordsoutter}><Text style={styles.wordsinner} >가나다</Text></TouchableOpacity>
-                    <TouchableOpacity style={styles.wordsoutter}><Text style={styles.wordsinner} >가나다라</Text></TouchableOpacity>
-                    <TouchableOpacity style={styles.wordsoutter}><Text style={styles.wordsinner} >가나다</Text></TouchableOpacity>
+                    <TouchableOpacity style={styles.wordsoutter}><Text style={styles.wordsinner} onPress={()=>navigate('SearchResult',{keyword:'가나다라마바'})} >가나다라마바</Text></TouchableOpacity>
+                    <TouchableOpacity style={styles.wordsoutter}><Text style={styles.wordsinner} onPress={()=>navigate('SearchResult',{keyword:'가나다'})} >가나다</Text></TouchableOpacity>
+                    <TouchableOpacity style={styles.wordsoutter}><Text style={styles.wordsinner} onPress={()=>navigate('SearchResult',{keyword:'가나다라'})} >가나다라</Text></TouchableOpacity>
+                    <TouchableOpacity style={styles.wordsoutter}><Text style={styles.wordsinner} onPress={()=>navigate('SearchResult',{keyword:'가나다'})} >가나다</Text></TouchableOpacity>
                     </View>
                     <View style={{flexDirection:'row'}}>
-                    <TouchableOpacity style={styles.wordsoutter}><Text style={styles.wordsinner} >가나다</Text></TouchableOpacity>
-                    <TouchableOpacity style={styles.wordsoutter}><Text style={styles.wordsinner} >가나다라</Text></TouchableOpacity>
-                    <TouchableOpacity style={styles.wordsoutter}><Text style={styles.wordsinner} >가나다</Text></TouchableOpacity>
-                    <TouchableOpacity style={styles.wordsoutter}><Text style={styles.wordsinner} >가나다라마</Text></TouchableOpacity>
-                    {/* onpress 해서 네비게이트 추가해야함. */}
+                    <TouchableOpacity style={styles.wordsoutter}><Text style={styles.wordsinner} onPress={()=>navigate('SearchResult',{keyword:'가나다'})} >가나다</Text></TouchableOpacity>
+                    <TouchableOpacity style={styles.wordsoutter}><Text style={styles.wordsinner} onPress={()=>navigate('SearchResult',{keyword:'가나다라'})} >가나다라</Text></TouchableOpacity>
+                    <TouchableOpacity style={styles.wordsoutter}><Text style={styles.wordsinner} onPress={()=>navigate('SearchResult',{keyword:'가나다'})} >가나다</Text></TouchableOpacity>
+                    <TouchableOpacity style={styles.wordsoutter}><Text style={styles.wordsinner} onPress={()=>navigate('SearchResult',{keyword:'가나다라마'})} >가나다라마</Text></TouchableOpacity>
                     </View>
                 </ScrollView>
             </View>
@@ -38,12 +36,13 @@ function SearchPage() {
                 </View>
                 <View style={{alignItems:'flex-end', marginBottom:10}}>
                     <TouchableOpacity><Text style={styles.more}>더 보기</Text></TouchableOpacity>
+                    {/* onpress로 페이징 하나 더 */}
                 </View>
                 <View style={{flexDirection:'row',flexWrap:'wrap',justifyContent:'space-between'}}>
-                    <TouchableOpacity activeOpacity={0.8}><View style={styles.idea}></View></TouchableOpacity>
-                    <TouchableOpacity activeOpacity={0.8}><View style={styles.idea}></View></TouchableOpacity>
-                    <TouchableOpacity activeOpacity={0.8}><View style={styles.idea}></View></TouchableOpacity>
-                    <TouchableOpacity activeOpacity={0.8}><View style={styles.idea}></View></TouchableOpacity>
+                    <TouchableOpacity activeOpacity={0.8} onPress={()=>navigate('Piece')}><View style={styles.idea}></View></TouchableOpacity>
+                    <TouchableOpacity activeOpacity={0.8} onPress={()=>navigate('Piece')}><View style={styles.idea}></View></TouchableOpacity>
+                    <TouchableOpacity activeOpacity={0.8} onPress={()=>navigate('Piece')}><View style={styles.idea}></View></TouchableOpacity>
+                    <TouchableOpacity activeOpacity={0.8} onPress={()=>navigate('Piece')}><View style={styles.idea}></View></TouchableOpacity>
                 </View>
             </View>
             <View style={styles.recommand_designer}>
@@ -52,20 +51,21 @@ function SearchPage() {
                 </View>
                 <View style={{alignItems:'flex-end', marginBottom:10}}>
                     <TouchableOpacity><Text style={styles.more}>더 보기</Text></TouchableOpacity>
+                    {/* onpress로 페이징 하나 더 */}
                 </View>
                 <View style={{flexDirection:'row',flexWrap:'wrap',justifyContent:'space-between'}}>
-                <TouchableOpacity activeOpacity={0.7}><View style={styles.designer}></View></TouchableOpacity>
-                <TouchableOpacity activeOpacity={0.7}><View style={styles.designer}></View></TouchableOpacity>
-                <TouchableOpacity activeOpacity={0.7}><View style={styles.designer}></View></TouchableOpacity>
-                <TouchableOpacity activeOpacity={0.7}><View style={styles.designer}></View></TouchableOpacity>
-                <TouchableOpacity activeOpacity={0.7}><View style={styles.designer}></View></TouchableOpacity>
-                <TouchableOpacity activeOpacity={0.7}><View style={styles.designer}></View></TouchableOpacity>
-                <TouchableOpacity activeOpacity={0.7}><View style={styles.designer}></View></TouchableOpacity>
-                <TouchableOpacity activeOpacity={0.7}><View style={styles.designer}></View></TouchableOpacity>
-                <TouchableOpacity activeOpacity={0.7}><View style={styles.designer}></View></TouchableOpacity>
-                <TouchableOpacity activeOpacity={0.7}><View style={styles.designer}></View></TouchableOpacity>
-                <TouchableOpacity activeOpacity={0.7}><View style={styles.designer}></View></TouchableOpacity>
-                <TouchableOpacity activeOpacity={0.7}><View style={styles.designer}></View></TouchableOpacity>
+                    <TouchableOpacity activeOpacity={0.7} onPress={()=>navigate('Designer')}><View style={styles.designer}></View></TouchableOpacity>
+                    <TouchableOpacity activeOpacity={0.7} onPress={()=>navigate('Designer')}><View style={styles.designer}></View></TouchableOpacity>
+                    <TouchableOpacity activeOpacity={0.7} onPress={()=>navigate('Designer')}><View style={styles.designer}></View></TouchableOpacity>
+                    <TouchableOpacity activeOpacity={0.7} onPress={()=>navigate('Designer')}><View style={styles.designer}></View></TouchableOpacity>
+                    <TouchableOpacity activeOpacity={0.7} onPress={()=>navigate('Designer')}><View style={styles.designer}></View></TouchableOpacity>
+                    <TouchableOpacity activeOpacity={0.7} onPress={()=>navigate('Designer')}><View style={styles.designer}></View></TouchableOpacity>
+                    <TouchableOpacity activeOpacity={0.7} onPress={()=>navigate('Designer')}><View style={styles.designer}></View></TouchableOpacity>
+                    <TouchableOpacity activeOpacity={0.7} onPress={()=>navigate('Designer')}><View style={styles.designer}></View></TouchableOpacity>
+                    <TouchableOpacity activeOpacity={0.7} onPress={()=>navigate('Designer')}><View style={styles.designer}></View></TouchableOpacity>
+                    <TouchableOpacity activeOpacity={0.7} onPress={()=>navigate('Designer')}><View style={styles.designer}></View></TouchableOpacity>
+                    <TouchableOpacity activeOpacity={0.7} onPress={()=>navigate('Designer')}><View style={styles.designer}></View></TouchableOpacity>
+                    <TouchableOpacity activeOpacity={0.7} onPress={()=>navigate('Designer')}><View style={styles.designer}></View></TouchableOpacity>
                 </View>
             </View>
         </View>
