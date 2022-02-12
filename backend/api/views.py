@@ -92,13 +92,16 @@ class ResultViewSet(APIView):
         WHERE e.designer = f.user_id
         '''
         
+        data = goods_result.objects.raw(query)
+
+        for i in data:
+            print(i.image.path)
         # data = list(goods_result.objects.raw(query))
         data = sl.serialize(
             'json',
             goods_result.objects.raw(query),
             fields=('id', 'image', 'title_new', 'goods_type', 'size', 'title', 'name'))
-
-        print(data)
+        
         # generate_style_mix('../../ai/model/network-snapshot-000040.pkl', [1,2], [1,2]) 
 
         return Response(data)
