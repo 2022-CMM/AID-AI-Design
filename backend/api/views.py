@@ -10,12 +10,12 @@ from .models import goods_design, goods_result, goods_info
 from .serializers import UserSerializer, DesignSerializer, UploadSerializer, ResultSerializer
 import os, re
 from typing import List
-# import click
+import click
 # from ...ai.stylegan2_ada_pytorch import dnnlib
 # from ...ai.stylegan2_ada_pytorch import legacy
-# import numpy as np
-# import PIL.Image
-# import torch
+import numpy as np
+import PIL.Image
+import torch
 
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -54,6 +54,18 @@ class DesignViewSet(viewsets.ModelViewSet):
     def list(self, request):
         queryset = self.get_queryset()
         serializers = DesignSerializer(queryset, many=True)
+        return Response(serializers.data)
+
+
+class SearchViewSet(viewsets.ModelViewSet):
+
+    serializer_class = ResultSerializer
+    # permission_classes = [IsAuthenticated]
+    # authentication_classes = (TokenAuthentication, )
+
+    def create(self, request):
+        queryset = goods_info.objects.filter(goods_type__contains=request.data['searchKey'])
+        serializers = ResultSerializer(queryset, many=True)
         return Response(serializers.data)
 
 
