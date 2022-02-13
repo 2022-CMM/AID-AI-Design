@@ -10,6 +10,7 @@ class goods_info(models.Model):
     '''
     user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="user", default='1')
     image = models.ImageField(blank=True, null=True, upload_to="upload_image")
+    image_results = models.ImageField(blank=True, null=True, upload_to="results")
     purchased_date = models.DateTimeField(db_column='purchased_date', max_length=100, blank=True)
     # quality = models.CharField(db_column='quality', max_length=100, blank=True)
     # material = models.CharField(db_column='material', max_length=100, blank=True)
@@ -18,6 +19,7 @@ class goods_info(models.Model):
     size = models.CharField(db_column='size', max_length=100, blank=True)
     title = models.CharField(db_column='title', max_length=100, blank=True)
     style = models.CharField(db_column='style', max_length=100, blank=True)
+    transform_flag = models.CharField(db_column='transform_flag', max_length=100, blank=True)
     created_at = models.DateTimeField(db_column='created_at', max_length=100, blank=True, auto_now=True)
     delete_flag = models.CharField(db_column='delete_flag', max_length=100, blank=True)
 
