@@ -14,8 +14,8 @@ function LogIn({ navigation: { navigate } }) {
             password:Pw
         })
         .then((response)=>{
-            console.log('성공');
-            console.log(response.data.Token);
+            // console.log('성공');
+            // console.log(response.data.Token);
             AsyncStorage.setItem('userToken',response.data.Token);
             navigate('Main');
         })

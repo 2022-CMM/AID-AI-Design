@@ -31,8 +31,6 @@ import Designer from './src/components/designer';
 
 import Tabbar_Svg from './src/media/TabBar';
 
-axios.defaults.xsrfCookieName = 'csrftoken';
-axios.defaults.xsrfHeaderName = 'X-CSRFTOKEN';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -55,7 +53,6 @@ function TabBarAdvancedButton(props) {
       <TouchableOpacity style={{width:55,height:55,backgroundColor:'#04AA8C',justifyContent:'center',alignItems:'center',borderRadius:100, bottom:28}} onPress={props.onPress} >
         <Upload_Icon />
       </TouchableOpacity>
-      {/* <Tabbar_Svg style={{position:'absolute'}}/> */}
     </View>
   );
 }
@@ -121,7 +118,7 @@ function MainTab() {
   return (
     <Tab.Navigator initialRouteName='Home'  screenOptions={{headerShown: false, tabBarShowLabel:false, tabBarVisible: false, tabBarStyle:{ backgroundColor: '#ffffff' }}}>
       {/* tabBarBackground:()=>(<Tabbar_Svg style={{position:'absolute',bottom:0}} />) 이거 탭바모양인데 안먹어서 일단 주석 */}
-      <Tab.Screen name="HomeStack" component={HomeStack} options={{tabBarIcon: ()=>{ return <Home_Icon />}}} />
+      <Tab.Screen name="HomeStack" component={HomeStack} options={{tabBarIcon: ()=>{ return <Home_Icon />},unmountOnBlur: true}} />
       <Tab.Screen name="SearchStack" component={SearchStack} options={{tabBarIcon: ()=>{ return <Search_Icon />}}} />
       <Tab.Screen name="Upload" component={Upload} options={{tabBarButton: (props)=>{ return <TabBarAdvancedButton {...props} />}}} />
       <Tab.Screen name="Chat" component={ChatPage} options={{tabBarIcon: ()=>{ return <Chat_Icon />}}} />
@@ -132,20 +129,3 @@ function MainTab() {
 
 
 export default AppStack;
-
-
-
-// function Uplaod(){
-//   const [modalVisible, setModalVisible] = useState(false);
-//     return (
-//         <Modal
-//             animationType="slide"
-//             transparent={true}
-//             visible={modalVisible}
-//             onRequestClose={() => { setModalVisible(!modalVisible); }}>
-//             <View>
-//                 <Text>안녕하세요!</Text>
-//             </View>
-//         </Modal>
-//     );
-// }
