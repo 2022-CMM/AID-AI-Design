@@ -72,56 +72,6 @@ class ResultViewSet(viewsets.ModelViewSet):
         serializers = ResultSerializer(queryset, many=True)
         return Response(serializers.data)
 
-# class ResultViewSet(APIView):
-#     '''
-#     - 디자이너가 완성한 작품들을 렌더링합니다.
-#     '''
-#     permission_classes = [IsAuthenticated]
-#     authentication_classes = (TokenAuthentication, )
-
-#     def get(self, request):
-        
-#         query = '''
-#         SELECT e.id, e.image, e.title_new, e.goods_type, e.size, e.title, f.name
-#         from
-#         (SELECT c.*, d.goods_type, d.size, d.title
-#         FROM 
-#         (SELECT a.id, a.designer, a.image, a.title_new, b.info_id
-#         FROM goods_result a, goods_design b
-#         WHERE a.ai_design_id = b.id) c, goods_info d
-#         WHERE c.info_id = d.id
-#         ) e, profile f
-#         WHERE e.designer = f.user_id
-#         '''
-        
-<<<<<<< HEAD
-#         data = goods_result.objects.raw(query)
-
-#         for i in data:
-#             print(i.image.path)
-#         # data = list(goods_result.objects.raw(query))
-#         data = sl.serialize(
-#             'json',
-#             goods_result.objects.raw(query),
-#             fields=('id', 'image', 'title_new', 'goods_type', 'size', 'title', 'name'))
-        
-#         # generate_style_mix('../../ai/model/network-snapshot-000040.pkl', [1,2], [1,2]) 
-=======
-        data = goods_result.objects.raw(query)
-
-        for i in data:
-            print(i.image.path)
-        # data = list(goods_result.objects.raw(query))
-        data = sl.serialize(
-            'json',
-            goods_result.objects.raw(query),
-            fields=('id', 'image', 'title_new', 'goods_type', 'size', 'title', 'name'))
-        
-        # generate_style_mix('../../ai/model/network-snapshot-000040.pkl', [1,2], [1,2]) 
->>>>>>> 8475d5f7125179bb5f9b8db4cb75125b881963c7
-
-#         return Response(data)
-
 
 def num_range(s: str) -> List[int]:
     '''Accept either a comma separated list of numbers 'a,b,c' or a range 'a-c' and return as a list of ints.'''
