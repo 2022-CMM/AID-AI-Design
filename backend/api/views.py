@@ -59,17 +59,17 @@ class DesignViewSet(viewsets.ModelViewSet):
 
 class ResultViewSet(viewsets.ModelViewSet):
 
-    queryset = goods_result.objects.all()
-    serializer_class = UploadSerializer
+    queryset = goods_info.objects.all()
+    serializer_class = ResultSerializer
     # permission_classes = [IsAuthenticated]
     # authentication_classes = (TokenAuthentication, )
     
     def get_queryset(self):
-        return goods_result.objects.filter(delete_flag='0', transform_flag='0')
+        return goods_info.objects.filter(delete_flag='0', transform_flag='0')
 
     def list(self, request):
         queryset = self.get_queryset()
-        serializers = UploadSerializer(queryset, many=True)
+        serializers = ResultSerializer(queryset, many=True)
         return Response(serializers.data)
 
 

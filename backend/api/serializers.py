@@ -23,7 +23,7 @@ class DesignSerializer(serializers.ModelSerializer):
 
 class ResultSerializer(serializers.ModelSerializer):
     class Meta:
-        model = goods_result
+        model = goods_info
         fields = '__all__'
 
 
