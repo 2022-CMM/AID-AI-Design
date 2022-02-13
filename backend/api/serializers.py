@@ -25,6 +25,7 @@ class ResultSerializer(serializers.ModelSerializer):
     class Meta:
         model = goods_info
         fields = '__all__'
+        exclude = ['transform_flag', 'delete_flag']
 
 
 # class ProfileSerializer(serializers.ModelSerializer):
