@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StyleSheet, Text, View, Modal, TouchableOpacity, Pressable, Platform, Image } from 'react-native';
+import { StyleSheet, Text, View, Modal, TouchableOpacity, Pressable, Platform, Image,Alert } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import Swiper from 'react-native-swiper';
 import DateTimePicker from '@react-native-community/datetimepicker';
@@ -139,7 +139,7 @@ function Upload({onPress}){
         let permissionResult = await ImagePicker.requestMediaLibraryPermissionsAsync();
 
         if (permissionResult.granted === false) {
-            alert('앨범에 대한 접근 권한이 필요합니다!');
+            Alert.alert('앨범에 대한 접근 권한이 필요합니다!');
             return;
         }
 
