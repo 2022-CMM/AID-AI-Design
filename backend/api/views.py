@@ -94,6 +94,7 @@ class ResultViewSet(viewsets.ModelViewSet):
 #         WHERE e.designer = f.user_id
 #         '''
         
+<<<<<<< HEAD
 #         data = goods_result.objects.raw(query)
 
 #         for i in data:
@@ -105,6 +106,19 @@ class ResultViewSet(viewsets.ModelViewSet):
 #             fields=('id', 'image', 'title_new', 'goods_type', 'size', 'title', 'name'))
         
 #         # generate_style_mix('../../ai/model/network-snapshot-000040.pkl', [1,2], [1,2]) 
+=======
+        data = goods_result.objects.raw(query)
+
+        for i in data:
+            print(i.image.path)
+        # data = list(goods_result.objects.raw(query))
+        data = sl.serialize(
+            'json',
+            goods_result.objects.raw(query),
+            fields=('id', 'image', 'title_new', 'goods_type', 'size', 'title', 'name'))
+        
+        # generate_style_mix('../../ai/model/network-snapshot-000040.pkl', [1,2], [1,2]) 
+>>>>>>> 8475d5f7125179bb5f9b8db4cb75125b881963c7
 
 #         return Response(data)
 
