@@ -19,7 +19,7 @@ class goods_info(models.Model):
     size = models.CharField(db_column='size', max_length=100, blank=True)
     title = models.CharField(db_column='title', max_length=100, blank=True)
     style = models.CharField(db_column='style', max_length=100, blank=True)
-    transform_flag = models.CharField(db_column='transform_flag', max_length=100, blank=True, default='0')
+    transform_flag = models.CharField(db_column='transform_flag', max_length=100, blank=True, default='1')
     created_at = models.DateTimeField(db_column='created_at', max_length=100, blank=True, auto_now=True)
     delete_flag = models.CharField(db_column='delete_flag', max_length=100, blank=True)
 
