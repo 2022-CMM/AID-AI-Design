@@ -67,7 +67,7 @@ function MyPage({ navigation: { navigate } },{onPress}) {
                     </View>
 
                     <View style={styles.like_designer}>
-                        <Text style={styles.label2}>즐겨찾는 디자이너</Text>
+                        <Text style={styles.label2}>좋아요 표시한 디자인</Text>
                         <TouchableOpacity><Text style={styles.more}>더 보기</Text></TouchableOpacity>
                     </View>
                     <View style={{flexDirection:'row',justifyContent:'space-between',marginTop:16,marginBottom:40}}>
