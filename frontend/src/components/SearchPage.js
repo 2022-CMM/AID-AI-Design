@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Text, View, StyleSheet, TextInput, ScrollView, TouchableOpacity } from 'react-native';
+import { Text, View, StyleSheet, TextInput, ScrollView, TouchableOpacity,Image } from 'react-native';
 
 import SearchBar_Icon from '../media/searchbar_icon';
 
@@ -39,10 +39,10 @@ function SearchPage({ navigation: { navigate } }) {
                     {/* onpress로 페이징 하나 더 */}
                 </View>
                 <View style={{flexDirection:'row',flexWrap:'wrap',justifyContent:'space-between'}}>
-                    <TouchableOpacity activeOpacity={0.8} onPress={()=>navigate('Piece')}><View style={styles.idea}></View></TouchableOpacity>
-                    <TouchableOpacity activeOpacity={0.8} onPress={()=>navigate('Piece')}><View style={styles.idea}></View></TouchableOpacity>
-                    <TouchableOpacity activeOpacity={0.8} onPress={()=>navigate('Piece')}><View style={styles.idea}></View></TouchableOpacity>
-                    <TouchableOpacity activeOpacity={0.8} onPress={()=>navigate('Piece')}><View style={styles.idea}></View></TouchableOpacity>
+                    <TouchableOpacity activeOpacity={0.8} onPress={()=>navigate('Piece',{image_results:'/media/results/1111.jpeg',"goods_type": "코트","size": "L","title": "코트","title_changed": "코트","designer": "홍길동",})}><Image source={{uri:'http://20.194.101.73:8000/media/results/1111.jpeg'}} style={styles.idea}/></TouchableOpacity>
+                    <TouchableOpacity activeOpacity={0.8} onPress={()=>navigate('Piece',{image_results:'/media/results/1111.jpeg',"goods_type": "코트","size": "L","title": "코트","title_changed": "코트","designer": "홍길동",})}><Image source={{uri:'http://20.194.101.73:8000/media/results/2222.jpeg'}} style={styles.idea}/></TouchableOpacity>
+                    <TouchableOpacity activeOpacity={0.8} onPress={()=>navigate('Piece',{image_results:'/media/results/1111.jpeg',"goods_type": "코트","size": "L","title": "코트","title_changed": "코트","designer": "홍길동",})}><Image source={{uri:'http://20.194.101.73:8000/media/results/3333.jpeg'}} style={styles.idea}/></TouchableOpacity>
+                    <TouchableOpacity activeOpacity={0.8} onPress={()=>navigate('Piece',{image_results:'/media/results/1111.jpeg',"goods_type": "코트","size": "L","title": "코트","title_changed": "코트","designer": "홍길동",})}><Image source={{uri:'http://20.194.101.73:8000/media/results/4444.jpeg'}} style={styles.idea}/></TouchableOpacity>
                 </View>
             </View>
             <View style={styles.recommand_designer}>
@@ -126,14 +126,14 @@ const styles = StyleSheet.create({
         borderRadius:25,
         borderWidth:1,
         borderColor:'#ffffff',
-        backgroundColor:'#FEE5FF',
+        backgroundColor:'#ECFFFC',
         alignItems:'center',
         shadowColor: "#000",
         shadowOffset: {
 	        width: 6,
 	        height: 12,
         },
-        shadowOpacity: 0.06,
+        shadowOpacity: 0.02,
         shadowRadius: 12,
         marginRight:6,
         marginBottom:6,
