@@ -23,10 +23,10 @@ class RegisterView(APIView, CsrfExemptMixin):
 
         account = profile.objects.create(
             user = user,
-            phone_no = request.data['phone_no'],
-            name = request.data['name'],
-            user_type = request.data['user_type'],
-            profile_image = request.data['image'],
+            phone_no = request.data.get('phone_no'),
+            name = request.data.get('name'),
+            user_type = request.data.get('user_type'),
+            profile_image = request.data.get('image'),
         )
 
         user.save()

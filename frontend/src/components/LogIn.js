@@ -42,11 +42,12 @@ function LogIn({ navigation: { navigate } }) {
     // };
 
     function IsValid(Id, Pw) {
-        axios.post('http://192.168.1.7:8000/rest-auth/login/', {
-            username: Id,
+        axios.get('http://20.194.101.73:8000/results/', {
+            id: Id,
             password: Pw
         })
         .then(function (response) {
+            console.log(response)
             navigate('Main')
         })
         .catch(function (error) {

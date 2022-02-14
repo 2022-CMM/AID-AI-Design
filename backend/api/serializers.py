@@ -23,8 +23,8 @@ class DesignSerializer(serializers.ModelSerializer):
 
 class ResultSerializer(serializers.ModelSerializer):
     class Meta:
-        model = goods_result
-        fields = '__all__'
+        model = goods_info
+        exclude = ['transform_flag', 'delete_flag']
 
 
 # class ProfileSerializer(serializers.ModelSerializer):
