@@ -1,5 +1,5 @@
 from django.urls import path, include
-from .views import UserViewSet, DesignViewSet, UploadViewSet, ResultViewSet, SearchViewSet, \
+from .views import DesignViewSet, UploadViewSet, ResultViewSet, SearchViewSet, \
                     RequestViewSet, DesignerViewSet
 from rest_framework.routers import DefaultRouter
 from .import views

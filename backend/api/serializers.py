@@ -4,10 +4,10 @@ from users.models import profile
 from django.contrib.auth.models import User
 
         
-class UserSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = User
-        fields = ['id', 'username', 'password']
+# class UserSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = User
+#         fields = ['id', 'username', 'password']
 
 
 class UploadSerializer(serializers.ModelSerializer):

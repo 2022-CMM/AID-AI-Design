@@ -8,7 +8,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from .models import goods_design, goods_result, goods_info, request_list
 from users.models import profile
-from .serializers import UserSerializer, DesignSerializer, UploadSerializer, \
+from .serializers import DesignSerializer, UploadSerializer, \
                         ResultSerializer, RequestSerializer, ProfileSerializer
 import os, re
 from typing import List
