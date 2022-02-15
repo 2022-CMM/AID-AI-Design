@@ -23,8 +23,8 @@ import torch
 class DesignerViewSet(viewsets.ModelViewSet):
     queryset = profile.objects.all()
     serializer_class = ProfileSerializer
-    permission_classes = [IsAuthenticated]
-    authentication_classes = (TokenAuthentication, )
+    # permission_classes = [IsAuthenticated]
+    # authentication_classes = (TokenAuthentication, )
 
     def get_queryset(self):
         return profile.objects.filter(user_type='1')
@@ -97,15 +97,15 @@ class ResultViewSet(viewsets.ModelViewSet):
 class RequestViewSet(viewsets.ModelViewSet):
     queryset = request_list.objects.all()
     serializer_class = RequestSerializer
-    permission_classes = [IsAuthenticated]
-    authentication_classes = (TokenAuthentication, )
+    # permission_classes = [IsAuthenticated]
+    # authentication_classes = (TokenAuthentication, )
 
     def get_queryset(self):
         return request_list.objects.filter(delete_flag='0')
 
     def list(self, request):
         queryset = self.get_queryset()
-        serializers = ResultSerializer(queryset, many=True)
+        serializers = RequestSerializer(queryset, many=True)
         return Response(serializers.data)
 
 

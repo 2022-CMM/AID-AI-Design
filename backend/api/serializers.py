@@ -31,7 +31,7 @@ class ResultSerializer(serializers.ModelSerializer):
 class RequestSerializer(serializers.ModelSerializer):
     class Meta:
         model = request_list
-        fields = ['id', 'user', 'title', 'contents', 'designer']
+        fields = '__all__'
         depth = 1
 
 
