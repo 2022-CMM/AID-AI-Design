@@ -1,13 +1,16 @@
 from django.contrib.auth.models import User
 from django.core import serializers as sl
+from itsdangerous import serializer
 from rest_framework import serializers
 from rest_framework import viewsets, mixins, generics
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from .models import goods_design, goods_result, goods_info
-from .serializers import UserSerializer, DesignSerializer, UploadSerializer, ResultSerializer
+from .models import goods_design, goods_result, goods_info, request_list
+from ..users.models import profile
+from .serializers import UserSerializer, DesignSerializer, UploadSerializer, \
+                        ResultSerializer, RequestSerializer, ProfileSerializer
 import os, re
 from typing import List
 import click
@@ -18,26 +21,33 @@ import PIL.Image
 import torch
 
 
-class UserViewSet(viewsets.ModelViewSet):
-    queryset = User.objects.all()
-    serializer_class = UserSerializer
+class DesignerViewSet(viewsets.ModelViewSet):
+    queryset = profile.objects.all()
+    serializer_class = ProfileSerializer
+    permission_classes = [IsAuthenticated]
+    authentication_classes = (TokenAuthentication, )
 
+    def get_queryset(self):
+        return profile.objects.filter(user_type='1')
+
+    def list(self, request):
+        queryset = self.get_queryset()
+        serializers = ProfileSerializer(queryset, many=True)
+        return Response(serializers.data)
 
 class UploadViewSet(viewsets.ModelViewSet):
 
     queryset = goods_info.objects.all()
     serializer_class = UploadSerializer
-    # permission_classes = [IsAuthenticated]
-    # authentication_classes = (TokenAuthentication, )
+    permission_classes = [IsAuthenticated]
+    authentication_classes = (TokenAuthentication, )
     
     def get_queryset(self):
         return goods_info.objects.filter(delete_flag='0')
 
     def list(self, request):
         queryset = self.get_queryset()
-
         serializers = UploadSerializer(queryset, many=True)
-
         return Response(serializers.data)
 
 
@@ -45,8 +55,8 @@ class DesignViewSet(viewsets.ModelViewSet):
 
     queryset = goods_design.objects.all()
     serializer_class = DesignSerializer
-    # permission_classes = [IsAuthenticated]
-    # authentication_classes = (TokenAuthentication, )
+    permission_classes = [IsAuthenticated]
+    authentication_classes = (TokenAuthentication, )
     
     def get_queryset(self):
         return goods_design.objects.filter(delete_flag='0')
@@ -60,8 +70,8 @@ class DesignViewSet(viewsets.ModelViewSet):
 class SearchViewSet(viewsets.ModelViewSet):
 
     serializer_class = ResultSerializer
-    # permission_classes = [IsAuthenticated]
-    # authentication_classes = (TokenAuthentication, )
+    permission_classes = [IsAuthenticated]
+    authentication_classes = (TokenAuthentication, )
 
     def create(self, request):
         queryset = goods_info.objects.filter(goods_type__contains=request.data['searchKey'])
@@ -73,8 +83,8 @@ class ResultViewSet(viewsets.ModelViewSet):
 
     queryset = goods_info.objects.all()
     serializer_class = ResultSerializer
-    # permission_classes = [IsAuthenticated]
-    # authentication_classes = (TokenAuthentication, )
+    permission_classes = [IsAuthenticated]
+    authentication_classes = (TokenAuthentication, )
     
     def get_queryset(self):
         return goods_info.objects.filter(delete_flag='0', transform_flag='0')
@@ -83,6 +93,22 @@ class ResultViewSet(viewsets.ModelViewSet):
         queryset = self.get_queryset()
         serializers = ResultSerializer(queryset, many=True)
         return Response(serializers.data)
+
+
+class RequestViewSet(viewsets.ModelViewSet):
+    queryset = request_list.objects.all()
+    serializer_class = RequestSerializer
+    permission_classes = [IsAuthenticated]
+    authentication_classes = (TokenAuthentication, )
+
+    def get_queryset(self):
+        return request_list.objects.filter(delete_flag='0')
+
+    def list(self, request):
+        queryset = self.get_queryset()
+        serializers = ResultSerializer(queryset, many=True)
+        return Response(serializers.data)
+
 
 
 def num_range(s: str) -> List[int]:

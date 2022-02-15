@@ -60,21 +60,22 @@ class goods_result(models.Model):
         db_table = 'goods_result'
 
 
-class board(models.Model):
+class request_list(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="user", default='1')
     title = models.CharField(db_column='title', max_length=100, blank=True)
     contents = models.CharField(db_column='contents', max_length=100, blank=True)
+    designer = models.CharField(db_column='designer', max_length=100, blank=True)
     created_at = models.DateTimeField(db_column='created_at', max_length=100, blank=True)
     updated_at = models.DateTimeField(db_column='updated_at', max_length=100, blank=True)
     delete_flag = models.CharField(db_column='delete_flag', max_length=100, blank=True)
     public_flag = models.CharField(db_column='public_flag', max_length=100, blank=True)
 
     class Meta:
-        db_table = 'board'
+        db_table = 'request_list'
 
 
 class comment(models.Model):
-    board = models.ForeignKey(board, on_delete=models.CASCADE, verbose_name="board", default='1')
+    board = models.ForeignKey(request_list, on_delete=models.CASCADE, verbose_name="board", default='1')
     user = models.CharField(db_column='user', max_length=100, blank=True)
     comment = models.CharField(db_column='comment', max_length=100, blank=True)
     created_at = models.DateTimeField(db_column='created_at', max_length=100, blank=True)
