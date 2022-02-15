@@ -13,7 +13,7 @@ router.register('designs', DesignViewSet, basename='designs')
 router.register('results', ResultViewSet, basename='results')
 router.register('search', SearchViewSet, basename='search')
 router.register('request', RequestViewSet, basename='request')
-router.register('desiger', DesignerViewSet, basename='designer')
+router.register('designer', DesignerViewSet, basename='designer')
 
 
 app_name = 'api'
