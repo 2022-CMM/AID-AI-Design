@@ -1,6 +1,5 @@
 from django.contrib.auth.models import User
 from django.core import serializers as sl
-from itsdangerous import serializer
 from rest_framework import serializers
 from rest_framework import viewsets, mixins, generics
 from rest_framework.authentication import TokenAuthentication
