@@ -8,7 +8,6 @@ from django.conf import settings
 
 
 router = DefaultRouter()
-router.register('users', UserViewSet)
 router.register('upload', UploadViewSet, basename='upload')
 router.register('designs', DesignViewSet, basename='designs')
 router.register('results', ResultViewSet, basename='results')
