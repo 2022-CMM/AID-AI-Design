@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from .models import goods_design, goods_info, goods_result, request_list
-from ..users.models import profile
+from users.models import profile
 from django.contrib.auth.models import User
 
         
