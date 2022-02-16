@@ -132,15 +132,16 @@ def project(
 
 #----------------------------------------------------------------------------
 
-@click.command()
-@click.option('--network', 'network_pkl', help='Network pickle filename', required=True)
-@click.option('--target', 'target_fname', help='Target image file to project to', required=True, metavar='FILE')
-@click.option('--num-steps',              help='Number of optimization steps', type=int, default=1000, show_default=True)
-@click.option('--seed',                   help='Random seed', type=int, default=303, show_default=True)
-@click.option('--save-video',             help='Save an mp4 video of optimization progress', type=bool, default=True, show_default=True)
-@click.option('--outdir',                 help='Where to save the output images', required=True, metavar='DIR')
+# @click.command()
+# @click.option('--network', 'network_pkl', help='Network pickle filename', required=True)
+# @click.option('--target', 'target_fname', help='Target image file to project to', required=True, metavar='FILE')
+# @click.option('--num-steps',              help='Number of optimization steps', type=int, default=1000, show_default=True)
+# @click.option('--seed',                   help='Random seed', type=int, default=303, show_default=True)
+# @click.option('--save-video',             help='Save an mp4 video of optimization progress', type=bool, default=True, show_default=True)
+# @click.option('--outdir',                 help='Where to save the output images', required=True, metavar='DIR')
 def run_projection(
-    network_pkl: str,
+    device,
+    G,
     target_fname: str,
     outdir: str,
     save_video: bool,
@@ -155,14 +156,14 @@ def run_projection(
     python projector.py --outdir=out --target=~/mytargetimg.png \\
         --network=https://nvlabs-fi-cdn.nvidia.com/stylegan2-ada-pytorch/pretrained/ffhq.pkl
     """
-    np.random.seed(seed)
-    torch.manual_seed(seed)
-
-    # Load networks.
-    print('Loading networks from "%s"...' % network_pkl)
-    device = torch.device('cuda')
-    with dnnlib.util.open_url(network_pkl) as fp:
-        G = legacy.load_network_pkl(fp)['G_ema'].requires_grad_(False).to(device) # type: ignore
+    # np.random.seed(seed)
+    # torch.manual_seed(seed)
+    #
+    # # Load networks.
+    # print('Loading networks from "%s"...' % network_pkl)
+    # device = torch.device('cuda')
+    # with dnnlib.util.open_url(network_pkl) as fp:
+    #     G = legacy.load_network_pkl(fp)['G_ema'].requires_grad_(False).to(device) # type: ignore
 
     # Load target image.
     target_pil = PIL.Image.open(target_fname).convert('RGB')
@@ -196,13 +197,15 @@ def run_projection(
         video.close()
 
     # Save final projected frame and W vector.
-    target_pil.save(f'{outdir}/target.png')
+    # target_pil.save(f'{outdir}/target.png')
     projected_w = projected_w_steps[-1]
-    synth_image = G.synthesis(projected_w.unsqueeze(0), noise_mode='const')
-    synth_image = (synth_image + 1) * (255/2)
-    synth_image = synth_image.permute(0, 2, 3, 1).clamp(0, 255).to(torch.uint8)[0].cpu().numpy()
-    PIL.Image.fromarray(synth_image, 'RGB').save(f'{outdir}/proj.png')
-    np.savez(f'{outdir}/projected_w.npz', w=projected_w.unsqueeze(0).cpu().numpy())
+    return projected_w
+
+    # synth_image = G.synthesis(projected_w.unsqueeze(0), noise_mode='const')
+    # synth_image = (synth_image + 1) * (255/2)
+    # synth_image = synth_image.permute(0, 2, 3, 1).clamp(0, 255).to(torch.uint8)[0].cpu().numpy()
+    # PIL.Image.fromarray(synth_image, 'RGB').save(f'{outdir}/proj.png')
+    # np.savez(f'{outdir}/projected_w.npz', w=projected_w.unsqueeze(0).cpu().numpy())
 
 #----------------------------------------------------------------------------
 
