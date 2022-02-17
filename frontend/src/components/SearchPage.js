@@ -1,11 +1,48 @@
 import * as React from 'react';
 import { Text, View, StyleSheet, TextInput, ScrollView, TouchableOpacity,Image } from 'react-native';
+import axios from 'axios';
 
 import SearchBar_Icon from '../media/searchbar_icon';
 
+function Designers({data}){
+    return(
+        <View>
+            {data.map((item) => {
+                uri = 'http://20.194.101.73:8000' + item.profile_image;
+                return (
+                    <TouchableOpacity activeOpacity={0.7} onPress={()=>navigate('Designer',{item})}><Image source={{uri:uri}} style={styles.designer} /></TouchableOpacity>
+                );
+            })}
+        </View>
+    )
+}
+
 function SearchPage({ navigation: { navigate } }) {
+
+    let DATA=[];
+
+    var config = {
+        method: 'get',
+        url: 'http://20.194.101.73:8000/api/designer/',
+        headers: { 
+            'Authorization': 'Token 07e12559d52155ff82358aa3e797234b4e6ee938'
+        }
+    };
+
+    React.useEffect(async()=>{
+        axios(config)
+            .then(function (response) {
+                DATA = response.data;
+                console.log(DATA);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });  
+    },[]);
+
     const [SearchWord, setSearchWord] = React.useState(null);
-    return (
+
+    return(
         <View style={styles.container}>
             <View style={styles.searchbar}>
                 <View style={styles.inputbar}>
@@ -54,23 +91,25 @@ function SearchPage({ navigation: { navigate } }) {
                     {/* onpress로 페이징 하나 더 */}
                 </View>
                 <View style={{flexDirection:'row',flexWrap:'wrap',justifyContent:'space-between'}}>
-                    <TouchableOpacity activeOpacity={0.7} onPress={()=>navigate('Designer')}><View style={styles.designer}></View></TouchableOpacity>
-                    <TouchableOpacity activeOpacity={0.7} onPress={()=>navigate('Designer')}><View style={styles.designer}></View></TouchableOpacity>
-                    <TouchableOpacity activeOpacity={0.7} onPress={()=>navigate('Designer')}><View style={styles.designer}></View></TouchableOpacity>
-                    <TouchableOpacity activeOpacity={0.7} onPress={()=>navigate('Designer')}><View style={styles.designer}></View></TouchableOpacity>
-                    <TouchableOpacity activeOpacity={0.7} onPress={()=>navigate('Designer')}><View style={styles.designer}></View></TouchableOpacity>
-                    <TouchableOpacity activeOpacity={0.7} onPress={()=>navigate('Designer')}><View style={styles.designer}></View></TouchableOpacity>
-                    <TouchableOpacity activeOpacity={0.7} onPress={()=>navigate('Designer')}><View style={styles.designer}></View></TouchableOpacity>
-                    <TouchableOpacity activeOpacity={0.7} onPress={()=>navigate('Designer')}><View style={styles.designer}></View></TouchableOpacity>
-                    <TouchableOpacity activeOpacity={0.7} onPress={()=>navigate('Designer')}><View style={styles.designer}></View></TouchableOpacity>
-                    <TouchableOpacity activeOpacity={0.7} onPress={()=>navigate('Designer')}><View style={styles.designer}></View></TouchableOpacity>
-                    <TouchableOpacity activeOpacity={0.7} onPress={()=>navigate('Designer')}><View style={styles.designer}></View></TouchableOpacity>
-                    <TouchableOpacity activeOpacity={0.7} onPress={()=>navigate('Designer')}><View style={styles.designer}></View></TouchableOpacity>
+                    <TouchableOpacity activeOpacity={0.7} onPress={()=>navigate('Designer',DATA[0])}><Image source={{uri:'http://20.194.101.73:8000/media/profile_image/free-icon-dog-616408_Qr8jzbF.png'}} style={styles.designer} /></TouchableOpacity>
+                    <TouchableOpacity activeOpacity={0.7} onPress={()=>navigate('Designer',DATA[1])}><Image source={{uri:'http://20.194.101.73:8000/media/profile_image/free-icon-dog-616408_Qr8jzbF.png'}} style={styles.designer} /></TouchableOpacity>
+                    <TouchableOpacity activeOpacity={0.7} onPress={()=>navigate('Designer',DATA[2])}><Image source={{uri:'http://20.194.101.73:8000/media/profile_image/free-icon-dog-616408_Qr8jzbF.png'}} style={styles.designer} /></TouchableOpacity>
+                    <TouchableOpacity activeOpacity={0.7} onPress={()=>navigate('Designer',DATA[3])}><Image source={{uri:'http://20.194.101.73:8000/media/profile_image/free-icon-dog-616408_Qr8jzbF.png'}} style={styles.designer} /></TouchableOpacity>
+                    <TouchableOpacity activeOpacity={0.7} onPress={()=>navigate('Designer',DATA[4])}><Image source={{uri:'http://20.194.101.73:8000/media/profile_image/free-icon-dog-616408_Qr8jzbF.png'}} style={styles.designer} /></TouchableOpacity>
+                    <TouchableOpacity activeOpacity={0.7} onPress={()=>navigate('Designer',DATA[5])}><Image source={{uri:'http://20.194.101.73:8000/media/profile_image/free-icon-dog-616408_Qr8jzbF.png'}} style={styles.designer} /></TouchableOpacity>
+                    <TouchableOpacity activeOpacity={0.7} onPress={()=>navigate('Designer',DATA[6])}><Image source={{uri:'http://20.194.101.73:8000/media/profile_image/free-icon-dog-616408_Qr8jzbF.png'}} style={styles.designer} /></TouchableOpacity>
+                    <TouchableOpacity activeOpacity={0.7} onPress={()=>navigate('Designer',DATA[7])}><Image source={{uri:'http://20.194.101.73:8000/media/profile_image/free-icon-dog-616408_Qr8jzbF.png'}} style={styles.designer} /></TouchableOpacity>
+                    <TouchableOpacity activeOpacity={0.7} onPress={()=>navigate('Designer',DATA[8])}><Image source={{uri:'http://20.194.101.73:8000/media/profile_image/free-icon-dog-616408_Qr8jzbF.png'}} style={styles.designer} /></TouchableOpacity>
+                    <TouchableOpacity activeOpacity={0.7} onPress={()=>navigate('Designer',DATA[9])}><Image source={{uri:'http://20.194.101.73:8000/media/profile_image/free-icon-dog-616408_Qr8jzbF.png'}} style={styles.designer} /></TouchableOpacity>
+                    <TouchableOpacity activeOpacity={0.7} onPress={()=>navigate('Designer',DATA[10])}><Image source={{uri:'http://20.194.101.73:8000/media/profile_image/free-icon-dog-616408_Qr8jzbF.png'}} style={styles.designer} /></TouchableOpacity>
+                    <TouchableOpacity activeOpacity={0.7} onPress={()=>navigate('Designer',DATA[11])}><Image source={{uri:'http://20.194.101.73:8000/media/profile_image/free-icon-dog-616408_Qr8jzbF.png'}} style={styles.designer} /></TouchableOpacity>
                 </View>
             </View>
         </View>
-    );
+    )
 }
+
+
 
 const styles = StyleSheet.create({
     container:{

@@ -13,39 +13,26 @@ import Empty_Heart from '../media/Empty_heart';
 function Designer({route}) {
 
     const [like,setlike] = useState(false);
-
-    const likeThis = async() => {
-        await API.post('/주소/',{
-            like:like===1 ? 1 : -1,
-        })
-        .then((response)=>{
-            console.log('성공');
-        })
-        .catch((error)=>{
-            console.log(error);
-        })
-        setlike(!like);
-    }
-
+    let uri = 'http://20.194.101.73:8000' + route.params.profile_image;
     return (
         <View style={styles.container}>
             <View style={styles.header}>
                 <LogoSvg />
             </View>
             <View style={styles.Big_pic}>
-                <Image source={{uri:route.params.after}} style={styles.img} />
-                <Text style={{position:'absolute',left:24,bottom:18,fontSize:24,fontWeight:'bold'}}>{route.params.aftername}</Text>
+                <Image source={{uri:uri}} style={styles.img} />
+                <Text style={{position:'absolute',left:24,bottom:18,fontSize:24,fontWeight:'bold'}}>{route.params.name}</Text>
             </View>
             <View style={styles.info}>
                 <View style={{marginLeft: 24,marginTop:15}}>
-                    <Text style={styles.key}>contact      <Text style={styles.value}>{route.params.contact}</Text></Text>
+                    <Text style={styles.key}>contact      <Text style={styles.value}>{route.params.phone_no}</Text></Text>
                     <Text style={styles.key}>포트폴리오    <Text style={styles.value}>{route.params.portfolio}</Text></Text>
                     {/* contact랑 포트폴리오도 디비에 추가 */}
                 </View>
                 <View style={{position:'absolute', right:24, top:-48,justifyContent:'center',alignItems:'center'}}>
-                    <Image source={{uri:route.params.before}} style={styles.beforeimg} />
+                    <Image source={{uri:uri}} style={styles.beforeimg} />
                     <Text style={{fontSize:12}}>{route.params.beforename}</Text>
-                    <TouchableOpacity style={{marginLeft:20,marginRight:20,marginTop:15}} onPress={()=>{setlike(!like);}}>{!like&&<Filled_Heart />}{like&&<Empty_Heart />}</TouchableOpacity>
+                    <TouchableOpacity style={{marginLeft:20,marginRight:20,marginTop:15}} onPress={()=>{setlike(!like);}}>{like&&<Filled_Heart />}{!like&&<Empty_Heart />}</TouchableOpacity>
                     <Text>{route.params.likes}</Text>
                     {/* likes라는 db데이터 만들어야겠음 */}
                 </View>
@@ -75,7 +62,11 @@ const styles = StyleSheet.create({
         height:'100%',
         resizeMode:'stretch',
         borderBottomLeftRadius:30,
-        borderBottomRightRadius:30
+        borderBottomRightRadius:30,
+        borderBottomWidth:0.5,
+        borderColor:'#04AA8C',
+        borderLeftWidth:0.5,
+        borderRightWidth:0.5
     },
     info:{
         flex: 2.18

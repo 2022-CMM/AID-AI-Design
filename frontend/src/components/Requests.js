@@ -1,9 +1,11 @@
 import React,{ useState, useEffect } from 'react';
 import { Text, View, StyleSheet, TouchableOpacity, Image } from 'react-native';
 
-const data = [
+import axios from 'axios';
+
+var data = [
     {
-        key:1,
+        id:1,
         title:'00 디자이너 님의 요청서',
         img:'https://comart.io/images/rn/react-native.png',
         nextpage:{
@@ -19,7 +21,7 @@ const data = [
         }
     },
     {
-        key:2,
+        id:2,
         title:'01 디자이너 님의 요청서',
         img:'https://comart.io/images/rn/react-native.png',
         nextpage:{
@@ -38,12 +40,31 @@ const data = [
 
 function Requests({ navigation: { navigate }, route }) {
 
+    var config = {
+        method: 'get',
+        url: 'http://20.194.101.73:8000/api/request/',
+        headers: { 
+            'Authorization': 'Token 07e12559d52155ff82358aa3e797234b4e6ee938'
+        }
+    };
+
+    React.useEffect(async()=>{
+        await axios(config)
+            .then(function (response) {
+                data = response.data;
+                // console.log(data);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    },[])
+
     function Request_items({data}){
         return (
             <View>
                 {data.map((item) => {
                 return (
-                    <TouchableOpacity key={item.key} style={styles.items} onPress={()=>navigate('RequestsDetail')}>
+                    <TouchableOpacity key={item.id} style={styles.items} onPress={()=>navigate('RequestsDetail',item)}>
                         <Image source={{uri:item.img}} style={styles.img} />
                         <Text>{item.title}</Text>
                     </TouchableOpacity>

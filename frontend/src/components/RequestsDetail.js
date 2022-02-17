@@ -2,7 +2,7 @@ import React,{ useState, useEffect } from 'react';
 import { Text, View, StyleSheet, TouchableOpacity, Image,ScrollView } from 'react-native';
 import API from './AxiosAPI';
 
-function RequestDetail() {
+function RequestDetail({route}) {
 
     const Accept = async() =>{
         await API.post()
@@ -15,7 +15,7 @@ function RequestDetail() {
     return (
         <View style={styles.container}>
             <View style={styles.header}>
-                <Text style={styles.navi}>주문 번호 00100056151</Text>
+                <Text style={styles.navi}>{route.params.title}</Text>
             </View>
             <View style={styles.content}>
                 <ScrollView>
@@ -58,7 +58,7 @@ function RequestDetail() {
                         <View style={{width:'100%',paddingLeft:30,paddingRight:30}}>
                             <View style={{width:1,height:300,borderWidth:0.5,position:'absolute',top:0,left:118,borderColor:'#CACACA'}}></View>
                             <View style={styles.info}>
-                                <Text style={styles.label}>사이즈</Text>
+                                <Text style={styles.label}>품목</Text>
                                 <Text style={styles.desc}>반팔</Text>
                             </View>
                             <View style={styles.info}>
