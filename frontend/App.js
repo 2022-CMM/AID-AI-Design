@@ -28,6 +28,7 @@ import Chatting from './src/components/Chatting'
 import Requests from './src/components/Requests';
 import RequestDetail from './src/components/RequestsDetail';
 import Designer from './src/components/designer';
+import Campaign from './src/components/Campaign'
 
 import Tabbar_Svg from './src/media/TabBar';
 
@@ -93,6 +94,7 @@ function MyPageStack(){
         <Stack.Screen name="Mypage" component={MyPage} />
         <Stack.Screen name="Requests" component={Requests} />
         <Stack.Screen name="RequestsDetail" component={RequestDetail} />
+        <Stack.Screen name='Campaign' component={Campaign} />
       </Stack.Navigator>
   );
 }
