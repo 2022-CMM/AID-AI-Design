@@ -134,6 +134,7 @@ function Upload({onPress}){
     };
 
     let [selectedImage, setSelectedImage] = React.useState(null);
+    let [Img_base64,setImg_base64] = React.useState(null);
 
     let openImagePickerAsync = async () => {
         let permissionResult = await ImagePicker.requestMediaLibraryPermissionsAsync();
@@ -143,13 +144,20 @@ function Upload({onPress}){
             return;
         }
 
-        let pickerResult = await ImagePicker.launchImageLibraryAsync();
+        let pickerResult = await ImagePicker.launchImageLibraryAsync({
+            mediaTypes: ImagePicker.MediaTypeOptions.Images,
+            allowsEditing: true,
+            aspect: [3, 3],
+            quality: 1,
+            base64: true,
+        });
 
         if (pickerResult.cancelled === true) {
             return;
         }
 
         setSelectedImage({ localUri: pickerResult.uri });
+        setImg_base64({img:pickerResult});
     };
     
     function checksubmit(){
@@ -170,7 +178,7 @@ function Upload({onPress}){
         let selectdate = date.toDateString();
 
         let submit_data={
-            image : selectedImage.localUri,
+            image : Img_base64.img,
             goods_type:CatDetail,
             size:size,
             deadline:selectdate,
@@ -198,7 +206,7 @@ function Upload({onPress}){
                 <View style={styles.content}>
                     <View style={styles.modal_center}>
                         <Text style={styles.center_text}>폐기 의류 사진을 등록해주세요!</Text>
-                        <TouchableOpacity onPress={openImagePickerAsync} >
+                    <TouchableOpacity onPress={openImagePickerAsync} >
                             {(selectedImage === null) && <Photo_Icon />}
                             {(selectedImage !== null) && <Image source={{ uri: selectedImage.localUri }} style={{width:220,height:220,borderRadius:10}} />}
                         </TouchableOpacity>
