@@ -26,25 +26,11 @@ function MyPage({ navigation: { navigate } },{onPress}) {
                 <Text style={styles.navi}>마이페이지</Text>
             </View>
             <View style={styles.CO2}>
-                <View style={styles.info}>
-                    <View style={{flexDirection: "row", alignItems:'center'}}>
-                        <Text style={styles.name}>00님의 </Text>
-                        <Text style={styles.carbon}>탄소중립농도 </Text>
-                        <Info_Btn />
-                    </View>
-                    <Earth_Svg />
-                </View>
-                <View style={styles.marker}>
-                    <View style={{width:'33%'}}></View>
-                    {/* 가로길이=바 길이의 -7 퍼센트 */}
-                    <View style={{alignItems:'center'}}>
-                        <Text style={styles.lbs}> 80lbs</Text>
-                        <Text style={styles.mark}> ▼</Text>
-                    </View>
-                </View>
-                <View style={styles.percent}>
-                    <View style={{width:'100%',height:15,borderRadius:20,backgroundColor:'#C4C4C4'}}>
-                        <View style={{width:'40%',height:'100%',borderRadius:20,backgroundColor:'#04AA8C'}}></View>
+                <View style={{width:328,height:98,backgroundColor:'#EBEBEB',borderRadius:20,paddingLeft:16,paddingRight:16,justifyContent:'center'}}>
+                    <TouchableOpacity onPress={()=>navigate('Campaign')}><View><Text style={{fontSize:16}}>00님이 지금까지 절얀한 옷은? &gt;</Text></View></TouchableOpacity>
+                    <View style={{flexDirection:'row',justifyContent:'space-between'}}>
+                        <Text style={{fontSize:32,color:'#04AA8C',fontWeight:'600'}}>3<Text style={{fontSize:18,color:'#04AA8C',fontWeight:'600'}}> 벌</Text></Text>
+                        <Earth_Svg />
                     </View>
                 </View>
             </View>
@@ -130,8 +116,8 @@ const styles = StyleSheet.create({
         paddingLeft:24,
         paddingRight:24,
         width:'100%',
-        borderBottomWidth:1,
-        borderColor:'#CACACA'
+        borderColor:'#CACACA',
+        justifyContent:'center'
     }, 
     content:{
         flex:5.64,
