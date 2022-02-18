@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StyleSheet, Text, View, Modal, TouchableOpacity, Pressable, Platform, Image } from 'react-native';
+import { StyleSheet, Text, View, Modal, TouchableOpacity, Pressable, Platform, Image,Alert } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import Swiper from 'react-native-swiper';
 import DateTimePicker from '@react-native-community/datetimepicker';
@@ -9,6 +9,8 @@ import CatDetails from './CatDetails';
 
 import Photo_Icon from '../media/photo_icon';
 import Cancle_Icon from '../media/cancle_icon';
+import axios from 'axios';
+import API from './AxiosAPI';
 
 const SizeData = [
     { value : 'XS', info : '대충 사이즈 어떤 정도인지', key : '1'},
@@ -132,22 +134,30 @@ function Upload({onPress}){
     };
 
     let [selectedImage, setSelectedImage] = React.useState(null);
+    let [Img_base64,setImg_base64] = React.useState(null);
 
     let openImagePickerAsync = async () => {
         let permissionResult = await ImagePicker.requestMediaLibraryPermissionsAsync();
 
         if (permissionResult.granted === false) {
-            alert('앨범에 대한 접근 권한이 필요합니다!');
+            Alert.alert('앨범에 대한 접근 권한이 필요합니다!');
             return;
         }
 
-        let pickerResult = await ImagePicker.launchImageLibraryAsync();
+        let pickerResult = await ImagePicker.launchImageLibraryAsync({
+            mediaTypes: ImagePicker.MediaTypeOptions.Images,
+            allowsEditing: true,
+            aspect: [3, 3],
+            quality: 1,
+            base64: true,
+        });
 
         if (pickerResult.cancelled === true) {
             return;
         }
 
         setSelectedImage({ localUri: pickerResult.uri });
+        setImg_base64({img:pickerResult});
     };
     
     function checksubmit(){
@@ -168,12 +178,21 @@ function Upload({onPress}){
         let selectdate = date.toDateString();
 
         let submit_data={
-            img : selectedImage.localUri,
-            category:CatDetail,
+            image : Img_base64.img,
+            goods_type:CatDetail,
             size:size,
-            date:selectdate,
+            deadline:selectdate,
             style:style
         };
+
+        API.post('/api/upload/',submit_data)
+        .then((response)=>{
+            console.log('성공');
+            console.log(response);
+        })
+        .catch((error)=>{
+            console.log(error);
+        })
 
         console.log(submit_data);
     }
@@ -187,7 +206,7 @@ function Upload({onPress}){
                 <View style={styles.content}>
                     <View style={styles.modal_center}>
                         <Text style={styles.center_text}>폐기 의류 사진을 등록해주세요!</Text>
-                        <TouchableOpacity onPress={openImagePickerAsync} >
+                    <TouchableOpacity onPress={openImagePickerAsync} >
                             {(selectedImage === null) && <Photo_Icon />}
                             {(selectedImage !== null) && <Image source={{ uri: selectedImage.localUri }} style={{width:220,height:220,borderRadius:10}} />}
                         </TouchableOpacity>

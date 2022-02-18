@@ -5,6 +5,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { View, TouchableOpacity } from 'react-native';
 import * as SplashScreen from 'expo-splash-screen';
+import axios from 'axios';
 
 import HomePage from "./src/components/HomePage"
 import SearchPage from "./src/components/SearchPage"
@@ -24,8 +25,13 @@ import FindPw from './src/components/FindPw';
 import Piece from './src/components/Piece';
 import SearchResult from './src/components/SearchResult';
 import Chatting from './src/components/Chatting'
+import Requests from './src/components/Requests';
+import RequestDetail from './src/components/RequestsDetail';
+import Designer from './src/components/designer';
+import Campaign from './src/components/Campaign'
 
 import Tabbar_Svg from './src/media/TabBar';
+
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -48,7 +54,6 @@ function TabBarAdvancedButton(props) {
       <TouchableOpacity style={{width:55,height:55,backgroundColor:'#04AA8C',justifyContent:'center',alignItems:'center',borderRadius:100, bottom:28}} onPress={props.onPress} >
         <Upload_Icon />
       </TouchableOpacity>
-      {/* <Tabbar_Svg style={{position:'absolute'}}/> */}
     </View>
   );
 }
@@ -58,6 +63,7 @@ function HomeStack(){
       <Stack.Navigator initialRouteName="Home" screenOptions={{headerShown: false}}>
         <Stack.Screen name="Home" component={HomePage} />
         <Stack.Screen name="Piece" component={Piece} />
+        <Stack.Screen name="Designer" component={Designer} />
       </Stack.Navigator>
   );
 }
@@ -67,6 +73,8 @@ function SearchStack(){
       <Stack.Navigator initialRouteName="Search" screenOptions={{headerShown: false}}>
         <Stack.Screen name="Search" component={SearchPage} />
         <Stack.Screen name="SearchResult" component={SearchResult} />
+        <Stack.Screen name="Piece" component={Piece} />
+        <Stack.Screen name="Designer" component={Designer} />
       </Stack.Navigator>
   );
 }
@@ -83,8 +91,10 @@ function ChatStack(){
 function MyPageStack(){
   return(
       <Stack.Navigator initialRouteName="Mypage" screenOptions={{headerShown: false}}>
-        <Stack.Screen name="Mypage" component={ChatPage} />
-        {/* <Stack.Screen name="" component={} /> */}
+        <Stack.Screen name="Mypage" component={MyPage} />
+        <Stack.Screen name="Requests" component={Requests} />
+        <Stack.Screen name="RequestsDetail" component={RequestDetail} />
+        <Stack.Screen name='Campaign' component={Campaign} />
       </Stack.Navigator>
   );
 }
@@ -110,31 +120,14 @@ function MainTab() {
   return (
     <Tab.Navigator initialRouteName='Home'  screenOptions={{headerShown: false, tabBarShowLabel:false, tabBarVisible: false, tabBarStyle:{ backgroundColor: '#ffffff' }}}>
       {/* tabBarBackground:()=>(<Tabbar_Svg style={{position:'absolute',bottom:0}} />) 이거 탭바모양인데 안먹어서 일단 주석 */}
-      <Tab.Screen name="HomeStack" component={HomeStack} options={{tabBarIcon: ()=>{ return <Home_Icon />}}} />
+      <Tab.Screen name="HomeStack" component={HomeStack} options={{tabBarIcon: ()=>{ return <Home_Icon />},unmountOnBlur: true}} />
       <Tab.Screen name="SearchStack" component={SearchStack} options={{tabBarIcon: ()=>{ return <Search_Icon />}}} />
       <Tab.Screen name="Upload" component={Upload} options={{tabBarButton: (props)=>{ return <TabBarAdvancedButton {...props} />}}} />
       <Tab.Screen name="Chat" component={ChatPage} options={{tabBarIcon: ()=>{ return <Chat_Icon />}}} />
-      <Tab.Screen name="My" component={MyPage} options={{tabBarIcon: ()=>{ return <Mypage_Icon />}}} />
+      <Tab.Screen name="My" component={MyPageStack} options={{tabBarIcon: ()=>{ return <Mypage_Icon />}}} />
     </Tab.Navigator>
   );
 }
 
 
 export default AppStack;
-
-
-
-// function Uplaod(){
-//   const [modalVisible, setModalVisible] = useState(false);
-//     return (
-//         <Modal
-//             animationType="slide"
-//             transparent={true}
-//             visible={modalVisible}
-//             onRequestClose={() => { setModalVisible(!modalVisible); }}>
-//             <View>
-//                 <Text>안녕하세요!</Text>
-//             </View>
-//         </Modal>
-//     );
-// }

@@ -1,60 +1,30 @@
 import * as React from 'react';
-import { Text, View, StyleSheet,TextInput,TouchableOpacity } from 'react-native';
+import { Text, View, StyleSheet,TextInput,TouchableOpacity,Alert } from 'react-native';
 import LogoSvg from '../media/logo_svg';
-import axios from 'axios';
-
-import API from './AxiosApi';
+import API from './AxiosAPI';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 function LogIn({ navigation: { navigate } }) {
     const [Id, setId] = React.useState(null);
     const [Pw, setPw] = React.useState(null);
 
-    // const IsValid = async () =>{
-    //     const data = {
-    //         username : Id,
-    //         password : Pw
-    //     }
-    //     try { 
-    //         const {
-    //             data: { path }
-    //         } = await axios.post("http://192.168.1.7:8000/rest-auth/login/",data,{
-    //             headers: { 
-    //                 "content-type": "application/json"
-    //             }
-    //         });
-    //     } catch (e) {
-    //         console.log(e);
-    //         console.log(Id);
-    //         console.log(Pw);
-    //     }
-    //     // fetch('http://192.168.1.7:8000/rest-auth/login/', {
-    //     //     method: 'POST',
-    //     //     headers: {
-    //     //         Accept: 'application/json',
-    //     //         'Content-Type': 'application/json',
-    //     //     },
-    //     //     // send our base64 string as POST request
-    //     //     body: JSON.stringify({
-    //     //         username : Id,
-    //     //         password : Pw,
-    //     //     }),
-    //     // })
-    // };
-
-    function IsValid(Id, Pw) {
-        axios.get('http://20.194.101.73:8000/results/', {
-            id: Id,
-            password: Pw
+    const IsValid = async(Id, Pw) => {
+        await API.post('/login/',{
+            id:Id,
+            password:Pw
         })
-        .then(function (response) {
-            console.log(response)
-            navigate('Main')
+        .then((response)=>{
+            // console.log('성공');
+            // console.log(response.data.Token);
+            AsyncStorage.setItem('userToken',response.data.Token);
+            navigate('Main');
         })
-        .catch(function (error) {
+        .catch((error)=>{
             console.log(error);
             console.log(Id);
             console.log(Pw);
-        });
+            Alert.alert('아이디와 비밀번호가 일치하지 않습니다.');
+        })
     }
 
     return (
@@ -70,9 +40,9 @@ function LogIn({ navigation: { navigate } }) {
                 <View style={styles.login}>
                     <TextInput style={styles.getId} placeholder="아이디를 입력해주세요" onChangeText={(Id) => setId(Id)} placeholderTextColor={'#999999'}/>
                     <TextInput style={styles.getPw} placeholder="비밀번호를 입력해주세요" onChangeText={(Pw) => setPw(Pw)} placeholderTextColor={'#999999'} secureTextEntry={true}/>
-                    <Forgot_Btn onPress={() => navigate('Main')} /> 
-                    {/* 임시로 forgot 버튼에 메인페이지 이동 넣어놓음 */}
-                    <LogIn_Btn onPress={() => {IsValid(Id,Pw)}} />
+                    <Forgot_Btn onPress={() => navigate('FindUser')} /> 
+                    <LogIn_Btn onPress={() => {IsValid(Id,Pw)}} /> 
+                    {/* <LogIn_Btn onPress={() => navigate('Main')} /> */}
                 </View>
                 <View style={styles.SignUp} >
                     
@@ -81,29 +51,11 @@ function LogIn({ navigation: { navigate } }) {
                 </View>
             </View>
             <View style={styles.footer}>
-                <SignUp_Btn onPress={() => navigate('FindUser')} />
+                <SignUp_Btn onPress={() => navigate('SignUp')} />
             </View>
         </View>
     );    
 }
-
-
-
-// const IsValid = async(Id,Pw) => {
-//     await API.post('/rest-auth/login/', {
-//         username: Id,
-//         email:'',
-//         password: Pw
-//     })
-//     .then((response) => {
-//         console.log(response);
-//     })
-//     .catch((error) => {
-//         console.log(error);
-//         console.log(Id);
-//         console.log(Pw);
-//     })
-// };
 
 const LogIn_Btn = ({onPress}) => { 
     return (
