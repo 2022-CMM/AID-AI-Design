@@ -13,8 +13,10 @@ from .serializers import DesignSerializer, UploadSerializer, \
 import os, re
 from typing import List
 import click
-# from ...ai.stylegan2_ada_pytorch import dnnlib
-# from ...ai.stylegan2_ada_pytorch import legacy
+import dnnlib
+from stylegan2_ada_pytorch import legacy
+from stylegan2_ada_pytorch.style_mixing import generate_style_mix
+from stylegan2_ada_pytorch.projector import run_projection
 import numpy as np
 import PIL.Image
 import torch
@@ -82,8 +84,8 @@ class ResultViewSet(viewsets.ModelViewSet):
 
     queryset = goods_info.objects.all()
     serializer_class = ResultSerializer
-    permission_classes = [IsAuthenticated]
-    authentication_classes = (TokenAuthentication, )
+    # permission_classes = [IsAuthenticated]
+    # authentication_classes = (TokenAuthentication, )
     
     def get_queryset(self):
         return goods_info.objects.filter(delete_flag='0', transform_flag='0')
@@ -91,6 +93,7 @@ class ResultViewSet(viewsets.ModelViewSet):
     def list(self, request):
         queryset = self.get_queryset()
         serializers = ResultSerializer(queryset, many=True)
+        generate_img('./media/images/test1.PNG', './media/images/test2.PNG')
         return Response(serializers.data)
 
 
@@ -110,67 +113,56 @@ class RequestViewSet(viewsets.ModelViewSet):
 
 
 
-def num_range(s: str) -> List[int]:
-    '''Accept either a comma separated list of numbers 'a,b,c' or a range 'a-c' and return as a list of ints.'''
+def generate_img(upload, design):
+    seed = 2021
+    network_pkl = './media/network-snapshot-000080.pkl'
+    np.random.seed(seed)
+    torch.manual_seed(seed)
 
-    range_re = re.compile(r'^(\d+)-(\d+)$')
-    m = range_re.match(s)
-    if m:
-        return list(range(int(m.group(1)), int(m.group(2))+1))
-    vals = s.split(',')
-    return [int(x) for x in vals]
-
-
-def generate_style_mix( network_pkl, row_seeds, col_seeds, col_styles=[0,1,2,3,4,5,6], truncation_psi = 1, noise_mode='const', outdir='out'):
-
-    print(col_styles)
+    # Load networks.
     print('Loading networks from "%s"...' % network_pkl)
     device = torch.device('cuda')
-    with dnnlib.util.open_url(network_pkl) as f:
-        G = legacy.load_network_pkl(f)['G_ema'].to(device) # type: ignore
 
-    os.makedirs(outdir, exist_ok=True)
+    with dnnlib.util.open_url(network_pkl) as fp:
+        G = legacy.load_network_pkl(fp)['G_ema'].requires_grad_(False).to(device) # type: ignore
 
-    print('Generating W vectors...')
-    all_seeds = list(set(row_seeds + col_seeds))
-    all_z = np.stack([np.random.RandomState(seed).randn(G.z_dim) for seed in all_seeds])
-    all_w = G.mapping(torch.from_numpy(all_z).to(device), None)
-    w_avg = G.mapping.w_avg
-    all_w = w_avg + (all_w - w_avg) * truncation_psi
-    w_dict = {seed: w for seed, w in zip(all_seeds, list(all_w))}
+    '''
+    Image1_url = "./test_images/test1.png"
+    Image2_url = "./test_images/test2.png"
+    '''
 
-    print('Generating images...')
-    all_images = G.synthesis(all_w, noise_mode=noise_mode)
-    all_images = (all_images.permute(0, 2, 3, 1) * 127.5 + 128).clamp(0, 255).to(torch.uint8).cpu().numpy()
-    image_dict = {(seed, seed): image for seed, image in zip(all_seeds, list(all_images))}
+    # Image1, 2에 대한 latent vector를 생성
+    w_dict = {}
 
-    print('Generating style-mixed images...')
-    for row_seed in row_seeds:
-        for col_seed in col_seeds:
-            w = w_dict[row_seed].clone()
-            w[col_styles] = w_dict[col_seed][col_styles]
-            image = G.synthesis(w[np.newaxis], noise_mode=noise_mode)
-            image = (image.permute(0, 2, 3, 1) * 127.5 + 128).clamp(0, 255).to(torch.uint8)
-            image_dict[(row_seed, col_seed)] = image[0].cpu().numpy()
+    projected_upload = run_projection(G = G,
+        target_fname = upload,
+        outdir = './media/output/',
+        save_video = False,
+        seed = seed,
+        num_steps = 100,
+        device = device
+    )
 
-    print('Saving images...')
-    os.makedirs(outdir, exist_ok=True)
-    for (row_seed, col_seed), image in image_dict.items():
-        PIL.Image.fromarray(image, 'RGB').save(f'{outdir}/{row_seed}-{col_seed}.png')
+    projected_design = run_projection(G = G,
+        target_fname = design,
+        outdir = './media/output/',
+        save_video = False,
+        seed = seed,
+        num_steps = 100,
+        device = device
+    )
+    w_dict["Image1"] = projected_upload
+    w_dict["Image2"] = projected_design
+    # print(w_dict["Image1"][0:6])
 
-    print('Saving image grid...')
-    W = G.img_resolution
-    H = G.img_resolution
-    canvas = PIL.Image.new('RGB', (W * (len(col_seeds) + 1), H * (len(row_seeds) + 1)), 'black')
-    for row_idx, row_seed in enumerate([0] + row_seeds):
-        for col_idx, col_seed in enumerate([0] + col_seeds):
-            if row_idx == 0 and col_idx == 0:
-                continue
-            key = (row_seed, col_seed)
-            if row_idx == 0:
-                key = (col_seed, col_seed)
-            if col_idx == 0:
-                key = (row_seed, row_seed)
-            canvas.paste(PIL.Image.fromarray(image_dict[key], 'RGB'), (W * col_idx, H * row_idx))
-    canvas.save(f'{outdir}/grid.png')
+    # Style Mixing
+    print("Style Mixing...")
+    generate_style_mix(
+        G = G,
+        w_dict = w_dict,
+        col_start = 0,
+        col_end = 6,
+        noise_mode='const',
+        outdir='./media/output/'
+    )
 
