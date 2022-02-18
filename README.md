@@ -2,12 +2,13 @@
 
 <div>
     <p align = "center">
-	    <img width = "70" src = "./readmeimg/logo.svg">
+	    <img width = "70" src = "./readmeimg/logo.svg"><br>
+	    <b>AID는 국내 에코 크리에이터들과 소비자를 이어주는 1:1 온라인 맞춤형 서비스 입니다.</b>
     </p>
 </div>
 
 ## Overview
-<b>AID는 국내 에코 크리에이터들과 소비자를 이어주는 1:1 온라인 맞춤형 서비스 입니다.</b>
+
 - 배경
 
     우리나라에서는 매년 소각, 폐기되는 의류의 양은 2190만톤의 이산화탄소를 발생시킵니다.
