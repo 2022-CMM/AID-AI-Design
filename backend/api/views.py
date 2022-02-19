@@ -150,7 +150,7 @@ class MypageView(APIView):
         queryset_designer = profile.objects.filter(user_type='1')
         serializers_designer = ProfileSerializer(queryset_designer, many=True)
         queryset_goods = goods_info.objects.filter(delete_flag='0')
-        serializers_goods = ProfileSerializer(queryset_goods, many=True)
+        serializers_goods = UploadSerializer(queryset_goods, many=True)
 
         context['name'] = profile.objects.filter(user_id=user).values_list('name')[0][0]
         context['num_request'] = goods_info.objects.filter(user_id=user, transform_flag='0').count()
