@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User
 from django.core import serializers as sl
-from rest_framework import serializers
+from rest_framework import serializers, status
 from rest_framework import viewsets, mixins, generics
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
@@ -50,6 +50,14 @@ class UploadViewSet(viewsets.ModelViewSet):
         queryset = self.get_queryset()
         serializers = UploadSerializer(queryset, many=True)
         return Response(serializers.data)
+
+    def create(self, request, *args, **kwargs):
+        print(request.body)
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        self.perform_create(serializer)
+        headers = self.get_success_headers(serializer.data)
+        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
 
 
 class DesignViewSet(viewsets.ModelViewSet):
