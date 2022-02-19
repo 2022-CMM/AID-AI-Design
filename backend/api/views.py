@@ -53,7 +53,8 @@ class UploadViewSet(viewsets.ModelViewSet):
         return Response(serializers.data)
 
     def create(self, request):
-        print(request.data)
+        # print(request.data)
+        print(request.data['image'].keys())
         format, imgstr = request.data['image'].split(';base64,') 
         ext = format.split('/')[-1]
         upload_image = ContentFile(base64.b64decode(imgstr), name='temp.' + ext)
