@@ -65,8 +65,11 @@ class goods_result(models.Model):
 
 class request_list(models.Model):
     goods = models.OneToOneField(goods_info, on_delete=models.CASCADE, related_name="goods_info")
-    title = models.CharField(db_column='title', max_length=100, blank=True)
-    contents = models.CharField(db_column='contents', max_length=100, blank=True)
+    title = models.CharField(db_column='title', max_length=100, blank=True, null=True)
+    requests = models.CharField(db_column='requests', max_length=100, blank=True, null=True)
+    designer_address = models.CharField(db_column='designer_address', max_length=100, blank=True, null=True)
+    user_address = models.CharField(db_column='user_address', max_length=100, blank=True, null=True)
+    cost = models.IntegerField(db_column='cost', null=True)
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='생성일', null=True)
     updated_at = models.DateTimeField( auto_now_add=True, verbose_name='수정일', null=True)
     delete_flag = models.CharField(db_column='delete_flag', max_length=100, blank=True)
