@@ -40,8 +40,8 @@ class UploadViewSet(viewsets.ModelViewSet):
 
     queryset = goods_info.objects.all()
     serializer_class = UploadSerializer
-    permission_classes = [IsAuthenticated]
-    authentication_classes = (TokenAuthentication, )
+    # permission_classes = [IsAuthenticated]
+    # authentication_classes = (TokenAuthentication, )
     
     def get_queryset(self):
         return goods_info.objects.filter(delete_flag='0')
