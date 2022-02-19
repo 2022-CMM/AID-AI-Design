@@ -136,8 +136,8 @@ class RequestViewSet(viewsets.ModelViewSet):
         serializers = RequestSerializer(queryset, many=True)
         return Response(serializers.data)
 
-class MypageView(APIView):
-    def get(self, request):
+# class MypageView(APIView):
+#     def get(self, request):
 
 
 def generate_img(upload, design):
