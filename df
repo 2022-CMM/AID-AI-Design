@@ -1,0 +1,288 @@
+[33mcommit 5cf13846d73ac07e82a526be9366e5e6cd3b5e7a[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Merge: 018785f 3db9cac
+Author: MINI <31647995+jongmin4422@users.noreply.github.com>
+Date:   Sat Feb 19 12:33:36 2022 +0900
+
+    Merge branch '2022-CMM:main' into main
+
+[33mcommit 3db9cac37e95712a27368016290ac8c92c7248bc[m
+Merge: 47fc90b 901c81c
+Author: hiseoung <74298527+hiseoung@users.noreply.github.com>
+Date:   Sat Feb 19 00:23:44 2022 +0900
+
+    Merge pull request #22 from hiseoung/main
+    
+    Update ai api
+
+[33mcommit 901c81c81a495b3cd128b320038db4f0f0a7c160[m
+Author: hiseoung <anhisg4104@gmail.com>
+Date:   Sat Feb 19 00:21:52 2022 +0900
+
+    Update requirements.txt
+
+[33mcommit 66a91e20da14b725ba80bd3c29dfc19630b528f4[m
+Author: hiseoung <anhisg4104@gmail.com>
+Date:   Sat Feb 19 00:15:42 2022 +0900
+
+    Update ai model
+
+[33mcommit 018785f37bb9ea5b76e902fc877e03fcebf6a094[m
+Author: jongmin4422 <jongmin4422@naver.com>
+Date:   Fri Feb 18 22:28:04 2022 +0900
+
+    change readme
+
+[33mcommit 47fc90b97f6ad42a7604ffe0302a166ef3947271[m
+Merge: dc8ab9d 1898522
+Author: hiseoung <74298527+hiseoung@users.noreply.github.com>
+Date:   Fri Feb 18 21:57:45 2022 +0900
+
+    Merge pull request #19 from jongmin4422/main
+    
+    change readme file
+
+[33mcommit 1898522f097ab06fa4d40672b4a0ee1da16fb286[m
+Author: jongmin4422 <jongmin4422@naver.com>
+Date:   Fri Feb 18 21:46:09 2022 +0900
+
+    change logo img
+
+[33mcommit aa1eee1bc074dcc1663b2de2cc7fc04ceec99c90[m
+Author: jongmin4422 <jongmin4422@naver.com>
+Date:   Fri Feb 18 21:05:03 2022 +0900
+
+    add maket analysis and etc. in readme file
+
+[33mcommit 32573da10e9e302e3aa4377e348937bfa80fede7[m
+Author: jongmin4422 <jongmin4422@naver.com>
+Date:   Fri Feb 18 20:34:02 2022 +0900
+
+    change readme file
+
+[33mcommit b99af6421d7240025a8d7d237199a43a97517c7c[m
+Author: jongmin4422 <jongmin4422@naver.com>
+Date:   Fri Feb 18 20:04:37 2022 +0900
+
+    change readme file
+
+[33mcommit dc8ab9dac20e907b6abe8becd944bffbe08a556f[m
+Merge: 4c3ad81 d91e991
+Author: hiseoung <74298527+hiseoung@users.noreply.github.com>
+Date:   Fri Feb 18 14:02:22 2022 +0900
+
+    Merge pull request #18 from hwnim5324/master
+    
+    Frontend Progress Pull Request
+
+[33mcommit d91e9912efe6348fdeef056cfff1d253bb58de25[m
+Merge: 001a6ea 4c3ad81
+Author: hiseoung <74298527+hiseoung@users.noreply.github.com>
+Date:   Fri Feb 18 14:02:15 2022 +0900
+
+    Merge branch 'main' into master
+
+[33mcommit 001a6eac82bc2da2301bf53442490eac88f02e95[m
+Author: 남현우 <hwnim5324@naver.com>
+Date:   Thu Feb 17 22:38:34 2022 +0900
+
+    Now can upload image with base64.
+
+[33mcommit d394be480db6c9cd6b636409afff196e5b6381d8[m
+Author: 남현우 <hwnim5324@naver.com>
+Date:   Thu Feb 17 22:38:09 2022 +0900
+
+    Added new Screen.
+
+[33mcommit 3bfc2d34ad4b102be7e652a4520c90183c57af62[m
+Author: 남현우 <hwnim5324@naver.com>
+Date:   Thu Feb 17 22:37:57 2022 +0900
+
+    Added communication with backend.
+
+[33mcommit 520dc3451c23fa8fe84f60990db882e149890085[m
+Author: 남현우 <hwnim5324@naver.com>
+Date:   Thu Feb 17 22:36:59 2022 +0900
+
+    Added new Screen.
+
+[33mcommit e6d46c6d042271b68cc794b03237459f68d09b9f[m
+Author: 남현우 <hwnim5324@naver.com>
+Date:   Thu Feb 17 22:36:38 2022 +0900
+
+    Added new Screen.
+
+[33mcommit 4c3ad81e39334b5bb567c3b08aa06365cbf726af[m
+Merge: 677c2a4 80cbca8
+Author: hiseoung <74298527+hiseoung@users.noreply.github.com>
+Date:   Wed Feb 16 22:48:44 2022 +0900
+
+    Merge pull request #17 from jongmin4422/main
+    
+    add a style mix code made by @LimSeJin9577
+
+[33mcommit 80cbca893bea054e26c05f8de329bbbf3520e77e[m
+Author: jongmin4422 <jongmin4422@naver.com>
+Date:   Wed Feb 16 22:28:19 2022 +0900
+
+    add a style mix code made by @LimSeJin9577
+
+[33mcommit 677c2a4de7b02b186670a135c6382048dd35edb0[m
+Author: hiseoung <anhisg4104@gmail.com>
+Date:   Wed Feb 16 00:16:33 2022 +0900
+
+    Update views.py in api
+
+[33mcommit 4df68266ed3906c19938469dbe1f10da4a91c4fd[m
+Author: hiseoung <anhisg4104@gmail.com>
+Date:   Wed Feb 16 00:00:41 2022 +0900
+
+    Update urls.py
+
+[33mcommit 94c4288a27643ce77dc5d002ea6b20e58400ee74[m
+Author: hiseoung <anhisg4104@gmail.com>
+Date:   Tue Feb 15 23:57:50 2022 +0900
+
+    Update migrate
+
+[33mcommit 4166e4616b8eb0b960986f33c0ea74cb47ade6d0[m
+Author: hiseoung <anhisg4104@gmail.com>
+Date:   Tue Feb 15 23:52:05 2022 +0900
+
+    Update urls.py
+
+[33mcommit 19a392c76b0188a2af7c8d5f51c1fa2510af2959[m
+Author: hiseoung <anhisg4104@gmail.com>
+Date:   Tue Feb 15 23:48:43 2022 +0900
+
+    Update views.py in api
+
+[33mcommit 9d96ee38cfda275cb083df4396da9c9644977305[m
+Author: hiseoung <anhisg4104@gmail.com>
+Date:   Tue Feb 15 23:33:48 2022 +0900
+
+    Update views.py in api
+
+[33mcommit 818e18587f699f7cd4a820a9e778cdaa3db23b7b[m
+Author: hiseoung <anhisg4104@gmail.com>
+Date:   Tue Feb 15 23:32:10 2022 +0900
+
+    Update views.py in api
+
+[33mcommit 917aa66879c3e5ee6d2cab9ea98f4ea6cb3b35e2[m
+Author: hiseoung <anhisg4104@gmail.com>
+Date:   Tue Feb 15 23:30:02 2022 +0900
+
+    Update reequest, designer API
+
+[33mcommit 4bd507c49ab8397b3eb17fccc9409d938fe8889c[m
+Merge: e8188b3 b8be796
+Author: hiseoung <anhisg4104@gmail.com>
+Date:   Tue Feb 15 22:43:51 2022 +0900
+
+    Update API
+
+[33mcommit e8188b353a430408eb2a272b95fb96c9d2bf10ee[m
+Author: hiseoung <anhisg4104@gmail.com>
+Date:   Tue Feb 15 22:43:33 2022 +0900
+
+    Update API
+
+[33mcommit e68b1e44b4d60433017f714aa556d685dbef735c[m
+Author: 남현우 <hwnim5324@naver.com>
+Date:   Mon Feb 14 23:42:15 2022 +0900
+
+    Update code with Axios.
+
+[33mcommit b8be79683a5a659e21855f2d4eda197bce3cd62c[m
+Merge: ef0c0b5 3f3d984
+Author: hiseoung <74298527+hiseoung@users.noreply.github.com>
+Date:   Mon Feb 14 22:05:34 2022 +0900
+
+    Merge pull request #16 from jongmin4422/main
+    
+    cleanup train.ipynb code
+
+[33mcommit c8ac34d81796dd0760cd5e8e21b006b07c110014[m
+Author: 남현우 <hwnim5324@naver.com>
+Date:   Mon Feb 14 22:03:31 2022 +0900
+
+    Completed SearchResult page.
+
+[33mcommit 3f3d9847ec09b51dd5b02706a155ce12de12db13[m
+Merge: eff964c ef0c0b5
+Author: jongmin4422 <jongmin4422@naver.com>
+Date:   Mon Feb 14 18:16:31 2022 +0900
+
+    Merge branch 'main' of https://github.com/jongmin4422/AID-AI-Design
+
+[33mcommit eff964c3d8d8221c08b44f8d6195d083b70df7fd[m
+Author: jongmin4422 <jongmin4422@naver.com>
+Date:   Mon Feb 14 18:16:26 2022 +0900
+
+    cleanup the code
+
+[33mcommit ef0c0b587d76c25fa9a3fa81c10ee4b23edcaeea[m
+Author: hiseoung <anhisg4104@gmail.com>
+Date:   Mon Feb 14 01:13:07 2022 +0900
+
+    Add serach API
+
+[33mcommit 014a7e86c07c215be827a4f690b2c52392b85a50[m
+Author: 남현우 <hwnim5324@naver.com>
+Date:   Mon Feb 14 01:01:13 2022 +0900
+
+    Typo correction.
+
+[33mcommit cbf965189070b7f3100e17b47727b2bd442ee870[m
+Author: 남현우 <hwnim5324@naver.com>
+Date:   Mon Feb 14 00:59:33 2022 +0900
+
+    Added Alert.
+
+[33mcommit 64f681dc831abe5e41211589f7fc069e6773b8fa[m
+Author: 남현우 <hwnim5324@naver.com>
+Date:   Mon Feb 14 00:58:58 2022 +0900
+
+    Delete unnecessary content.
+
+[33mcommit b89afcc6c5617f17edd2eaa0832cf543a8dbef1a[m
+Author: 남현우 <hwnim5324@naver.com>
+Date:   Mon Feb 14 00:58:05 2022 +0900
+
+    Main&Piece page completed. Added refresh.
+
+[33mcommit 3af2ddd681814c0fd64b1a4b317551e2bcb1dfa9[m
+Author: hiseoung <anhisg4104@gmail.com>
+Date:   Sun Feb 13 16:03:55 2022 +0900
+
+    Update result serializers
+
+[33mcommit 383e9268b618d13e95b525f50d4278b2ae2cbe7e[m
+Author: hiseoung <anhisg4104@gmail.com>
+Date:   Sun Feb 13 16:02:41 2022 +0900
+
+    Update result serializers
+
+[33mcommit 1b20173fc9a292e551c21939bf5d9098bfb74766[m
+Author: hiseoung <anhisg4104@gmail.com>
+Date:   Sun Feb 13 16:00:14 2022 +0900
+
+    Update media image
+
+[33mcommit 5d71c24e65540b344737cc11b6362a4bf25ef303[m
+Author: hiseoung <anhisg4104@gmail.com>
+Date:   Sun Feb 13 15:24:38 2022 +0900
+
+    Update media root
+
+[33mcommit caabd83d2210a96e13cf3dd1e103cdfd25c7eb5b[m
+Author: hiseoung <anhisg4104@gmail.com>
+Date:   Sun Feb 13 14:48:50 2022 +0900
+
+    Update views.py in api
+
+[33mcommit f1380a18b70cf14b9fe627b9deb1e77f0910b8dc[m
+Author: hiseoung <anhisg4104@gmail.com>
+Date:   Sun Feb 13 14:40:27 2022 +0900
+
+    Upd

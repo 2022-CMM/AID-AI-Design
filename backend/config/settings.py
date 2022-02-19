@@ -45,7 +45,10 @@ INSTALLED_APPS = [
 
     # Aid Apps
     'api',
-    'users'
+    'users',
+    'stylegan2_ada_pytorch',
+    'torch_utils',
+    'dnnlib',
 ]
 
 

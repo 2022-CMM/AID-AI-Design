@@ -33,7 +33,7 @@ if __name__ == "__main__" :
             outdir = 'output',
             save_video = True,
             seed = seed,
-            num_steps = 100,
+            num_steps = 1000,
             device = device
         )
         w_dict[f"Image{i}"] = projected_w
