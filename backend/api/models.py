@@ -15,16 +15,16 @@ class goods_info(models.Model):
     # quality = models.CharField(db_column='quality', max_length=100, blank=True)
     # material = models.CharField(db_column='material', max_length=100, blank=True)
     deadline = models.DateTimeField(db_column='deadline', max_length=100, blank=True, null=True)
-    goods_type = models.CharField(db_column='goods_type', max_length=100, blank=True)
-    size = models.CharField(db_column='size', max_length=100, blank=True)
-    title = models.CharField(db_column='title', max_length=100, blank=True)
-    style = models.CharField(db_column='style', max_length=100, blank=True)
-    title_changed = models.CharField(db_column='title_changed', max_length=100, blank=True)
-    designer = models.CharField(db_column='designer', max_length=100, blank=True)
+    goods_type = models.CharField(db_column='goods_type', max_length=100, blank=True, null=True)
+    size = models.CharField(db_column='size', max_length=100, blank=True, null=True)
+    title = models.CharField(db_column='title', max_length=100, blank=True, null=True)
+    style = models.CharField(db_column='style', max_length=100, blank=True, null=True)
+    title_changed = models.CharField(db_column='title_changed', max_length=100, blank=True, null=True)
+    designer = models.CharField(db_column='designer', max_length=100, blank=True, null=True)
     transform_flag = models.CharField(db_column='transform_flag', max_length=100, blank=True, default='1')
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='생성일', null=True)
     updated_at = models.DateTimeField(auto_now_add=True, verbose_name='수정일', null=True)
-    delete_flag = models.CharField(db_column='delete_flag', max_length=100, blank=True)
+    delete_flag = models.CharField(db_column='delete_flag', max_length=100, blank=True, null=True)
 
     class Meta:
         db_table = 'goods_info'
@@ -80,5 +80,3 @@ class request_list(models.Model):
 
     class Meta:
         db_table = 'request_list'
-
-
