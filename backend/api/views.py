@@ -10,7 +10,8 @@ from .models import goods_design, goods_result, goods_info, request_list
 from users.models import profile
 from .serializers import DesignSerializer, UploadSerializer, \
                         ResultSerializer, RequestSerializer, ProfileSerializer
-import os, re
+from django.core.files.base import ContentFile
+import os, re, base64
 from typing import List
 import click
 import dnnlib
@@ -53,8 +54,11 @@ class UploadViewSet(viewsets.ModelViewSet):
 
     def create(self, request):
         print(request.data)
+        format, imgstr = request.data['image'].split(';base64,') 
+        ext = format.split('/')[-1]
+        upload_image = ContentFile(base64.b64decode(imgstr), name='temp.' + ext)
         created = goods_info.objects.create(
-            image = request.data['image'],
+            image = upload_image,
             goods_type = request.data['image'],
             size = request.data['size'],
             deadline = request.data['deadline'],
