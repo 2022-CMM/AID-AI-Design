@@ -11,7 +11,7 @@ class goods_info(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="user", default='1')
     image = models.ImageField(blank=True, null=True, upload_to="upload_image")
     image_results = models.ImageField(blank=True, null=True, upload_to="results")
-    purchased_date = models.DateTimeField(db_column='purchased_date', max_length=100, blank=True)
+    purchased_date = models.DateTimeField(db_column='purchased_date', max_length=100, blank=True, null=True)
     # quality = models.CharField(db_column='quality', max_length=100, blank=True)
     # material = models.CharField(db_column='material', max_length=100, blank=True)
     deadline = models.DateTimeField(db_column='deadline', max_length=100, blank=True, null=True)
