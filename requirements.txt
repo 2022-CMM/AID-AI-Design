@@ -12,3 +12,4 @@ ninja
 click
 scipy
 django-braces
+imageio
