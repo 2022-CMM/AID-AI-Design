@@ -71,7 +71,7 @@ class request_list(models.Model):
     user_address = models.CharField(db_column='user_address', max_length=100, blank=True, null=True)
     cost = models.IntegerField(db_column='cost', null=True)
     length = models.IntegerField(db_column='length', null=True)
-    shoulder_width = models.IntegerField(db_column='length', null=True)
+    shoulder_width = models.IntegerField(db_column='shoulder_width', null=True)
     chest = models.IntegerField(db_column='chest', null=True)
     sleeve_length = models.IntegerField(db_column='sleeve_length', null=True)
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='생성일', null=True)
