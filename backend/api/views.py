@@ -54,6 +54,7 @@ class UploadViewSet(viewsets.ModelViewSet):
 
     def create(self, request):
         # print(request.data)
+        print(request.data.keys())
         print(request.data['image'].keys())
         # format, imgstr = request.data['image']['base64'].split(';base64,') 
         # ext = format.split('/')[-1]
@@ -63,6 +64,7 @@ class UploadViewSet(viewsets.ModelViewSet):
             goods_type = request.data['goods_type'],
             size = request.data['size'],
             style = request.data['style'],
+            deadline = request.data['deadline'],
             user_id = 3,
         )
 
@@ -134,6 +136,8 @@ class RequestViewSet(viewsets.ModelViewSet):
         serializers = RequestSerializer(queryset, many=True)
         return Response(serializers.data)
 
+class MypageView(APIView):
+    def get(self, request):
 
 
 def generate_img(upload, design):
