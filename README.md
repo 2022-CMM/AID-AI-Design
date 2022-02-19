@@ -1,13 +1,14 @@
-# AID | AI-Design
+# 👕AID | AI-Design 
 
 <div>
     <p align = "center">
-	    <img width = "70" src = "./readmeimg/logo.svg">
+	    <img width = "70" src = "./readmeimg/logo.svg"><br>
+        <b>AID는 국내 에코 크리에이터들과 소비자를 이어주는 1:1 온라인 맞춤형 서비스 입니다.</b>
     </p>
 </div>
 
 ## Overview
-<b>AID는 국내 에코 크리에이터들과 소비자를 이어주는 1:1 온라인 맞춤형 서비스 입니다.</b>
+---
 - 배경
 
     우리나라에서는 매년 소각, 폐기되는 의류의 양은 2190만톤의 이산화탄소를 발생시킵니다.
@@ -40,29 +41,3 @@
 - 업사이클링 시장에 안정적인 재료 수급과 판로 제공
 - 디자이너가 다양한 디자인을 선보일 수 있는 기회의 창을 제공
 - 업사이클링 소재 데이터 확보를 통해 업사이클 가능 여부를 판별하는 AI가 발전할 수 있고, 에코크리에이터-폐기물 배출기관과의 소통 문제도 해결 기대
-
-## How to Execute
----
-- Django Backend API
-```
-[settings]
-Request conf.yaml from Administartor
-Move conf.yaml to directory 'CMMApi/'
-
-[Terminal]
-pip install -r requiements.txt
-python manage.py runserver
-```
-
-## API
-- User Manage
-```
-[login]
-/rest-auth/login/
-
-[register]
-/rest-auth/register/
-
-[logout]
-/rest-auth/logout/
-```
