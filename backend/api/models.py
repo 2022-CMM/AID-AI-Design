@@ -22,7 +22,8 @@ class goods_info(models.Model):
     title_changed = models.CharField(db_column='title_changed', max_length=100, blank=True)
     designer = models.CharField(db_column='designer', max_length=100, blank=True)
     transform_flag = models.CharField(db_column='transform_flag', max_length=100, blank=True, default='1')
-    created_at = models.DateTimeField(db_column='created_at', max_length=100, blank=True, auto_now=True)
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name='생성일', null=True)
+    updated_at = models.DateTimeField(auto_now_add=True, verbose_name='수정일', null=True)
     delete_flag = models.CharField(db_column='delete_flag', max_length=100, blank=True)
 
     class Meta:
@@ -36,7 +37,8 @@ class goods_design(models.Model):
     info = models.ForeignKey(goods_info, on_delete=models.CASCADE, verbose_name="info", default='1')
     image = models.ImageField(blank=True, null=True, upload_to="ai_designs")
     image_selected = models.CharField(db_column='image_selected', max_length=100, blank=True)
-    created_at = models.DateTimeField(db_column='created_at', max_length=100, blank=True, auto_now=True)
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name='생성일', null=True)
+    updated_at = models.DateTimeField(auto_now_add=True, verbose_name='수정일', null=True)
     delete_flag = models.CharField(db_column='delete_flag', max_length=100, blank=True)
     
 
@@ -53,7 +55,8 @@ class goods_result(models.Model):
     image = models.ImageField(blank=True, null=True, upload_to="result")
     title_new = models.CharField(db_column='title_new', max_length=100, blank=True)
     description = models.CharField(db_column='description', max_length=100, blank=True)
-    created_at = models.DateTimeField(db_column='created_at', max_length=100, blank=True, auto_now=True)
+    created_at = models.DateTimeField( auto_now_add=True, verbose_name='생성일', null=True)
+    updated_at = models.DateTimeField(auto_now_add=True, verbose_name='수정일', null=True)
     delete_flag = models.CharField(db_column='delete_flag', max_length=100, blank=True)
 
     class Meta:
@@ -64,8 +67,8 @@ class request_list(models.Model):
     goods = models.OneToOneField(goods_info, on_delete=models.CASCADE, related_name="goods_info")
     title = models.CharField(db_column='title', max_length=100, blank=True)
     contents = models.CharField(db_column='contents', max_length=100, blank=True)
-    created_at = models.DateTimeField(db_column='created_at', max_length=100, blank=True)
-    updated_at = models.DateTimeField(db_column='updated_at', max_length=100, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name='생성일', null=True)
+    updated_at = models.DateTimeField( auto_now_add=True, verbose_name='수정일', null=True)
     delete_flag = models.CharField(db_column='delete_flag', max_length=100, blank=True)
 
     class Meta:

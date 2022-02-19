@@ -29,8 +29,6 @@ class ResultSerializer(serializers.ModelSerializer):
 
 
 class RequestSerializer(serializers.ModelSerializer):
-    goods = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
-
     class Meta:
         model = request_list
         fields = '__all__'
