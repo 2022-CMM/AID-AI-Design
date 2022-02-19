@@ -52,10 +52,23 @@ class UploadViewSet(viewsets.ModelViewSet):
         return Response(serializers.data)
 
     def create(self, request):
-        print(request.body)
-        queryset = goods_info.objects.all()
+        print(request.data)
+        created = goods_info.objects.create(
+            image = request.data['image'],
+            goods_type = request.data['image'],
+            size = request.data['size'],
+            deadline = request.data['deadline'],
+            style = request.data['style']
+            user_id = 3
+        )
+
+        # print(request.user.id)
+
+        queryset = self.get_queryset()
         serializers = UploadSerializer(queryset, many=True)
+        
         return Response(serializers.data)
+
 
 
 class DesignViewSet(viewsets.ModelViewSet):
