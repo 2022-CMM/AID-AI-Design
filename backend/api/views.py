@@ -62,7 +62,6 @@ class UploadViewSet(viewsets.ModelViewSet):
             image = upload_image,
             goods_type = request.data['image'],
             size = request.data['size'],
-            deadline = request.data['deadline'],
             style = request.data['style'],
             user_id = 3,
         )
