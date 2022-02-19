@@ -60,7 +60,7 @@ class UploadViewSet(viewsets.ModelViewSet):
         upload_image = ContentFile(base64.b64decode(request.data['image']['base64']), name='test.PNG')
         created = goods_info.objects.create(
             image = upload_image,
-            goods_type = request.data['image'],
+            goods_type = request.data['goods_type'],
             size = request.data['size'],
             style = request.data['style'],
             user_id = 3,
