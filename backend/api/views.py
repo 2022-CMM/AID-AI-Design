@@ -58,8 +58,8 @@ class UploadViewSet(viewsets.ModelViewSet):
             goods_type = request.data['image'],
             size = request.data['size'],
             deadline = request.data['deadline'],
-            style = request.data['style']
-            user__id = 3
+            style = request.data['style'],
+            user_id = 3,
         )
 
         # print(request.user.id)
