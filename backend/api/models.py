@@ -61,7 +61,7 @@ class goods_result(models.Model):
 
 
 class request_list(models.Model):
-    goods = models.OneToOneField(goods_info, on_delete=models.CASCADE, related_name="goods_info", default='1')
+    goods = models.OneToOneField(goods_info, on_delete=models.CASCADE, related_name="goods_info")
     title = models.CharField(db_column='title', max_length=100, blank=True)
     contents = models.CharField(db_column='contents', max_length=100, blank=True)
     created_at = models.DateTimeField(db_column='created_at', max_length=100, blank=True)
