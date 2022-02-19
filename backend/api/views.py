@@ -51,12 +51,6 @@ class UploadViewSet(viewsets.ModelViewSet):
         serializers = UploadSerializer(queryset, many=True)
         return Response(serializers.data)
 
-    def create(self, request):
-        print(request.body)
-        queryset = goods_info.objects.all()
-        serializers = UploadSerializer(queryset, many=True)
-        return Response(serializers.data)
-
 
 class DesignViewSet(viewsets.ModelViewSet):
 
