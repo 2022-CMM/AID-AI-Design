@@ -59,14 +59,14 @@ class UploadViewSet(viewsets.ModelViewSet):
             size = request.data['size'],
             deadline = request.data['deadline'],
             style = request.data['style']
-            user_id = 3
+            user__id = 3
         )
 
         # print(request.user.id)
 
         queryset = self.get_queryset()
         serializers = UploadSerializer(queryset, many=True)
-        
+
         return Response(serializers.data)
 
 
