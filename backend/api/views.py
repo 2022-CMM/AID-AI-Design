@@ -118,13 +118,7 @@ class ResultViewSet(viewsets.ModelViewSet):
     def list(self, request):
         queryset = self.get_queryset()
         serializers = ResultSerializer(queryset, many=True)
-        generate_img('./media/images/test1.PNG', './media/images/test2.PNG')
-        return Response(serializers.data)
-
-    def create(self, request):
-        queryset = goods_info.objects.all()
-        serializers = ResultSerializer(queryset, many=True)
-        generate_img('./media/images/test1.PNG', './media/images/test2.PNG')
+        # generate_img('./media/images/test1.PNG', './media/images/test2.PNG')
         return Response(serializers.data)
 
 
@@ -142,6 +136,7 @@ class RequestViewSet(viewsets.ModelViewSet):
         serializers = RequestSerializer(queryset, many=True)
         return Response(serializers.data)
 
+
 class MypageView(APIView):
 
     permission_classes = [IsAuthenticated]
@@ -152,13 +147,17 @@ class MypageView(APIView):
         user = request.user.id
         print(request.user.id)
 
-        context['name'] = profile.objects.filter(user_id=user).values('name')
-        context['num_request'] = goods_info.objects.filter(id=user, transform_flag=0).count()
-        context['num_pending'] = goods_info.objects.filter(id=user, transform_flag=1).count()
-        context['num_completed'] = goods_info.objects.filter(id=user, transform_flag=2).count()
-    
+        queryset_designer = profile.objects.filter(user_type='1')
+        serializers_designer = ProfileSerializer(queryset_designer, many=True)
+        queryset_goods = goods_info.objects.filter(delete_flag='0')
+        serializers_goods = ProfileSerializer(queryset_goods, many=True)
 
-
+        context['name'] = profile.objects.filter(user_id=user).values_list('name')[0][0]
+        context['num_request'] = goods_info.objects.filter(user_id=user, transform_flag='0').count()
+        context['num_pending'] = goods_info.objects.filter(user_id=user, transform_flag='1').count()
+        context['num_completed'] = goods_info.objects.filter(user_id=user, transform_flag='2').count()
+        context['designer'] = serializers_designer.data
+        context['image'] = serializers_goods.data
 
         return Response(context)
         
