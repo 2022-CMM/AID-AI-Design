@@ -55,9 +55,9 @@ class UploadViewSet(viewsets.ModelViewSet):
     def create(self, request):
         # print(request.data)
         print(request.data['image'].keys())
-        format, imgstr = request.data['image']['base64'].split(';base64,') 
-        ext = format.split('/')[-1]
-        upload_image = ContentFile(base64.b64decode(imgstr), name='temp.' + ext)
+        # format, imgstr = request.data['image']['base64'].split(';base64,') 
+        # ext = format.split('/')[-1]
+        upload_image = ContentFile(base64.b64decode(request.data['image']['base64']), name='test.PNG')
         created = goods_info.objects.create(
             image = upload_image,
             goods_type = request.data['image'],
