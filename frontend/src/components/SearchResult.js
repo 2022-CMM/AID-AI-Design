@@ -1,11 +1,26 @@
 import axios from 'axios';
 import * as React from 'react';
 import { StyleSheet, Text, View, FlatList, Image, TouchableOpacity } from 'react-native';
-import API from './AxiosAPI';
-
-let DATA;
+import {useAsync} from 'react-async';
 
 function SearchResult({ route, navigation: { navigate } }) {
+
+    const getData = async () => {
+        let res;
+        await axios.post('http://20.194.101.73:8000/api/search/', {
+                searchKey:route.params.keyword
+            }, {
+                headers: { 
+                    'Authorization': 'Token 4e023526e6c3e9d2627fdefb7d6e790abb5966d5',
+                }
+            }).then(response => {
+                console.log(response.data);
+                res = response.data;
+            }).catch(error=>{
+                console.log(error);
+            });
+        return res;
+    }
 
     function Item({item}){
         let uri='http://20.194.101.73:8000'+item.image_results;
@@ -18,42 +33,18 @@ function SearchResult({ route, navigation: { navigate } }) {
         );
     }
 
-    function ResultView(){
-        React.useEffect(async()=>{
-            await axios.post('http://20.194.101.73:8000/api/search/', {
-                searchKey:route.params.keyword
-            }, {
-                headers: { 
-                    'Authorization': 'Token 07e12559d52155ff82358aa3e797234b4e6ee938',
-                }
-            }).then(response => {
-                // console.log(response.data);
-                DATA = response.data;
-            }).catch(error=>{
-                console.log(error);
-            });
-        },[])
-
-        if(Array.isArray(DATA)&&DATA.length===0){
-            console.log(1);
-            return(
-                <View style={{backgroundColor:'#ffffff',justifyContent:'center',alignItems:'center',flex:1}}>
-                    <Text style={{fontSize:16}}>찾으시는 검색어에 대한 결과가 없습니다.</Text>
-                </View>
-            )
-        }else{
-            return (
-                <FlatList
-                    data={DATA}
-                    renderItem={({ item }) => <Item item={item}/>}
-                    keyExtractor={item => item.id}
-                    numColumns={2}
-                    showsVerticalScrollIndicator={false}
-                />
-            );
-        }
+    function HomeView(){
+        const { data:DATA, error, isLoading } = useAsync({ promiseFn: getData});
+        return (
+            <FlatList
+                data={DATA}
+                renderItem={({ item }) => <Item item={item}/>}
+                keyExtractor={item => item.id}
+                numColumns={2}
+                showsVerticalScrollIndicator={false}
+            />
+        );
     }
-
 
     return(
         <View style={styles.container}>
@@ -61,7 +52,7 @@ function SearchResult({ route, navigation: { navigate } }) {
                     <Text style={styles.navi}>{route.params.keyword}</Text>
                 </View>
                 <View style={styles.content}>
-                    <ResultView />
+                    <HomeView />
                 </View>
         </View>
         

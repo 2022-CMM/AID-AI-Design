@@ -7,7 +7,7 @@ import Dress from '../media/dress';
 import Tree from '../media/tree';
 import Trees from '../media/trees';
 
-function Campaign(){
+function Campaign({route}){
     return(
         <View style={styles.container}>
             <View style={styles.header}>
@@ -27,18 +27,18 @@ function Campaign(){
                             <View style={{position:'absolute',top:-15}}>
                                 <Tape />
                             </View>
-                            <Text style={{fontSize:17,fontWeight:'700',marginTop:10}}>환경을 생각하는 [000]님이</Text>
+                            <Text style={{fontSize:17,fontWeight:'700',marginTop:10}}>환경을 생각하는 [{route.params.name}]님이</Text>
                             <View style={{justifyContent:'center',alignItems:'center',flexDirection:'row',marginTop:6}}>
                                 <View style={{justifyContent:'flex-start',alignItems:'flex-start',width:140,paddingLeft:8,borderRightWidth:1,borderColor:'#CACACA',height:110}}>
                                     <Text style={{fontSize:16,fontWeight:'700'}}>절약한 옷</Text>
-                                    <Text style={{fontSize:24,fontWeight:'700'}}>3<Text style={{fontSize:14,fontWeight:'700'}}> 벌</Text></Text>
+                                    <Text style={{fontSize:24,fontWeight:'700'}}>{route.params.num}<Text style={{fontSize:14,fontWeight:'700'}}> 벌</Text></Text>
                                     <View style={{position:'absolute',right:13,bottom:2}}>
                                         <Dress />
                                     </View>
                                 </View>
                                 <View style={{justifyContent:'flex-start',alignItems:'flex-start',width:140,paddingLeft:8,height:110}}>
                                     <Text style={{fontSize:16,fontWeight:'700'}}>심은 나무</Text>
-                                    <Text style={{fontSize:24,fontWeight:'700'}}>1<Text style={{fontSize:14,fontWeight:'700'}}> 그루</Text></Text>
+                                    <Text style={{fontSize:24,fontWeight:'700'}}>{route.params.num/3}<Text style={{fontSize:14,fontWeight:'700'}}> 그루</Text></Text>
                                     <View style={{position:'absolute',right:13,bottom:2}}>
                                         <Tree />
                                     </View>
