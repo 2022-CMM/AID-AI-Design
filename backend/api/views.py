@@ -113,7 +113,7 @@ class ResultViewSet(viewsets.ModelViewSet):
     # authentication_classes = (TokenAuthentication, )
     
     def get_queryset(self):
-        return goods_info.objects.filter(delete_flag='0', transform_flag='0')
+        return goods_info.objects.filter(delete_flag='0')
 
     def list(self, request):
         queryset = self.get_queryset()
@@ -132,8 +132,9 @@ class RequestViewSet(viewsets.ModelViewSet):
         return request_list.objects.filter(delete_flag='0')
 
     def list(self, request):
-        queryset = self.get_queryset()
+        queryset = request_list.objects.filter(delete_flag='0', )
         serializers = RequestSerializer(queryset, many=True)
+        print(type(serializers.data))
         return Response(serializers.data)
 
 
