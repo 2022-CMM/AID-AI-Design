@@ -1,13 +1,21 @@
 import axios from "axios";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-let userToken;
-try{
-    userToken = 'Token '+ AsyncStorage.getItem('userToken');
-}catch(e){
-    userToken = null;
+const getData = async () => {
+    let Token;
+    try {
+        Token = 'Token ' + await AsyncStorage.getItem('@userToken');
+        if(Token !== null) {
+            // console.log('eee');
+        }
+        // console.log(Token);
+    } catch(e) {
+        console.log(e);
+    }
+    return Token;
 }
-console.log(userToken);
+
+const userToken = getData();
 const API = axios.create({
     baseURL:'http://20.194.101.73:8000',
     headers:{
