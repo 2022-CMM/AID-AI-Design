@@ -1,11 +1,6 @@
 # 👕AID | AI-Design 
 
-<div>
-    <p align = "center">
-	    <img width = "70" src = "./readmeimg/logo.svg"><br>
-        <b>AID는 국내 에코 크리에이터들과 소비자를 이어주는 1:1 온라인 맞춤형 서비스 입니다.</b>
-    </p>
-</div>
+![aid](https://user-images.githubusercontent.com/74298527/154840010-509a9ec4-1a2d-4154-ae41-70959ab411ac.PNG)
 
 ## Overview
 - 배경
