@@ -44,7 +44,7 @@
 
 |                           Frontend                             |                           Frontend                             |                           Backend                             |                           AI                             |                           AI                             |                           Business                             |
 | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: |
-| [![Avatar]()남현우](https://github.com/hwnim5324) | [![Avatar]()김다연](https://github.com/kimdayeon37) | [![Avatar]()안희승](https://github.com/hiseoung) | [![Avatar]()임세진](https://github.com/LimSeJin9577) | [![Avatar]()김종민](https://github.com/jongmin4422) |
+| [![Avatar]()남현우](https://github.com/hwnim5324) | [![Avatar]()김다연](https://github.com/kimdayeon37) | [![Avatar]()안희승](https://github.com/hiseoung) | [![Avatar]()임세진](https://github.com/LimSeJin9577) | [![Avatar]()김종민](https://github.com/jongmin4422) | [![Avatar]()김하진](https://github.com/debeaver) |
 |                        UI Design & React Native                         |                        UI Design & React Native                         |                      Djagno-Rest-Framework                       |                        AI                         |                        AI                        |                        Business                        |
 
 
