@@ -1,6 +1,6 @@
 # 👕AID | AI-Design 
 
-![aid](https://user-images.githubusercontent.com/74298527/154840010-509a9ec4-1a2d-4154-ae41-70959ab411ac.PNG)
+![aid](https://user-images.githubusercontent.com/74298527/154840148-de59389c-5710-4178-ae2d-bda9c54d052d.PNG)
 
 ## Overview
 - 배경
