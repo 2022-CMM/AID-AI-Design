@@ -157,8 +157,8 @@ class MypageView(APIView):
         context['num_request'] = goods_info.objects.filter(user_id=user, transform_flag='0').count()
         context['num_pending'] = goods_info.objects.filter(user_id=user, transform_flag='1').count()
         context['num_completed'] = goods_info.objects.filter(user_id=user, transform_flag='2').count()
-        context['designer'] = serializers_designer.data
-        context['image'] = serializers_goods.data
+        context['designer'] = serializers_designer.data[:4]
+        context['image'] = serializers_goods.data[:4]
 
         return Response(context)
         
