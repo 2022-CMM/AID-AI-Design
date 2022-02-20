@@ -35,17 +35,16 @@
 
 ## 앱 실행 화면
 
-|                           Frontend                             |                            🕸 Frontend                             |                            🕸 Backend                             |                           AI                             |                           AI                             |                           Business                             |
-| :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: |
-| [![Avatar] 남현우 ](https://github.com/hwnim5324) | [![Avatar] 김다연](https://github.com/kimdayeon37) | [![Avatar] 안희승](https://github.com/hiseoung) | [![img] 임세진](https://github.com/LimSeJin9577) | [![Avatar] 김종민](https://github.com/TTOzzi) |
-|                        UI Design & React Native                         |                        UI Design & React Native                         |                      Djagno-Rest-Framework                       |                        AI                         |                        AI                        |                        Business                        |
-
 >앱 영상을 gif로 넣기
 ## 기대 효과
 ---
 
 ## Contributor
----
+
+|                           Frontend                             |                            🕸 Frontend                             |                           Backend                             |                           AI                             |                           AI                             |                           Business                             |
+| :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: || [![Avatar] 남현우 ](https://github.com/hwnim5324) | [![Avatar] 김다연](https://github.com/kimdayeon37) | [![Avatar] 안희승](https://github.com/hiseoung) | [![img] 임세진](https://github.com/LimSeJin9577) | [![Avatar] 김종민](https://github.com/TTOzzi) |
+|                        UI Design & React Native                         |                        UI Design & React Native                         |                      Djagno-Rest-Framework                       |                        AI                         |                        AI                        |                        Business                        |
+
 
 
 - 업사이클링 시장에 안정적인 재료 수급과 판로 제공
