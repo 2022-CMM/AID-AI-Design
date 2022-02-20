@@ -51,4 +51,4 @@
 | [남현우](https://github.com/hwnim5324) | [김다연](https://github.com/kimdayeon37) | [안희승](https://github.com/hiseoung) | [임세진](https://github.com/LimSeJin9577) | [김종민](https://github.com/jongmin4422) | [김하진](https://github.com/debeaver) |
 
 ## Application Architecture
-
+![architecture](https://user-images.githubusercontent.com/74298527/154839832-0988d126-a01c-46b8-adf7-18bea73cf0fa.PNG)
