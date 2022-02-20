@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
         marginLeft:30
     },
     content:{
-        flex:6.6,
+        flex:6.74,
         alignItems:'center'
     }
 })
