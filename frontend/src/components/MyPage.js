@@ -1,13 +1,54 @@
 import * as React from 'react';
-import { Text, View, StyleSheet, TextInput, ScrollView, TouchableOpacity } from 'react-native';
+import { Text, View, StyleSheet, TextInput, ScrollView, TouchableOpacity,Image } from 'react-native';
 import Info_Icon from '../media/Info_icon';
 import Earth_Svg from '../media/Earth_svg';
+import {useAsync} from 'react-async';
+import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import SearchBar_Icon from '../media/searchbar_icon';
+const getData = async () => {
+    let token;
+    try {
+        token = 'Token ' + await AsyncStorage.getItem('@userToken');
+        // console.log(token);
+    } catch(e) {
+        console.log(e);
+    }
+
+    let res;
+    var config = {
+        method: 'get',
+        url: 'http://20.194.101.73:8000/api/mypage/',
+        headers: { 
+            'Authorization': token
+        }
+    };
+    await axios(config)
+        .then(function (response) {
+            res = response.data;
+            // console.log(response.data);
+            return response.data;
+        })
+        .catch(function (error) {
+            console.log(error);
+            return error;
+        });
+    // console.log(res);
+    return res;
+    
+}
 
 function MyPage({ navigation: { navigate } },{onPress}) {
-
+    let DATA = new Object();
+    let Designers = [];
+    let Designs = [];
+    const { data, error, isLoading } = useAsync({ promiseFn: getData});
+    // console.log(data);
+    if(data){
+        DATA=data;
+        Designers = data.designer;
+        Designs = data.image;
+    }
     const Paging_Btn = ({text, num}) => {
         return (
             <View>
@@ -20,6 +61,34 @@ function MyPage({ navigation: { navigate } },{onPress}) {
         );
     };
 
+    const Ders = () => {
+        return(
+            <View style={{flexDirection:'row',justifyContent:'space-between',width:'100%'}}>
+                {Designers.map((item) => {
+                return (
+                    <TouchableOpacity key={item.id} activeOpacity={0.7}>
+                        <Image source={{uri:'http://20.194.101.73:8000'+item.profile_image}} style={styles.designer} />
+                    </TouchableOpacity>
+                );
+            })}
+            </View>
+        );
+    }
+
+    const Des = () => {
+        return(
+            <View style={{flexDirection:'row',justifyContent:'space-between',width:'100%'}}>
+                {Designs.map((item) => {
+                return (
+                    <TouchableOpacity key={item.id} activeOpacity={0.7}>
+                        <Image source={{uri:'http://20.194.101.73:8000'+item.image_results}} style={styles.design} />
+                    </TouchableOpacity>
+                );
+            })}
+            </View>
+        );
+    }
+
     return (
         <View style={styles.container}>
             <View style={styles.header}>
@@ -27,9 +96,9 @@ function MyPage({ navigation: { navigate } },{onPress}) {
             </View>
             <View style={styles.CO2}>
                 <View style={{width:328,height:98,backgroundColor:'#EBEBEB',borderRadius:20,paddingLeft:16,paddingRight:16,justifyContent:'center'}}>
-                    <TouchableOpacity onPress={()=>navigate('Campaign')}><View><Text style={{fontSize:16}}>00님이 지금까지 절얀한 옷은? &gt;</Text></View></TouchableOpacity>
+                    <TouchableOpacity onPress={()=>navigate('Campaign',{name:DATA.name,num:DATA.num_request+DATA.num_pending+DATA.num_completed})}><View><Text style={{fontSize:16}}>{DATA.name}님이 지금까지 절얀한 옷은? &gt;</Text></View></TouchableOpacity>
                     <View style={{flexDirection:'row',justifyContent:'space-between'}}>
-                        <Text style={{fontSize:32,color:'#04AA8C',fontWeight:'600'}}>3<Text style={{fontSize:18,color:'#04AA8C',fontWeight:'600'}}> 벌</Text></Text>
+                        <Text style={{fontSize:32,color:'#04AA8C',fontWeight:'600'}}>{DATA.num_request+DATA.num_pending+DATA.num_completed}<Text style={{fontSize:18,color:'#04AA8C',fontWeight:'600'}}> 벌</Text></Text>
                         <Earth_Svg />
                     </View>
                 </View>
@@ -37,19 +106,16 @@ function MyPage({ navigation: { navigate } },{onPress}) {
             <View style={styles.content}>
                 <ScrollView showsVerticalScrollIndicator={false}>
                     <View style={styles.page}>
-                        <Paging_Btn text='승인 대기 중' num='03' />
-                        <Paging_Btn text='진행중인 의뢰' num='01' />
-                        <Paging_Btn text='완료 의뢰' num='13' />
+                        <Paging_Btn text='승인 대기 중' num={DATA.num_request} />
+                        <Paging_Btn text='진행중인 의뢰' num={DATA.num_pending} />
+                        <Paging_Btn text='완료 의뢰' num={DATA.num_completed} />
                     </View>
                     <View style={styles.like_designer}>
                         <Text style={styles.label2}>즐겨찾는 디자이너</Text>
                         <TouchableOpacity><Text style={styles.more}>더 보기</Text></TouchableOpacity>
                     </View>
                     <View style={{flexDirection:'row',justifyContent:'space-between',marginTop:16}}>
-                        <TouchableOpacity activeOpacity={0.7}><View style={styles.designer}></View></TouchableOpacity>
-                        <TouchableOpacity activeOpacity={0.7}><View style={styles.designer}></View></TouchableOpacity>
-                        <TouchableOpacity activeOpacity={0.7}><View style={styles.designer}></View></TouchableOpacity>
-                        <TouchableOpacity activeOpacity={0.7}><View style={styles.designer}></View></TouchableOpacity>
+                        <Ders />
                     </View>
 
                     <View style={styles.like_designer}>
@@ -57,10 +123,7 @@ function MyPage({ navigation: { navigate } },{onPress}) {
                         <TouchableOpacity><Text style={styles.more}>더 보기</Text></TouchableOpacity>
                     </View>
                     <View style={{flexDirection:'row',justifyContent:'space-between',marginTop:16,marginBottom:40}}>
-                        <TouchableOpacity activeOpacity={0.7}><View style={styles.design}></View></TouchableOpacity>
-                        <TouchableOpacity activeOpacity={0.7}><View style={styles.design}></View></TouchableOpacity>
-                        <TouchableOpacity activeOpacity={0.7}><View style={styles.design}></View></TouchableOpacity>
-                        <TouchableOpacity activeOpacity={0.7}><View style={styles.design}></View></TouchableOpacity>
+                        <Des />
                     </View>
 
                     <Center_Btn onPress={() => {onPress}} />

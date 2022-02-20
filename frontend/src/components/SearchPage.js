@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Text, View, StyleSheet, TextInput, ScrollView, TouchableOpacity,Image } from 'react-native';
 import axios from 'axios';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import SearchBar_Icon from '../media/searchbar_icon';
 
@@ -20,24 +21,50 @@ function Designers({data}){
 function SearchPage({ navigation: { navigate } }) {
 
     let DATA=[];
-
-    var config = {
-        method: 'get',
-        url: 'http://20.194.101.73:8000/api/designer/',
-        headers: { 
-            'Authorization': 'Token 07e12559d52155ff82358aa3e797234b4e6ee938'
-        }
-    };
+    let DATA2=[];
 
     React.useEffect(async()=>{
+        let token;
+        try {
+            token = 'Token ' + await AsyncStorage.getItem('@userToken');
+            // console.log(token);
+        } catch(e) {
+            console.log(e);
+        }
+
+        var config = {
+            method: 'get',
+            url: 'http://20.194.101.73:8000/api/designer/',
+            headers: { 
+                'Authorization': token
+            }
+        };
+
         axios(config)
             .then(function (response) {
                 DATA = response.data;
-                console.log(DATA);
+                // console.log(DATA);
             })
             .catch(function (error) {
                 console.log(error);
-            });  
+            });
+            
+        var config2 = {
+            method: 'get',
+            url: 'http://20.194.101.73:8000/api/results/',
+            headers: { 
+                'Authorization': token
+            }
+        };
+
+        axios(config2)
+            .then(function (response) {
+                DATA2 = response.data;
+                // console.log(DATA2);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
     },[]);
 
     const [SearchWord, setSearchWord] = React.useState(null);
@@ -54,16 +81,16 @@ function SearchPage({ navigation: { navigate } }) {
                 <Text style={styles.label1}>추천 검색어</Text>
                 <ScrollView style={styles.scroll}>
                     <View style={{flexDirection:'row'}}>
-                    <TouchableOpacity style={styles.wordsoutter}><Text style={styles.wordsinner} onPress={()=>navigate('SearchResult',{keyword:'가나다라마바'})} >가나다라마바</Text></TouchableOpacity>
-                    <TouchableOpacity style={styles.wordsoutter}><Text style={styles.wordsinner} onPress={()=>navigate('SearchResult',{keyword:'가나다'})} >가나다</Text></TouchableOpacity>
-                    <TouchableOpacity style={styles.wordsoutter}><Text style={styles.wordsinner} onPress={()=>navigate('SearchResult',{keyword:'가나다라'})} >가나다라</Text></TouchableOpacity>
-                    <TouchableOpacity style={styles.wordsoutter}><Text style={styles.wordsinner} onPress={()=>navigate('SearchResult',{keyword:'가나다'})} >가나다</Text></TouchableOpacity>
+                    <TouchableOpacity style={styles.wordsoutter}><Text style={styles.wordsinner} onPress={()=>navigate('SearchResult',{keyword:'코트'})} >코트</Text></TouchableOpacity>
+                    <TouchableOpacity style={styles.wordsoutter}><Text style={styles.wordsinner} onPress={()=>navigate('SearchResult',{keyword:'반팔'})} >반팔</Text></TouchableOpacity>
+                    <TouchableOpacity style={styles.wordsoutter}><Text style={styles.wordsinner} onPress={()=>navigate('SearchResult',{keyword:'원피스'})} >원피스</Text></TouchableOpacity>
+                    <TouchableOpacity style={styles.wordsoutter}><Text style={styles.wordsinner} onPress={()=>navigate('SearchResult',{keyword:'쇼츠'})} >쇼츠</Text></TouchableOpacity>
+                    <TouchableOpacity style={styles.wordsoutter}><Text style={styles.wordsinner} onPress={()=>navigate('SearchResult',{keyword:'드레스'})} >드레스</Text></TouchableOpacity>
                     </View>
                     <View style={{flexDirection:'row'}}>
-                    <TouchableOpacity style={styles.wordsoutter}><Text style={styles.wordsinner} onPress={()=>navigate('SearchResult',{keyword:'가나다'})} >가나다</Text></TouchableOpacity>
-                    <TouchableOpacity style={styles.wordsoutter}><Text style={styles.wordsinner} onPress={()=>navigate('SearchResult',{keyword:'가나다라'})} >가나다라</Text></TouchableOpacity>
-                    <TouchableOpacity style={styles.wordsoutter}><Text style={styles.wordsinner} onPress={()=>navigate('SearchResult',{keyword:'가나다'})} >가나다</Text></TouchableOpacity>
-                    <TouchableOpacity style={styles.wordsoutter}><Text style={styles.wordsinner} onPress={()=>navigate('SearchResult',{keyword:'가나다라마'})} >가나다라마</Text></TouchableOpacity>
+                    <TouchableOpacity style={styles.wordsoutter}><Text style={styles.wordsinner} onPress={()=>navigate('SearchResult',{keyword:'민소매'})} >민소매</Text></TouchableOpacity>
+                    <TouchableOpacity style={styles.wordsoutter}><Text style={styles.wordsinner} onPress={()=>navigate('SearchResult',{keyword:'블레이져'})} >블레이져</Text></TouchableOpacity>
+                    <TouchableOpacity style={styles.wordsoutter}><Text style={styles.wordsinner} onPress={()=>navigate('SearchResult',{keyword:'맨투맨'})} >맨투맨</Text></TouchableOpacity>
                     </View>
                 </ScrollView>
             </View>
@@ -76,10 +103,10 @@ function SearchPage({ navigation: { navigate } }) {
                     {/* onpress로 페이징 하나 더 */}
                 </View>
                 <View style={{flexDirection:'row',flexWrap:'wrap',justifyContent:'space-between'}}>
-                    <TouchableOpacity activeOpacity={0.8} onPress={()=>navigate('Piece',{image_results:'/media/results/1111.jpeg',"goods_type": "코트","size": "L","title": "코트","title_changed": "코트","designer": "홍길동",})}><Image source={{uri:'http://20.194.101.73:8000/media/results/1111.jpeg'}} style={styles.idea}/></TouchableOpacity>
-                    <TouchableOpacity activeOpacity={0.8} onPress={()=>navigate('Piece',{image_results:'/media/results/1111.jpeg',"goods_type": "코트","size": "L","title": "코트","title_changed": "코트","designer": "홍길동",})}><Image source={{uri:'http://20.194.101.73:8000/media/results/2222.jpeg'}} style={styles.idea}/></TouchableOpacity>
-                    <TouchableOpacity activeOpacity={0.8} onPress={()=>navigate('Piece',{image_results:'/media/results/1111.jpeg',"goods_type": "코트","size": "L","title": "코트","title_changed": "코트","designer": "홍길동",})}><Image source={{uri:'http://20.194.101.73:8000/media/results/3333.jpeg'}} style={styles.idea}/></TouchableOpacity>
-                    <TouchableOpacity activeOpacity={0.8} onPress={()=>navigate('Piece',{image_results:'/media/results/1111.jpeg',"goods_type": "코트","size": "L","title": "코트","title_changed": "코트","designer": "홍길동",})}><Image source={{uri:'http://20.194.101.73:8000/media/results/4444.jpeg'}} style={styles.idea}/></TouchableOpacity>
+                    <TouchableOpacity activeOpacity={0.8} onPress={()=>navigate('Piece',DATA2[0])}><Image source={{uri:'http://20.194.101.73:8000/media/upload_image/10after.jpg'}} style={styles.idea}/></TouchableOpacity>
+                    <TouchableOpacity activeOpacity={0.8} onPress={()=>navigate('Piece',DATA2[1])}><Image source={{uri:'http://20.194.101.73:8000/media/upload_image/11after.jpg'}} style={styles.idea}/></TouchableOpacity>
+                    <TouchableOpacity activeOpacity={0.8} onPress={()=>navigate('Piece',DATA2[2])}><Image source={{uri:'http://20.194.101.73:8000/media/upload_image/12after.jpg'}} style={styles.idea}/></TouchableOpacity>
+                    <TouchableOpacity activeOpacity={0.8} onPress={()=>navigate('Piece',DATA2[3])}><Image source={{uri:'http://20.194.101.73:8000/media/upload_image/14after.jpg'}} style={styles.idea}/></TouchableOpacity>
                 </View>
             </View>
             <View style={styles.recommand_designer}>
@@ -91,10 +118,10 @@ function SearchPage({ navigation: { navigate } }) {
                     {/* onpress로 페이징 하나 더 */}
                 </View>
                 <View style={{flexDirection:'row',flexWrap:'wrap',justifyContent:'space-between'}}>
-                    <TouchableOpacity activeOpacity={0.7} onPress={()=>navigate('Designer',DATA[0])}><Image source={{uri:'http://20.194.101.73:8000/media/profile_image/free-icon-dog-616408_Qr8jzbF.png'}} style={styles.designer} /></TouchableOpacity>
-                    <TouchableOpacity activeOpacity={0.7} onPress={()=>navigate('Designer',DATA[1])}><Image source={{uri:'http://20.194.101.73:8000/media/profile_image/free-icon-dog-616408_Qr8jzbF.png'}} style={styles.designer} /></TouchableOpacity>
-                    <TouchableOpacity activeOpacity={0.7} onPress={()=>navigate('Designer',DATA[2])}><Image source={{uri:'http://20.194.101.73:8000/media/profile_image/free-icon-dog-616408_Qr8jzbF.png'}} style={styles.designer} /></TouchableOpacity>
-                    <TouchableOpacity activeOpacity={0.7} onPress={()=>navigate('Designer',DATA[3])}><Image source={{uri:'http://20.194.101.73:8000/media/profile_image/free-icon-dog-616408_Qr8jzbF.png'}} style={styles.designer} /></TouchableOpacity>
+                    <TouchableOpacity activeOpacity={0.7} onPress={()=>navigate('Designer',DATA[0])}><Image source={{uri:'http://20.194.101.73:8000/media/profile_image/%EB%94%94%EC%9E%90%EC%9D%B4%EB%84%882.jpg'}} style={styles.designer} /></TouchableOpacity>
+                    <TouchableOpacity activeOpacity={0.7} onPress={()=>navigate('Designer',DATA[1])}><Image source={{uri:'http://20.194.101.73:8000/media/profile_image/%EB%94%94%EC%9E%90%EC%9D%B4%EB%84%881.jpg'}} style={styles.designer} /></TouchableOpacity>
+                    <TouchableOpacity activeOpacity={0.7} onPress={()=>navigate('Designer',DATA[2])}><Image source={{uri:'http://20.194.101.73:8000/media/profile_image/%EB%94%94%EC%9E%90%EC%9D%B4%EB%84%884.jpg'}} style={styles.designer} /></TouchableOpacity>
+                    <TouchableOpacity activeOpacity={0.7} onPress={()=>navigate('Designer',DATA[3])}><Image source={{uri:'http://20.194.101.73:8000/media/profile_image/%EB%94%94%EC%9E%90%EC%9D%B4%EB%84%883.jpg'}} style={styles.designer} /></TouchableOpacity>
                     <TouchableOpacity activeOpacity={0.7} onPress={()=>navigate('Designer',DATA[4])}><Image source={{uri:'http://20.194.101.73:8000/media/profile_image/free-icon-dog-616408_Qr8jzbF.png'}} style={styles.designer} /></TouchableOpacity>
                     <TouchableOpacity activeOpacity={0.7} onPress={()=>navigate('Designer',DATA[5])}><Image source={{uri:'http://20.194.101.73:8000/media/profile_image/free-icon-dog-616408_Qr8jzbF.png'}} style={styles.designer} /></TouchableOpacity>
                     <TouchableOpacity activeOpacity={0.7} onPress={()=>navigate('Designer',DATA[6])}><Image source={{uri:'http://20.194.101.73:8000/media/profile_image/free-icon-dog-616408_Qr8jzbF.png'}} style={styles.designer} /></TouchableOpacity>

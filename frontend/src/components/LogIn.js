@@ -13,11 +13,15 @@ function LogIn({ navigation: { navigate } }) {
             id:Id,
             password:Pw
         })
-        .then((response)=>{
-            // console.log('성공');
+        .then(async(response)=>{
             // console.log(response.data.Token);
-            AsyncStorage.setItem('userToken',response.data.Token);
+            try {
+                await AsyncStorage.setItem('@userToken',response.data.Token);
+            } catch (e) {
+                console.log(e);
+            }
             navigate('Main');
+            
         })
         .catch((error)=>{
             console.log(error);

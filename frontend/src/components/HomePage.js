@@ -2,17 +2,40 @@ import axios from 'axios';
 import * as React from 'react';
 import { StyleSheet, Text, View, FlatList, Image, TouchableOpacity } from 'react-native';
 import LogoSvg from '../media/logo2_svg';
-import API from './AxiosAPI';
+import {useAsync} from 'react-async';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-let DATA;
-
-var config = {
-    method: 'get',
-    url: 'http://20.194.101.73:8000/api/results/',
-    headers: { 
-        'Authorization': 'Token 07e12559d52155ff82358aa3e797234b4e6ee938'
+const getData = async () => {
+    let res;
+    let token;
+    try {
+        token = 'Token ' + await AsyncStorage.getItem('@userToken');
+        // console.log(token);
+    } catch(e) {
+        console.log(e);
     }
-};
+
+    var config = {
+        method: 'get',
+        url: 'http://20.194.101.73:8000/api/results/',
+        headers: { 
+            'Authorization': 'Token ' + token
+        }
+    };
+    await axios(config)
+        .then(function (response) {
+            res = response.data;
+            return response.data;
+        })
+        .catch(function (error) {
+            console.log(error); 
+            return error;
+        });
+    // console.log(res);
+    return res;
+    
+}
+
 
 function HomePage({ navigation: { navigate } }) {
 
@@ -28,17 +51,11 @@ function HomePage({ navigation: { navigate } }) {
     }
 
     function HomeView(){
-        React.useEffect(async()=>{
-            await axios(config)
-            .then(function (response) {
-                DATA = response.data;
-                // console.log(DATA);
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
-        },[])
-
+        const { data:DATA, error, isLoading } = useAsync({ promiseFn: getData});
+        // if (error) {console.log(error);}
+        // if (DATA) {console.log(DATA);}
+        // if(isLoading){console.log(isLoading);}
+        // console.log(DATA);
         return (
             <FlatList
                 data={DATA}
@@ -95,3 +112,4 @@ const styles = StyleSheet.create({
 })
 
 export default HomePage;
+
