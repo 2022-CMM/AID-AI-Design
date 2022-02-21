@@ -30,7 +30,7 @@
 - 업사이클링 소재 데이터 확보를 통해 업사이클 가능 여부를 판별하는 AI가 발전할 수 있고, 에코크리에이터-폐기물 배출기관과의 소통 문제도 해결 기대
 
 ## 앱 실행 화면
-![4번같은1번](https://user-images.githubusercontent.com/74298527/154985259-02910545-5ea4-4f08-9f1f-519bdc562f78.gif
+![4번같은1번](https://user-images.githubusercontent.com/74298527/154985259-02910545-5ea4-4f08-9f1f-519bdc562f78.gif)
 
 ## Application Architecture
 ![architecture](https://user-images.githubusercontent.com/74298527/154839832-0988d126-a01c-46b8-adf7-18bea73cf0fa.PNG)
