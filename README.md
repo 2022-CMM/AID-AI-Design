@@ -30,12 +30,16 @@
 - 업사이클링 소재 데이터 확보를 통해 업사이클 가능 여부를 판별하는 AI가 발전할 수 있고, 에코크리에이터-폐기물 배출기관과의 소통 문제도 해결 기대
 
 ## 앱 실행 화면
-![1번](https://user-images.githubusercontent.com/74298527/154986883-27dc1281-38b7-49ac-9d0a-5cbf38349253.gif)
-![2번](https://user-images.githubusercontent.com/74298527/154986898-2222faf8-0c13-4141-b791-0b599d4d85e0.gif)
-![3번](https://user-images.githubusercontent.com/74298527/154986905-4fed0f5a-427c-40ae-a884-61b63cedc615.gif)
-![4번](https://user-images.githubusercontent.com/74298527/154986917-4eb83420-cf28-4820-9b0e-7d205a976b82.gif)
-![5번](https://user-images.githubusercontent.com/74298527/154986925-548458b3-c45c-4905-b7bd-9dbb05617bfc.gif)
-
+<p align=“center”>
+  <kbd><img src="https://user-images.githubusercontent.com/74298527/154986883-27dc1281-38b7-49ac-9d0a-5cbf38349253.gif" width="250"></kbd>
+  <kbd><img src="https://user-images.githubusercontent.com/74298527/154986898-2222faf8-0c13-4141-b791-0b599d4d85e0.gif" width="250"></kbd>
+  <kbd><img src="https://user-images.githubusercontent.com/74298527/154986905-4fed0f5a-427c-40ae-a884-61b63cedc615.gif" width="250"></kbd>
+</p>
+<p align=“center”>
+   <kbd><img src="https://user-images.githubusercontent.com/74298527/154986917-4eb83420-cf28-4820-9b0e-7d205a976b82.gif" width="250"></kbd>
+  <kbd><img src="https://user-images.githubusercontent.com/74298527/154986925-548458b3-c45c-4905-b7bd-9dbb05617bfc.gif" width="250"></kbd>
+  <kbd><img src="" width="250"></kbd>
+</p>
 
 ## Application Architecture
 ![architecture](https://user-images.githubusercontent.com/74298527/154839832-0988d126-a01c-46b8-adf7-18bea73cf0fa.PNG)
