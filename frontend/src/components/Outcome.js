@@ -1,10 +1,18 @@
 import * as React from 'react';
 import { Text, View, StyleSheet, TextInput, ScrollView, TouchableOpacity,Image } from 'react-native';
-import {useAsync} from 'react-async';
-import axios from 'axios';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
+function OutCome({ navigation: { navigate }, route }) {
+    let uri;
+    getImg = async() =>{
+        try{
+            uri = await AsyncStorage.getItem('@selectImg');
+        }catch(e){
+            console.log(e);
+        }
+        
+    }
 
-function OutCome({ navigation: { navigate } }) {
     return (
         <View style={styles.container}>
             <View style={styles.header}>
@@ -12,30 +20,31 @@ function OutCome({ navigation: { navigate } }) {
             </View>
             <View style={styles.content}>
                     <View style={styles.beforeView}>
-                        <Text style={styles.label1}>recycling 될 제품</Text>
-                        <View style={styles.before}></View>
+                        <Text style={styles.label1}>upcycling 될 제품</Text>
+                        {/* <View style={styles.before}></View> */}
+                        <Image source={{uri:route.params.img}} style={styles.before} />
                     </View>
                     <View style={styles.afterView}>
                         <Text style={styles.label1}>AI 추천 디자인</Text>
-                        <View style={styles.after}></View>
+                        <Image source={{uri:'http://20.194.101.73:8000/media/results/result.png'}} style={styles.after} />
                     </View>
                     <View style={styles.cats}>
                         <View>
                             <Text style={styles.label2}>제품군 추천1</Text>
                             <View style={styles.cat}>
-                                <View style={styles.catImg}></View>
-                                <View style={styles.catImg}></View>
-                                <View style={styles.catImg}></View>
-                                <View style={styles.catImg}></View>
+                                <Image source={{uri:'http://20.194.101.73:8000/media/upload_image/25after.jpg'}} style={styles.catImg} />
+                                <Image source={{uri:'http://20.194.101.73:8000/media/upload_image/24after.jpg'}} style={styles.catImg} />
+                                <Image source={{uri:'http://20.194.101.73:8000/media/upload_image/23after.jpg'}} style={styles.catImg} />
+                                <Image source={{uri:'http://20.194.101.73:8000/media/upload_image/22after.jpg'}} style={styles.catImg} />
                             </View>
                         </View>
                         <View>
                             <Text style={styles.label2}>제품군 추천2</Text>
                             <View style={styles.cat}>
-                                <View style={styles.catImg}></View>
-                                <View style={styles.catImg}></View>
-                                <View style={styles.catImg}></View>
-                                <View style={styles.catImg}></View>
+                                <Image source={{uri:'http://20.194.101.73:8000/media/upload_image/21after.jpg'}} style={styles.catImg} />
+                                <Image source={{uri:'http://20.194.101.73:8000/media/upload_image/20after.jpg'}} style={styles.catImg} />
+                                <Image source={{uri:'http://20.194.101.73:8000/media/upload_image/19after.jpg'}} style={styles.catImg} />
+                                <Image source={{uri:'http://20.194.101.73:8000/media/upload_image/18after.jpg'}} style={styles.catImg} />
                             </View>
                         </View>
                     </View>

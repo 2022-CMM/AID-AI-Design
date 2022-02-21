@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, Modal, TouchableOpacity, Pressable, Platform, I
 import * as ImagePicker from 'expo-image-picker';
 import Swiper from 'react-native-swiper';
 import DateTimePicker from '@react-native-community/datetimepicker';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import RadioButton from './RadioButton';
 import CatDetails from './CatDetails';
@@ -97,7 +98,7 @@ const CatDetailData3 = [
 
 
 
-function Upload({onPress}){
+function Upload({ navigation: { navigate } }){
     const [PageState, setPageState] = React.useState('업로드');
     const [size, setsize] = React.useState(null);
 
@@ -165,16 +166,16 @@ function Upload({onPress}){
 
         let style = [];
 
-        Style1 === true ? style.push('Style1') : false;
-        Style2 === true ? style.push('Style2') : false;
-        Style3 === true ? style.push('Style3') : false;
-        Style4 === true ? style.push('Style4') : false;
-        Style5 === true ? style.push('Style5') : false;
-        Style6 === true ? style.push('Style6') : false;
-        Style7 === true ? style.push('Style7') : false;
-        Style8 === true ? style.push('Style8') : false;
-        Style9 === true ? style.push('Style9') : false;
-        Style10 === true ? style.push('Style10') : false;
+        Style1 === true ? style.push('걸리시') : false;
+        Style2 === true ? style.push('시크') : false;
+        Style3 === true ? style.push('로맨틱') : false;
+        Style4 === true ? style.push('스트릿') : false;
+        Style5 === true ? style.push('캐주얼') : false;
+        Style6 === true ? style.push('골프') : false;
+        Style7 === true ? style.push('댄디') : false;
+        Style8 === true ? style.push('포멀') : false;
+        Style9 === true ? style.push('섹시') : false;
+        Style10 === true ? style.push('한복') : false;
 
         
         function leftPad(value) { 
@@ -202,15 +203,16 @@ function Upload({onPress}){
         
 
         API.post('/api/upload/',submit_data)
-        .then((response)=>{
+        .then(async(response)=>{
             console.log('성공');
-            console.log(response);
+            console.log(response.data);
+            await AsyncStorage.setItem('@selectImg',selectedImage.localUri);
         })
         .catch((error)=>{
             console.log(error);
         })
-
-        console.log(submit_data);
+        navigate('Outcome',{img:selectedImage.localUri});
+        // console.log(submit_data);
     }
 
     return (

@@ -20,7 +20,7 @@ function Designer({route}) {
                 <LogoSvg />
             </View>
             <View style={styles.Big_pic}>
-                <Image source={{uri:uri}} style={styles.img} />
+                <Image source={{uri:'http://20.194.101.73:8000' + route.params.best_goods}} style={styles.img} />
                 <Text style={{position:'absolute',left:24,bottom:18,fontSize:24,fontWeight:'bold'}}>{route.params.name}</Text>
             </View>
             <View style={styles.info}>
@@ -30,7 +30,7 @@ function Designer({route}) {
                     {/* contact랑 포트폴리오도 디비에 추가 */}
                 </View>
                 <View style={{position:'absolute', right:24, top:-48,justifyContent:'center',alignItems:'center'}}>
-                    <Image source={{uri:uri}} style={styles.beforeimg} />
+                    <Image source={{uri:'http://20.194.101.73:8000' + route.params.profile_image}} style={styles.beforeimg} />
                     <Text style={{fontSize:12}}>{route.params.beforename}</Text>
                     <TouchableOpacity style={{marginLeft:20,marginRight:20,marginTop:15}} onPress={()=>{setlike(!like);}}>{like&&<Filled_Heart />}{!like&&<Empty_Heart />}</TouchableOpacity>
                     <Text>{route.params.likes}</Text>
