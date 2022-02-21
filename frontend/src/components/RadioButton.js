@@ -12,9 +12,12 @@ export default function RadioButton({ data, onSelect }) {
         {data.map((item) => {
             return (
                 <Pressable key={item.key} style={item.value === userOption ? styles.selected : styles.unselected} onPress={() => selectHandler(item.value)}>
-                    <Text style={styles.size}> {item.value}</Text>
-                    <View style={{height:32,borderRightWidth:1,borderRightColor:'#04AA8C',marginLeft:26,marginRight:26}}></View>
-                    <Text style={styles.info}>{item.info}</Text>
+                    <View style={{height:32, width:72, borderRightWidth:1, borderColor:'#04AA8C',justifyContent:'center',alignItems:'center'}}>
+                        <Text style={styles.size}> {item.value}</Text>
+                    </View>
+                    <View style={{width:193,alignItems:'center'}}>
+                        <Text style={styles.info}>{item.info}</Text>
+                    </View>
                 </Pressable>
             );
         })}
@@ -60,10 +63,11 @@ const styles = StyleSheet.create({
     },
     size:{
         fontSize:16,
-        fontWeight:'600'
+        fontWeight:'600',
     },
     info:{
         fontSize:14,
-        width:140
+        width:140,
+        textAlign:'center',
     }
 });

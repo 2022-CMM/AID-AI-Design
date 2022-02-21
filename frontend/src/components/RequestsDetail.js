@@ -11,7 +11,9 @@ function RequestDetail({route}) {
     const Reject = async() =>{
         await API.post()
     }
-
+    let uri = 'http://20.194.101.73:8000'+route.params.goods.image_results;
+    let deadline = route.params.goods.deadline;
+    
     return (
         <View style={styles.container}>
             <View style={styles.header}>
@@ -20,7 +22,7 @@ function RequestDetail({route}) {
             <View style={styles.content}>
                 <ScrollView>
                     <View style={{alignItems:'center'}}>
-                        <Image source={{uri:'https://comart.io/images/rn/react-native.png'}} style={styles.img} />
+                        <Image source={{uri:uri}} style={styles.img} />
                         <Text style={{color:'#888888',marginBottom:25}}>최종 디자인 예상도</Text>
                     </View>
                     <View style={{alignItems:'flex-start'}}>
@@ -42,16 +44,16 @@ function RequestDetail({route}) {
                             </View>
                             <View style={{flexDirection:'row',justifyContent:'center'}}>
                             <View style={{backgroundColor:'#fff',width:83,height:34,alignItems:'center',justifyContent:'center',borderBottomLeftRadius:16,borderLeftWidth:1,borderBottomWidth:1,borderColor:'#04AA8C'}}>
-                                    <Text style={{color:'#000000',fontSize:16}}>70</Text>
+                                    <Text style={{color:'#000000',fontSize:16}}>{route.params.length}</Text>
                                 </View>
                                 <View style={{backgroundColor:'#fff',width:83,height:34,alignItems:'center',justifyContent:'center',borderLeftWidth:1,borderBottomWidth:1,borderColor:'#04AA8C'}}>
-                                    <Text style={{color:'#000000',fontSize:16}}>46</Text>
+                                    <Text style={{color:'#000000',fontSize:16}}>{route.params.sleeve_length}</Text>
                                 </View>
                                 <View style={{backgroundColor:'#fff',width:83,height:34,alignItems:'center',justifyContent:'center',borderLeftWidth:1,borderColor:'#04AA8C',borderBottomWidth:1}}>
-                                    <Text style={{color:'#000000',fontSize:16}}>54</Text>
+                                    <Text style={{color:'#000000',fontSize:16}}>{route.params.chest}</Text>
                                 </View>
                                 <View style={{backgroundColor:'#fff',width:83,height:34,alignItems:'center',justifyContent:'center',borderLeftWidth:1,borderRightWidth:1,borderColor:'#04AA8C',borderBottomRightRadius:16,borderBottomWidth:1}}>
-                                    <Text style={{color:'#000000',fontSize:16}}>24</Text>
+                                    <Text style={{color:'#000000',fontSize:16}}>{route.params.sleeve_length}</Text>
                                 </View>
                             </View>
                         </View>
@@ -59,27 +61,27 @@ function RequestDetail({route}) {
                             <View style={{width:1,height:300,borderWidth:0.5,position:'absolute',top:0,left:118,borderColor:'#CACACA'}}></View>
                             <View style={styles.info}>
                                 <Text style={styles.label}>품목</Text>
-                                <Text style={styles.desc}>반팔</Text>
+                                <Text style={styles.desc}>{route.params.goods.goods_type}</Text>
                             </View>
                             <View style={styles.info}>
                                 <Text style={styles.label}>예상 기한</Text>
-                                <Text style={styles.desc}>0000년 00월 00일</Text>
+                                <Text style={styles.desc}>{deadline.substring(0,10)}</Text>
                             </View>
                             <View style={styles.info}>
                                 <Text style={styles.label}>고객 요청사항</Text>
-                                <Text style={styles.desc}>가나다라마바사가나다라마바사가나다라마바사가나다라마바사</Text>
+                                <Text style={styles.desc}>{route.params.requests}</Text>
                             </View>
                             <View style={styles.info}>
                                 <Text style={styles.label}>디자이너{'\n'}배송지</Text>
-                                <Text style={styles.desc2}>ㅁㅁㅁ시 ㅁㅁㅁ구 ㅁㅁㅁ로 ㅁㅁ - ㅁㅁ</Text>
+                                <Text style={styles.desc2}>{route.params.designer_address}</Text>
                             </View>
                             <View style={styles.info}>
                                 <Text style={styles.label}>고객 배송지</Text>
-                                <Text style={styles.desc2}>ㅁㅁㅁ시 ㅁㅁㅁ구 ㅁㅁㅁ로 ㅁㅁ - ㅁㅁ</Text>
+                                <Text style={styles.desc2}>{route.params.user_address}</Text>
                             </View>
                             <View style={styles.info}>
                                 <Text style={styles.label}>청구비용</Text>
-                                <Text style={styles.desc}>30,000 원</Text>
+                                <Text style={styles.desc}>{route.params.cost} 원</Text>
                             </View>
                         </View>
                         <View style={{width:'100%',paddingLeft:30,paddingRight:30, flexDirection:'row', justifyContent:'space-between',marginTop:12,marginBottom:60}}>

@@ -28,7 +28,8 @@ import Chatting from './src/components/Chatting'
 import Requests from './src/components/Requests';
 import RequestDetail from './src/components/RequestsDetail';
 import Designer from './src/components/designer';
-import Campaign from './src/components/Campaign'
+import Campaign from './src/components/Campaign';
+import OutCome from './src/components/Outcome';
 
 import Tabbar_Svg from './src/media/TabBar';
 
@@ -99,6 +100,15 @@ function MyPageStack(){
   );
 }
 
+function UploadStack(){
+  return(
+    <Stack.Navigator initialRouteName="Upload" screenOptions={{headerShown: false}}>
+        <Stack.Screen name="Upload" component={Upload} />
+        <Stack.Screen name="Outcome" component={OutCome} />
+      </Stack.Navigator>
+  )
+}
+
 function AppStack() {
   delay_splash();
   return (
@@ -122,9 +132,9 @@ function MainTab() {
       {/* tabBarBackground:()=>(<Tabbar_Svg style={{position:'absolute',bottom:0}} />) 이거 탭바모양인데 안먹어서 일단 주석 */}
       <Tab.Screen name="HomeStack" component={HomeStack} options={{tabBarIcon: ()=>{ return <Home_Icon />},unmountOnBlur: true}} />
       <Tab.Screen name="SearchStack" component={SearchStack} options={{tabBarIcon: ()=>{ return <Search_Icon />}}} />
-      <Tab.Screen name="Upload" component={Upload} options={{tabBarButton: (props)=>{ return <TabBarAdvancedButton {...props} />}}} />
+      <Tab.Screen name="Uploading" component={UploadStack} options={{tabBarButton: (props)=>{ return <TabBarAdvancedButton {...props} />}}} />
       <Tab.Screen name="Chat" component={ChatPage} options={{tabBarIcon: ()=>{ return <Chat_Icon />}}} />
-      <Tab.Screen name="My" component={MyPageStack} options={{tabBarIcon: ()=>{ return <Mypage_Icon />}}} />
+      <Tab.Screen name="My" component={MyPageStack} options={{tabBarIcon: ()=>{ return <Mypage_Icon />},unmountOnBlur: true}} />
     </Tab.Navigator>
   );
 }

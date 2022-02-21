@@ -8,16 +8,17 @@ import RadioButton from './RadioButton';
 import CatDetails from './CatDetails';
 
 import Photo_Icon from '../media/photo_icon';
+import Size from '../media/size';
 import Cancle_Icon from '../media/cancle_icon';
 import axios from 'axios';
 import API from './AxiosAPI';
 
 const SizeData = [
-    { value : 'XS', info : '대충 사이즈 어떤 정도인지', key : '1'},
-    { value : 'S', info : '대충 사이즈 어떤 정도인지', key : '2'},
-    { value : 'M', info : '대충 사이즈 어떤 정도인지', key : '3'},
-    { value : 'L', info : '대충 사이즈 어떤 정도인지', key : '4'},
-    { value : 'XL', info : '대충 사이즈 어떤 정도인지', key : '5'}
+    { value : 'XS', info : '10cm X 10cm 이내', key : '1'},
+    { value : 'S', info : '15cm X 15cm 이내', key : '2'},
+    { value : 'M', info : '30cm X 30cm 이내', key : '3'},
+    { value : 'L', info : '50cm X 50cm 이내', key : '4'},
+    { value : 'XL', info : '50cm X 50cm 보다 큼', key : '5'}
 ];
 
 const CatDetailData1 = [
@@ -175,7 +176,21 @@ function Upload({onPress}){
         Style9 === true ? style.push('Style9') : false;
         Style10 === true ? style.push('Style10') : false;
 
-        let selectdate = date.toDateString();
+        
+        function leftPad(value) { 
+            if (value >= 10) { 
+                return value;
+            }
+            return `0${value}`; 
+        }
+        function toStringByFormatting(source, delimiter = '-') { 
+            const year = source.getFullYear();
+            const month = leftPad(source.getMonth() + 1); 
+            const day = leftPad(source.getDate()); 
+            return [year, month, day].join(delimiter); 
+        }
+
+        let selectdate = toStringByFormatting(date);
 
         let submit_data={
             image : Img_base64.img,
@@ -184,6 +199,7 @@ function Upload({onPress}){
             deadline:selectdate,
             style:style
         };
+        
 
         API.post('/api/upload/',submit_data)
         .then((response)=>{
@@ -198,7 +214,7 @@ function Upload({onPress}){
     }
 
     return (
-        <Swiper style={styles.wrapper} showsButtons={true}>
+        <Swiper style={styles.wrapper} showsButtons={true} >
             <View style={styles.container}>
                 <View style={styles.header}>
                     <Text style={styles.navi}>사진 업로드</Text>
@@ -238,7 +254,9 @@ function Upload({onPress}){
                     <Text style={styles.navi}>사이즈</Text>
                 </View>
                 <View style={styles.content}>
-                    <View style={{width:80,height:80,backgroundColor:'#C4C4C4',marginBottom:25}}></View>
+                    <View style={{marginBottom:40}}>
+                        <Size />
+                    </View>
                     <RadioButton data={SizeData} onSelect={(value) => setsize(value)} />
                 </View>
             </View>
@@ -271,52 +289,52 @@ function Upload({onPress}){
                     <View style={{flexDirection:'row',flexWrap:'wrap', paddingLeft:31,paddingRight:31,justifyContent:'center'}}>
                         <Pressable style={Style1 === true ? styles.checked : styles.unchecked} onPress={()=>setStyle1(!Style1)} >
                             <Text style={Style1 === true ? styles.checkedtext : styles.uncheckedtext}>
-                                스타일 이름1
+                                걸리시
                             </Text>
                         </Pressable>
                         <Pressable style={Style2 === true ? styles.checked : styles.unchecked} onPress={()=>setStyle2(!Style2)}>
                             <Text style={Style2 === true ? styles.checkedtext : styles.uncheckedtext}>
-                                스타일 이름2
+                                시크
                             </Text>
                         </Pressable>
                         <Pressable style={Style3 === true ? styles.checked : styles.unchecked} onPress={()=>setStyle3(!Style3)}>
                             <Text style={Style3 === true ? styles.checkedtext : styles.uncheckedtext}>
-                                스타일 이름3
+                                로맨틱
                             </Text>
                         </Pressable>
                         <Pressable style={Style4 === true ? styles.checked : styles.unchecked} onPress={()=>setStyle4(!Style4)}>
                             <Text style={Style4 === true ? styles.checkedtext : styles.uncheckedtext}>
-                                스타일 이름4
+                                스트릿
                             </Text>
                         </Pressable>
                         <Pressable style={Style5 === true ? styles.checked : styles.unchecked} onPress={()=>setStyle5(!Style5)}>
                             <Text style={Style5 === true ? styles.checkedtext : styles.uncheckedtext}>
-                                스타일 이름5
+                                캐주얼
                             </Text>
                         </Pressable>
                         <Pressable style={Style6 === true ? styles.checked : styles.unchecked} onPress={()=>setStyle6(!Style6)}>
                             <Text style={Style6 === true ? styles.checkedtext : styles.uncheckedtext}>
-                                스타일 이름6
+                                골프
                             </Text>
                         </Pressable>
                         <Pressable style={Style7 === true ? styles.checked : styles.unchecked} onPress={()=>setStyle7(!Style7)}>
                             <Text style={Style7 === true ? styles.checkedtext : styles.uncheckedtext}>
-                                스타일 이름7
+                                댄디
                             </Text>
                         </Pressable>
                         <Pressable style={Style8 === true ? styles.checked : styles.unchecked} onPress={()=>setStyle8(!Style8)}>
                             <Text style={Style8 === true ? styles.checkedtext : styles.uncheckedtext}>
-                                스타일 이름8
+                                포멀
                             </Text>
                         </Pressable>
                         <Pressable style={Style9 === true ? styles.checked : styles.unchecked} onPress={()=>setStyle9(!Style9)}>
                             <Text style={Style9 === true ? styles.checkedtext : styles.uncheckedtext}>
-                                스타일 이름9
+                                섹시
                             </Text>
                         </Pressable>
                         <Pressable style={Style10 === true ? styles.checked : styles.unchecked} onPress={()=>setStyle10(!Style10)}>
                             <Text style={Style10 === true ? styles.checkedtext : styles.uncheckedtext}>
-                                스타일 이름10
+                                한복
                             </Text>
                         </Pressable>
                     </View>

@@ -18,7 +18,7 @@ function Piece({route}) {
                 <LogoSvg />
             </View>
             <View style={styles.Big_pic}>
-                <Image source={{uri:uri}} style={styles.img} />
+                <Image source={{uri:'http://20.194.101.73:8000'+route.params.image_results}} style={styles.img} />
                 <Text style={{position:'absolute',left:24,bottom:18,fontSize:24,fontWeight:'bold',backgroundColor:'rgba(255, 255, 255, 0.6)',}}>{route.params.title_changed}</Text>
             </View>
             <View style={styles.info}>
@@ -28,7 +28,7 @@ function Piece({route}) {
                     <Text style={styles.key}>사이즈           <Text style={styles.value}>{route.params.size}</Text></Text>
                 </View>
                 <View style={{position:'absolute', right:24, top:-48,justifyContent:'center',alignItems:'center'}}>
-                    <Image source={{uri:uri}} style={styles.beforeimg} />
+                    <Image source={{uri:'http://20.194.101.73:8000'+route.params.image}} style={styles.beforeimg} />
                     <Text style={{fontSize:12}}>{route.params.title}</Text>
                 </View>
                 <View style={{flexDirection:'row',justifyContent:'center',alignItems:'center'}}>
