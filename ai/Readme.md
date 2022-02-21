@@ -50,4 +50,8 @@ After several studies(issues), the most parameters were selected.
     >kimg : about 3000+ \
      cfg : const
      
-  
+- Generator(Projector.py)
+  ![stylegan.gif](readmeImage/stylegan.gif)
+
+#### 2) Output
+![stylegan_output.png](readmeImage/stylegan_output.png) 
