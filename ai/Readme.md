@@ -1,6 +1,6 @@
 # AI Readme
 
-This repository modified the code from StyleGANv2-ada-pytorch(https://github.com/NVlabs/stylegan2-ada-pytorch). \
+This repository modified the code from `StyleGANv2-ada-pytorch` (https://github.com/NVlabs/stylegan2-ada-pytorch). \
 After several studies(issues), the most parameters were selected. 
 
 ### 1. Data Gathering \
@@ -34,7 +34,7 @@ After several studies(issues), the most parameters were selected.
 ### 3. Training
 #### 0) Environments
 - Trained StyleGANv2 in <b>Colab-Pro</b> environments 
-  > GPU : Tesla T4\
+  > GPU : Tesla P100\
   RAM : 32GB\
   gpus : 1
   
@@ -50,7 +50,7 @@ After several studies(issues), the most parameters were selected.
     >kimg : about 3000+ \
      cfg : const
      
-- Generator(Projector.py)
+- Generator `Projector.py`
   ![stylegan.gif](readmeImage/stylegan.gif)
 
 #### 2) Output
