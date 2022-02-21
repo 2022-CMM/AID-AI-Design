@@ -166,6 +166,7 @@ def run_projection(
     #     G = legacy.load_network_pkl(fp)['G_ema'].requires_grad_(False).to(device) # type: ignore
 
     # Load target image.
+    f_num = target_fname[4] # for test images.
     target_pil = PIL.Image.open(target_fname).convert('RGB')
     w, h = target_pil.size
     s = min(w, h)
@@ -188,7 +189,7 @@ def run_projection(
     os.makedirs(outdir, exist_ok=True)
     if save_video:
         video = imageio.get_writer(f'{outdir}/proj.mp4', mode='I', fps=10, codec='libx264', bitrate='16M')
-        print (f'Saving optimization progress video "{outdir}/proj.mp4"')
+        print (f'Saving optimization progress video "{outdir}/proj{f_num}.mp4"')
         for projected_w in projected_w_steps:
             synth_image = G.synthesis(projected_w.unsqueeze(0), noise_mode='const')
             synth_image = (synth_image + 1) * (255/2)

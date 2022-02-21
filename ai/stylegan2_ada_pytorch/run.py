@@ -2,6 +2,7 @@ import numpy as np
 import dnnlib
 import torch
 import legacy
+import os
 
 from style_mixing import generate_style_mix
 from projector import run_projection
@@ -26,14 +27,15 @@ if __name__ == "__main__" :
 
     # Image1, 2에 대한 latent vector를 생성
     w_dict = {}
-    for i in range(1,3) :
+    testfile_length = len(os.listdir('./test_images'))
+    for i in range(1,testfile_length+1) :
         print(f"이미지를 생성합니다. ===> Input : {i}")
         projected_w = run_projection(G = G,
             target_fname = f'./test_images/test{i}.png',
             outdir = 'output',
             save_video = True,
             seed = seed,
-            num_steps = 100,
+            num_steps = 1000,
             device = device
         )
         w_dict[f"Image{i}"] = projected_w

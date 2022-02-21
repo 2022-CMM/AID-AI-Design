@@ -44,18 +44,22 @@ def generate_style_mix(
         # np.savez(f'{outdir}/projected_w.npz', w=projected_w.unsqueeze(0).cpu().numpy())
 
     # Style Mixing
-    row_w = w_dict["Image1"].clone()
-    row_w[col_start:col_end] = w_dict["Image2"][col_start:col_end]
-    synth_image = G.synthesis(row_w.unsqueeze(0), noise_mode=noise_mode)
-    synth_image = (synth_image + 1) * (255 / 2)
-    synth_image = synth_image.permute(0, 2, 3, 1).clamp(0, 255).to(torch.uint8)[0].cpu().numpy()
+    for j in range(int(len(w_dict)/2)) :
+        num1 = 1+2*j
+        num2 = 2+2*j
 
+        row_w = w_dict[f"Image{num1}"].clone()
+        row_w[col_start:col_end] = w_dict[f"Image{num2}"][col_start:col_end]
 
-    # Image Save
-    print("이미지를 저장합니다.")
-    PIL.Image.fromarray(image_dict["Image1"], 'RGB').save(f'{outdir}/generate1.png')
-    PIL.Image.fromarray(image_dict["Image2"], 'RGB').save(f'{outdir}/generate2.png')
-    PIL.Image.fromarray(synth_image, 'RGB').save(f'{outdir}/final_output.png')
+        synth_image = G.synthesis(row_w.unsqueeze(0), noise_mode=noise_mode)
+        synth_image = (synth_image + 1) * (255 / 2)
+        synth_image = synth_image.permute(0, 2, 3, 1).clamp(0, 255).to(torch.uint8)[0].cpu().numpy()
+
+        # Image Save
+        print("이미지를 저장합니다.")
+        PIL.Image.fromarray(image_dict[f"Image{num1}"], 'RGB').save(f'{outdir}/generate{num1}.png')
+        PIL.Image.fromarray(image_dict[f"Image{num2}"], 'RGB').save(f'{outdir}/generate{num2}.png')
+        PIL.Image.fromarray(synth_image, 'RGB').save(f'{outdir}/final_output{num1}_{num2}.png')
 
 
 #----------------------------------------------------------------------------

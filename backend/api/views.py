@@ -118,7 +118,7 @@ class ResultViewSet(viewsets.ModelViewSet):
     def list(self, request):
         queryset = self.get_queryset()
         serializers = ResultSerializer(queryset, many=True)
-        # generate_img('./media/images/test1.PNG', './media/images/test2.PNG')
+        # generate_img('./media/images/test3.PNG', './media/images/test4.PNG')
         return Response(serializers.data)
 
 
