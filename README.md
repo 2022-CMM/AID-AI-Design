@@ -38,7 +38,6 @@
 <p align=“center”>
    <kbd><img src="https://user-images.githubusercontent.com/74298527/154986917-4eb83420-cf28-4820-9b0e-7d205a976b82.gif" width="250"></kbd>
   <kbd><img src="https://user-images.githubusercontent.com/74298527/154986925-548458b3-c45c-4905-b7bd-9dbb05617bfc.gif" width="250"></kbd>
-  <kbd><img src="" width="250"></kbd>
 </p>
 
 ## Application Architecture
