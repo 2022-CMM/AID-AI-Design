@@ -9,7 +9,9 @@ function ChatPage() {
                 <Text style={styles.navi}>채팅</Text>
             </View>
             <View style={styles.content}>
-
+                <View>
+                    
+                </View>
             </View>
         </View>
     );
