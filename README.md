@@ -43,6 +43,10 @@
 ## Application Architecture
 ![architecture](https://user-images.githubusercontent.com/74298527/154839832-0988d126-a01c-46b8-adf7-18bea73cf0fa.PNG)
 
+## 각 파트별 readme
+https://github.com/2022-CMM/AID-AI-Design/tree/main/ai
+https://github.com/2022-CMM/AID-AI-Design/tree/main/backend
+https://github.com/2022-CMM/AID-AI-Design/tree/main/frontend
 
 ## Contributor
 
